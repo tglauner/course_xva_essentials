@@ -5,12 +5,12 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: './src',
-  publicDir: '../public',
-  build: { outDir: '../dist' },
   plugins: [react(), tailwindcss()],
+  base: '/course_xva_essentials/',
   resolve: {
-    alias: { '@': path.resolve(__dirname, './src') },
+    alias: { 
+      '@': path.resolve(__dirname, './src') 
+    },
   },
 })
 

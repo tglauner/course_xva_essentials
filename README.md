@@ -15,6 +15,7 @@ A repository of course materials and a React/Vite website for the XVA Essentials
 The project is static and uses browser developer tools for debugging; no server-side logging is included.
 
 ## Local Development (macOS)
+There are no python dependencies
 
 1. **Enable pnpm (once per machine)**
    ```bash
