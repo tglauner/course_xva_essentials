@@ -196,7 +196,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 ## 📁 **Deliverables Included**
 
 1. **Live Interactive Website** (Primary Deliverable)
-2. **LaTeX Beamer Presentation** (xva_course.tex)
+2. **LaTeX Beamer Presentation** (latex_material/xva_course.tex)
 3. **Enhanced Course Materials** (Markdown format)
 4. **Course Outline and Structure**
 5. **Technical Documentation**

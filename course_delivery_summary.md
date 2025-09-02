@@ -24,7 +24,7 @@ The course has been deployed as a fully interactive website featuring:
 - Footer with course attribution
 
 ### 2. LaTeX Beamer Presentation
-**File:** `xva_course.tex`
+**File:** `latex_material/xva_course.tex`
 
 A complete LaTeX Beamer presentation containing:
 - Professional academic formatting
@@ -115,7 +115,7 @@ A complete LaTeX Beamer presentation containing:
 5. Content is fully responsive and works on all devices
 
 ### For the LaTeX Presentation:
-1. Use the provided `xva_course.tex` file
+1. Use the provided `latex_material/xva_course.tex` file
 2. Compile with any LaTeX distribution (pdflatex, xelatex, etc.)
 3. Requires standard packages: beamer, amsmath, amsfonts, amssymb, graphicx, hyperref
 4. Generates a professional PDF presentation suitable for lectures

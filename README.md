@@ -22,7 +22,7 @@ The project is static and uses browser developer tools for debugging; no server-
    ```
 2. **Install dependencies and start the dev server**
    ```bash
-   cd xva-course-website
+   cd frontend
    pnpm install
    pnpm dev
    ```
@@ -36,7 +36,7 @@ The project is static and uses browser developer tools for debugging; no server-
 
 1. **Build the site**
    ```bash
-   cd xva-course-website
+   cd frontend
    corepack enable   # ensure pnpm is available
    pnpm install
    pnpm build
