@@ -16,15 +16,20 @@ The project is static and uses browser developer tools for debugging; no server-
 
 ## Local Development (macOS)
 
-1. **Install dependencies and start the dev server**
+1. **Enable pnpm (once per machine)**
+   ```bash
+   corepack enable
+   ```
+2. **Install dependencies and start the dev server**
    ```bash
    cd xva-course-website
-   npm install          # or pnpm install
-   npm run dev
+   pnpm install
+   pnpm dev
    ```
-2. **Run checks**
+3. **Run checks**
    ```bash
-   npm test             # no tests defined yet
+   pnpm lint
+   pnpm test             # no tests defined yet
    ```
 
 ## Production Deployment (DigitalOcean + Apache)
@@ -32,8 +37,9 @@ The project is static and uses browser developer tools for debugging; no server-
 1. **Build the site**
    ```bash
    cd xva-course-website
-   npm install
-   npm run build
+   corepack enable   # ensure pnpm is available
+   pnpm install
+   pnpm build
    ```
    The compiled files appear in `dist/`.
 2. **Upload to the server**
