@@ -110,6 +110,21 @@
 \end{frame}
 
 \begin{frame}
+    \subsection*{Topic 1.5: The Interplay of XVA Components}
+    \frametitle{Topic 1.5: The Interplay of XVA Components}
+
+    XVA components interact in complex ways, and a holistic view is required to avoid double-counting or mispricing. Netting agreements, collateralization, and funding strategies affect multiple adjustments simultaneously.
+
+    \begin{itemize}
+    \item **CVA and DVA:** Represent bilateral credit risk. Improvements in one counterparty's credit quality reduce CVA but increase the other's DVA.
+    \item **FVA and Collateral:** Collateral posted under credit support annexes reduces uncollateralized exposure and hence FVA, but the type of collateral influences funding costs.
+    \item **MVA and Funding:** Initial margin funding costs feed into both MVA and broader funding considerations captured by FVA.
+    \item **KVA Interactions:** The capital charge depends on exposures that already include CVA, DVA, and FVA effects, linking regulatory capital to other XVAs.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
     \section*{Module 2: Credit Valuation Adjustment (CVA)}
     \frametitle{Module 2: Credit Valuation Adjustment (CVA)}
 
@@ -129,43 +144,43 @@
 
 \end{frame}
 
-% \begin{frame}
-%     \subsection*{Topic 2.2: Mathematical Formulation of CVA}
-%     \frametitle{Topic 2.2: Mathematical Formulation of CVA}
+\begin{frame}
+    \subsection*{Topic 2.2: Mathematical Formulation of CVA}
+    \frametitle{Topic 2.2: Mathematical Formulation of CVA}
 
-%     CVA is typically calculated as the Expected Exposure (EE) weighted by the Probability of Default (PD) and Loss Given Default (LGD) over the life of the derivative. The general formula for CVA is:
+    CVA is typically calculated as the Expected Exposure (EE) weighted by the Probability of Default (PD) and Loss Given Default (LGD) over the life of the derivative. The general formula for CVA is:
 
-%     CVA = LGD * EPE
+    CVA = LGD * EPE
 
-%     Where:
+    Where:
 
-%     \begin{itemize}
-%     \item **LGD (Loss Given Default):** The percentage of the exposure that is lost if a default occurs. It is typically (1 - Recovery Rate).
-%     \item **EPE (Expected Positive Exposure):** The weighted average of the expected exposure (EE) over the life of the transaction, where the weights are the probabilities of default. More precisely, it\'s the average of the positive expected exposure, as the bank only incurs a loss if the counterparty defaults when the bank has a positive MTM.
-%     \end{itemize}
+    \begin{itemize}
+    \item **LGD (Loss Given Default):** The percentage of the exposure that is lost if a default occurs. It is typically (1 - Recovery Rate).
+    \item **EPE (Expected Positive Exposure):** The weighted average of the expected exposure (EE) over the life of the transaction, where the weights are the probabilities of default. More precisely, it\'s the average of the positive expected exposure, as the bank only incurs a loss if the counterparty defaults when the bank has a positive MTM.
+    \end{itemize}
 
-%     \framesubtitle{Components of CVA Calculation}
+    \framesubtitle{Components of CVA Calculation}
 
-%     1.  **Exposure at Default (EAD):** The value of the derivative at the time of default. This is often approximated by the Mark-to-Market (MTM) value. However, for future dates, the MTM is uncertain, so Expected Exposure (EE) is used.
-%     2.  **Expected Exposure (EE):** The expected value of the exposure at a future point in time. Since the MTM of a derivative can be positive or negative, EE considers only the positive values (from the bank\'s perspective) as these are the only ones that lead to a loss upon counterparty default.
-%         *   EE is typically calculated using Monte Carlo simulations, where future market parameters (interest rates, exchange rates, etc.) are simulated, and the derivative is revalued at each simulation path.
-%     3.  **Probability of Default (PD):** The likelihood that the counterparty will default over a specific period. PDs are usually derived from credit spreads (e.g., from CDS markets) or historical default data.
-%     4.  **Loss Given Default (LGD):** The proportion of the exposure that is lost if a default occurs. It is usually expressed as 1 minus the recovery rate (RR).
+    1.  **Exposure at Default (EAD):** The value of the derivative at the time of default. This is often approximated by the Mark-to-Market (MTM) value. However, for future dates, the MTM is uncertain, so Expected Exposure (EE) is used.
+    2.  **Expected Exposure (EE):** The expected value of the exposure at a future point in time. Since the MTM of a derivative can be positive or negative, EE considers only the positive values (from the bank\'s perspective) as these are the only ones that lead to a loss upon counterparty default.
+        *   EE is typically calculated using Monte Carlo simulations, where future market parameters (interest rates, exchange rates, etc.) are simulated, and the derivative is revalued at each simulation path.
+    3.  **Probability of Default (PD):** The likelihood that the counterparty will default over a specific period. PDs are usually derived from credit spreads (e.g., from CDS markets) or historical default data.
+    4.  **Loss Given Default (LGD):** The proportion of the exposure that is lost if a default occurs. It is usually expressed as 1 minus the recovery rate (RR).
 
-%     The discrete form of CVA can be expressed as:
+    The discrete form of CVA can be expressed as:
 
-%     CVA = Sum[i=1 to T] (EE\_i * PD\_i * LGD * DF\_i)
+    CVA = Sum[i=1 to T] (EE\_i * PD\_i * LGD * DF\_i)
 
-%     Where:
+    Where:
 
-%     \begin{itemize}
-%     \item `EE\_i`: Expected Exposure at time `t\_i`
-%     \item `PD\_i`: Probability of default in the interval `(t\_\{i-1\}, t\_i]`
-%     \item `LGD`: Loss Given Default
-%     \item `DF\_i`: Discount Factor to time `t\_i`
-%     \end{itemize}
+    \begin{itemize}
+    \item `EE\_i`: Expected Exposure at time `t\_i`
+    \item `PD\_i`: Probability of default in the interval `(t\_\{i-1\}, t\_i]`
+    \item `LGD`: Loss Given Default
+    \item `DF\_i`: Discount Factor to time `t\_i`
+    \end{itemize}
 
-% \end{frame}
+\end{frame}
 
 \begin{frame}
     \subsection*{Topic 2.3: Practical Aspects of CVA Calculation}
@@ -339,6 +354,34 @@
 
 \end{frame}
 
+
+\begin{frame}
+    \subsection*{Topic 4.4: The FVA Debate: Is it a Real Cost?}
+    \frametitle{Topic 4.4: The FVA Debate: Is it a Real Cost?}
+
+    The inclusion of FVA in derivative pricing has been debated. Critics argue that funding costs are already reflected in a bank's overall cost of capital, while proponents note that uncollateralized trades consume funding resources that should be explicitly priced.
+
+    \begin{itemize}
+    \item **Proponents:** FVA captures the opportunity cost of funding positive exposures and the benefit of funding negative exposures.
+    \item **Critics:** Some view FVA as double-counting when credit spreads already embed funding effects.
+    \item **Industry Practice:** Most major banks now include FVA, but methodologies vary.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \subsection*{Topic 4.5: FVA Hedging and Management}
+    \frametitle{Topic 4.5: FVA Hedging and Management}
+
+    Managing FVA involves balancing funding strategies and liquidity risk.
+
+    \begin{itemize}
+    \item **Internal Funding Desks:** Coordinate funding for trading books and optimize collateral usage.
+    \item **Hedging Tools:** Banks may use term funding, repos, or structured notes to manage funding exposure.
+    \item **Challenges:** Funding spreads can be volatile, and hedging instruments may introduce additional basis and liquidity risks.
+    \end{itemize}
+\end{frame}
+
+
 \begin{frame}
     \section*{Module 5: Margin Valuation Adjustment (MVA)}
     \frametitle{Module 5: Margin Valuation Adjustment (MVA)}
@@ -388,6 +431,33 @@
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}
+    \subsection*{Topic 5.4: MVA Hedging and Management}
+    \frametitle{Topic 5.4: MVA Hedging and Management}
+
+    Hedging MVA is challenging because initial margin requirements depend on portfolio composition and market volatility.
+
+    \begin{itemize}
+    \item **Margin Optimization:** Banks may restructure trades or use margin-efficient products to reduce initial margin needs.
+    \item **Funding Strategies:** Dedicated funding for initial margin, such as collateralized borrowing, can reduce costs but introduces liquidity considerations.
+    \item **Operational Challenges:** Frequent recalculation of IM and settlement cycles add complexity.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \subsection*{Topic 5.5: Regulatory Impact: Driving Behavioral Change}
+    \frametitle{Topic 5.5: Regulatory Impact: Driving Behavioral Change}
+
+    Regulatory reforms mandating initial margin have reshaped derivatives markets.
+
+    \begin{itemize}
+    \item **BCBS-IOSCO Framework:** Phased implementation has brought more counterparties into scope, increasing demand for high-quality collateral.
+    \item **Product Innovation:** The cost of posting IM has encouraged the use of cleared products and compression services.
+    \item **Strategic Considerations:** Institutions evaluate trade profitability after accounting for MVA, influencing deal structures and client pricing.
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
     \section*{Module 6: Advanced Topics and Integrated XVA}
@@ -477,6 +547,20 @@
     These case studies will provide practical insights into the theoretical concepts and highlight the importance of robust XVA frameworks in managing financial risk.
 
 \end{frame}
+
+\begin{frame}
+    \subsection*{Topic 6.5: Future Trends and Challenges in XVA}
+    \frametitle{Topic 6.5: Future Trends and Challenges in XVA}
+
+    As financial markets evolve, XVA practices continue to develop.
+
+    \begin{itemize}
+    \item **Model Risk and Automation:** Increased use of machine learning and automated risk engines raises governance and validation challenges.
+    \item **Central Clearing Expansion:** Wider adoption of central clearing and standardized products may reduce certain XVA components while increasing others like MVA.
+    \item **Sustainability Considerations:** Emerging regulatory focus on ESG factors could influence funding costs and capital requirements, impacting FVA and KVA.
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
     \section*{References}
