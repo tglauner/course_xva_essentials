@@ -15,5 +15,5 @@ node_modules/
 *.toc
 xva_course.pdf
 
-# Mac
+# Mac 
 .DS_Store
