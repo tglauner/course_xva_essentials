@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
@@ -34,6 +34,43 @@ function App() {
     setGlossaryOpen(false)
     setSelectedTerm(null)
   }
+
+  // Module and subsection handlers
+  const handleModuleClick = (moduleId) => {
+    setActiveModule(activeModule === moduleId ? null : moduleId)
+    setActiveSubsection(null)
+  }
+
+  const handleSubsectionClick = (subsectionIndex) => {
+    setActiveSubsection(activeSubsection === subsectionIndex ? null : subsectionIndex)
+
+    // Scroll to content after a brief delay to allow for DOM updates
+    setTimeout(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
+  }
+
+  // Term selection handler
+  const handleTermClick = useCallback((term) => {
+    setSelectedTerm(term)
+    setGlossaryOpen(true)
+  }, [])
+
+  // Add click listeners for term links
+  useEffect(() => {
+    const handleTermLinkClick = (e) => {
+      if (e.target.classList.contains('term-link')) {
+        e.preventDefault()
+        const term = e.target.getAttribute('data-term')
+        handleTermClick(term)
+      }
+    }
+
+    document.addEventListener('click', handleTermLinkClick)
+    return () => document.removeEventListener('click', handleTermLinkClick)
+  }, [handleTermClick])
 
   // If no access, show paywall
   if (!hasAccess) {
@@ -367,42 +404,6 @@ function App() {
     }
     // Add modules 3, 4, 5, and 6 with similar structure...
   }
-
-  // Enhanced click handler with better touch support
-  const handleModuleClick = (moduleId) => {
-    setActiveModule(activeModule === moduleId ? null : moduleId)
-    setActiveSubsection(null)
-  }
-
-  const handleSubsectionClick = (subsectionIndex) => {
-    setActiveSubsection(activeSubsection === subsectionIndex ? null : subsectionIndex)
-    
-    // Scroll to content after a brief delay to allow for DOM updates
-    setTimeout(() => {
-      if (contentRef.current) {
-        contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 100)
-  }
-
-  const handleTermClick = (term) => {
-    setSelectedTerm(term)
-    setGlossaryOpen(true)
-  }
-
-  // Add click listeners for term links
-  useEffect(() => {
-    const handleTermLinkClick = (e) => {
-      if (e.target.classList.contains('term-link')) {
-        e.preventDefault()
-        const term = e.target.getAttribute('data-term')
-        handleTermClick(term)
-      }
-    }
-
-    document.addEventListener('click', handleTermLinkClick)
-    return () => document.removeEventListener('click', handleTermLinkClick)
-  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
