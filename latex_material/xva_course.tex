@@ -216,17 +216,26 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[allowframebreaks]
     \subsection*{Topic 2.5: Regulatory Capital for CVA (Basel III)}
     \frametitle{Topic 2.5: Regulatory Capital for CVA (Basel III)}
 
-    Basel III introduced a capital charge for CVA risk, recognizing it as a significant source of risk for banks. This capital charge aims to ensure that banks hold sufficient capital to absorb potential losses arising from counterparty credit risk on derivatives.
+    Under Basel III, regulators formally recognized that counterparty credit risk in derivatives is not fully captured by default risk alone. Instead, fluctuations in the \emph{market value} of counterparty risk---known as Credit Valuation Adjustment (CVA)---can drive significant volatility in a bank's profit and loss. To ensure that institutions remain resilient against these risks, Basel III introduced a dedicated \emph{capital charge for CVA risk}. This charge serves as a prudential buffer, requiring banks to hold additional capital against unexpected losses arising not from outright default alone, but from credit spread movements that affect the valuation of derivative exposures.
 
-    \begin{itemize}
-    \item **CVA Capital Charge:** Banks are required to calculate a capital charge for CVA risk, which covers both the risk of changes in CVA due to credit spread movements and the risk of jump-to-default events.
-    \item **Standardized Approach vs. Advanced Approach:** Banks can use either a standardized approach (simpler, but less risk-sensitive) or an advanced approach (more complex, but more risk-sensitive, requiring internal models) to calculate their CVA capital charge.
-    \end{itemize}
+    The CVA capital framework covers two principal dimensions of risk. First, it addresses \emph{spread volatility}, reflecting the sensitivity of derivative valuations to movements in counterparty credit spreads. Even without a default event, widening spreads can reduce the value of derivative receivables, creating losses. Second, it incorporates \emph{jump-to-default} risk, which captures the possibility of sudden counterparty failure. Together, these components ensure that the capital charge is forward-looking, providing coverage against both gradual and abrupt credit shocks.
 
+    From an implementation perspective, Basel III provides banks with two broad approaches:
+
+    \begin{enumerate}
+        \item \textbf{Standardized Approach (SA-CVA):} The standardized method applies prescribed formulas and regulatory risk weights to determine capital requirements. It is designed for smaller or less complex banks that may lack the resources to build sophisticated internal models. While simpler to apply, it is less sensitive to the nuances of a bank's actual counterparty exposures and hedging strategies.
+        \item \textbf{Advanced Approach (IMA-CVA):} The advanced method allows banks, subject to supervisory approval, to employ internal models to capture their own exposure dynamics, hedging strategies, and portfolio diversification. This approach is more risk-sensitive and better aligned with economic reality but comes with higher model validation, governance, and data requirements. Only banks with strong quantitative infrastructure and robust risk management practices are permitted to adopt it.
+    \end{enumerate}
+
+    The prudential rationale behind these requirements is clear: CVA losses during the 2008 financial crisis were a major source of stress for global banks, with billions of dollars written down due to counterparty spread widening. Regulators concluded that capital frameworks that focused only on default events were insufficient. By assigning explicit capital to CVA risk, Basel III ensures that institutions internalize the cost of counterparty risk management, discouraging excessive build-up of unhedged derivative exposures.
+
+    Beyond compliance, these rules have reshaped market practice. Many banks have established dedicated \emph{CVA desks} responsible for pricing, managing, and hedging CVA risk. The cost of capital linked to CVA now directly influences product pricing, client negotiations, and even strategic decisions about which counterparties to face. Furthermore, the choice between standardized and advanced approaches has competitive implications: banks using internal models may optimize capital more efficiently but must also bear the cost of maintaining sophisticated infrastructure.
+
+    In sum, the Basel III framework for regulatory capital on CVA represents a critical step in aligning regulatory standards with market reality. It extends beyond traditional default risk, capturing the market-driven valuation swings that can undermine solvency. By doing so, it not only strengthens the resilience of individual banks but also enhances the stability of the global financial system.
 \end{frame}
 
 \begin{frame}
