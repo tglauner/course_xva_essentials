@@ -5,10 +5,12 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
+  root: './src',
+  publicDir: '../public',
+  build: { outDir: '../dist' },
+  plugins: [react(), tailwindcss()],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: { '@': path.resolve(__dirname, './src') },
   },
 })
+

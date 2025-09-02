@@ -2,3 +2,18 @@ __pycache__/
 *.log
 .env
 node_modules/
+
+# Latex output
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.gz
+*.toc
+xva_course.pdf
+
+# Mac
+.DS_Store

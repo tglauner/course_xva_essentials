@@ -129,43 +129,43 @@
 
 \end{frame}
 
-\begin{frame}
-    \subsection*{Topic 2.2: Mathematical Formulation of CVA}
-    \frametitle{Topic 2.2: Mathematical Formulation of CVA}
+% \begin{frame}
+%     \subsection*{Topic 2.2: Mathematical Formulation of CVA}
+%     \frametitle{Topic 2.2: Mathematical Formulation of CVA}
 
-    CVA is typically calculated as the Expected Exposure (EE) weighted by the Probability of Default (PD) and Loss Given Default (LGD) over the life of the derivative. The general formula for CVA is:
+%     CVA is typically calculated as the Expected Exposure (EE) weighted by the Probability of Default (PD) and Loss Given Default (LGD) over the life of the derivative. The general formula for CVA is:
 
-    CVA = LGD * EPE
+%     CVA = LGD * EPE
 
-    Where:
+%     Where:
 
-    \begin{itemize}
-    \item **LGD (Loss Given Default):** The percentage of the exposure that is lost if a default occurs. It is typically (1 - Recovery Rate).
-    \item **EPE (Expected Positive Exposure):** The weighted average of the expected exposure (EE) over the life of the transaction, where the weights are the probabilities of default. More precisely, it\'s the average of the positive expected exposure, as the bank only incurs a loss if the counterparty defaults when the bank has a positive MTM.
-    \end{itemize}
+%     \begin{itemize}
+%     \item **LGD (Loss Given Default):** The percentage of the exposure that is lost if a default occurs. It is typically (1 - Recovery Rate).
+%     \item **EPE (Expected Positive Exposure):** The weighted average of the expected exposure (EE) over the life of the transaction, where the weights are the probabilities of default. More precisely, it\'s the average of the positive expected exposure, as the bank only incurs a loss if the counterparty defaults when the bank has a positive MTM.
+%     \end{itemize}
 
-    \framesubtitle{Components of CVA Calculation}
+%     \framesubtitle{Components of CVA Calculation}
 
-    1.  **Exposure at Default (EAD):** The value of the derivative at the time of default. This is often approximated by the Mark-to-Market (MTM) value. However, for future dates, the MTM is uncertain, so Expected Exposure (EE) is used.
-    2.  **Expected Exposure (EE):** The expected value of the exposure at a future point in time. Since the MTM of a derivative can be positive or negative, EE considers only the positive values (from the bank\'s perspective) as these are the only ones that lead to a loss upon counterparty default.
-        *   EE is typically calculated using Monte Carlo simulations, where future market parameters (interest rates, exchange rates, etc.) are simulated, and the derivative is revalued at each simulation path.
-    3.  **Probability of Default (PD):** The likelihood that the counterparty will default over a specific period. PDs are usually derived from credit spreads (e.g., from CDS markets) or historical default data.
-    4.  **Loss Given Default (LGD):** The proportion of the exposure that is lost if a default occurs. It is usually expressed as 1 minus the recovery rate (RR).
+%     1.  **Exposure at Default (EAD):** The value of the derivative at the time of default. This is often approximated by the Mark-to-Market (MTM) value. However, for future dates, the MTM is uncertain, so Expected Exposure (EE) is used.
+%     2.  **Expected Exposure (EE):** The expected value of the exposure at a future point in time. Since the MTM of a derivative can be positive or negative, EE considers only the positive values (from the bank\'s perspective) as these are the only ones that lead to a loss upon counterparty default.
+%         *   EE is typically calculated using Monte Carlo simulations, where future market parameters (interest rates, exchange rates, etc.) are simulated, and the derivative is revalued at each simulation path.
+%     3.  **Probability of Default (PD):** The likelihood that the counterparty will default over a specific period. PDs are usually derived from credit spreads (e.g., from CDS markets) or historical default data.
+%     4.  **Loss Given Default (LGD):** The proportion of the exposure that is lost if a default occurs. It is usually expressed as 1 minus the recovery rate (RR).
 
-    The discrete form of CVA can be expressed as:
+%     The discrete form of CVA can be expressed as:
 
-    CVA = Sum[i=1 to T] (EE\textbackslash{}_i * PD\textbackslash{}_i * LGD * DF\textbackslash{}_i)
+%     CVA = Sum[i=1 to T] (EE\_i * PD\_i * LGD * DF\_i)
 
-    Where:
+%     Where:
 
-    \begin{itemize}
-    \item `EE\textbackslash{}_i`: Expected Exposure at time `t\textbackslash{}_i`
-    \item `PD\textbackslash{}_i`: Probability of default in the interval `(t\textbackslash{}_\textbackslash{}{i-1\textbackslash{}}, t\textbackslash{}_i]`
-    \item `LGD`: Loss Given Default
-    \item `DF\textbackslash{}_i`: Discount Factor to time `t\textbackslash{}_i`
-    \end{itemize}
+%     \begin{itemize}
+%     \item `EE\_i`: Expected Exposure at time `t\_i`
+%     \item `PD\_i`: Probability of default in the interval `(t\_\{i-1\}, t\_i]`
+%     \item `LGD`: Loss Given Default
+%     \item `DF\_i`: Discount Factor to time `t\_i`
+%     \end{itemize}
 
-\end{frame}
+% \end{frame}
 
 \begin{frame}
     \subsection*{Topic 2.3: Practical Aspects of CVA Calculation}
@@ -188,7 +188,7 @@
     \subsection*{Topic 2.4: CVA Hedging and Management}
     \frametitle{Topic 2.4: CVA Hedging and Management}
 
-    CVA introduces a new source of risk for banks, as changes in counterparty credit spreads or market parameters can lead to significant CVA P\textbackslash{}&L (Profit \textbackslash{}& Loss) volatility. Banks actively manage and hedge their CVA exposures.
+    CVA introduces a new source of risk for banks, as changes in counterparty credit spreads or market parameters can lead to significant CVA P\&L (Profit \& Loss) volatility. Banks actively manage and hedge their CVA exposures.
 
     \begin{itemize}
     \item **CVA Desks:** Many large banks have dedicated CVA desks responsible for managing CVA risk. These desks typically use credit derivatives (e.g., CDS) to hedge CVA exposure.
@@ -197,7 +197,7 @@
         *   **Basis Risk:** The credit quality of the counterparty may not perfectly correlate with available hedging instruments.
         *   **Liquidity Risk:** The market for credit derivatives on specific counterparties might be illiquid.
         *   **Jump-to-Default Risk:** The sudden and unexpected default of a counterparty can lead to immediate and significant CVA losses that are difficult to hedge.
-        *   **Accounting Mismatches:** Differences in accounting treatment between derivatives and hedging instruments can create P\textbackslash{}&L volatility.
+        *   **Accounting Mismatches:** Differences in accounting treatment between derivatives and hedging instruments can create P\&L volatility.
 
 \end{frame}
 
@@ -249,15 +249,15 @@
 
     The discrete form of DVA can be expressed as:
 
-    DVA = Sum[i=1 to T] (ENE\textbackslash{}_i * PD\_bank\textbackslash{}_i * LGD\_bank * DF\textbackslash{}_i)
+    DVA = Sum[i=1 to T] (ENE\_i * PD\_bank\_i * LGD\_bank * DF\_i)
 
     Where:
 
     \begin{itemize}
-    \item `ENE\textbackslash{}_i`: Expected Negative Exposure at time `t\textbackslash{}_i`
-    \item `PD\_bank\textbackslash{}_i`: Probability of default of the bank in the interval `(t\textbackslash{}_\textbackslash{}{i-1\textbackslash{}}, t\textbackslash{}_i]`
+    \item `ENE\_i`: Expected Negative Exposure at time `t\_i`
+    \item `PD\_bank\_i`: Probability of default of the bank in the interval `(t\_\{i-1\}, t\_i]`
     \item `LGD\_bank`: Loss Given Default of the bank
-    \item `DF\textbackslash{}_i`: Discount Factor to time `t\textbackslash{}_i`
+    \item `DF\_i`: Discount Factor to time `t\_i`
     \end{itemize}
 
 \end{frame}
@@ -302,9 +302,9 @@
 
     FVA is calculated based on the expected funding costs or benefits over the life of the derivative. The general idea is to discount the expected funding costs/benefits at the bank\'s funding rate.
 
-    FVA = Sum[i=1 to T] (Funding\_Cost\_Benefit\textbackslash{}_i * DF\textbackslash{}_i)
+    FVA = Sum[i=1 to T] (Funding\_Cost\_Benefit\_i * DF\_i)
 
-    Where `Funding\_Cost\_Benefit\textbackslash{}_i` depends on the expected exposure and the bank\'s funding spread.
+    Where `Funding\_Cost\_Benefit\_i` depends on the expected exposure and the bank\'s funding spread.
 
     More specifically:
 
@@ -363,7 +363,7 @@
 
     MVA is calculated as the present value of the expected future funding costs of initial margin. This involves projecting future initial margin requirements and discounting them at the bank\'s funding rate.
 
-    MVA = Sum[i=1 to T] (EIM\textbackslash{}_i * Funding\_Spread * dt * DF\textbackslash{}_i)
+    MVA = Sum[i=1 to T] (EIM\_i * Funding\_Spread * dt * DF\_i)
 
     Where:
 
@@ -371,7 +371,7 @@
     \item `EIM (Expected Initial Margin):` The expected amount of initial margin required at a future point in time. This is typically calculated using quantitative models (e.g., ISDA SIMM).
     \item `Funding\_Spread:` The bank\'s funding spread over the risk-free rate.
     \item `dt:` The time interval.
-    \item `DF\textbackslash{}_i:` Discount Factor to time `t\textbackslash{}_i`.
+    \item `DF\_i:` Discount Factor to time `t\_i`.
     \end{itemize}
 
     Calculating EIM can be complex, as it depends on the portfolio\'s composition, market volatility, and the specific IM model used.
@@ -431,7 +431,7 @@
     \framesubtitle{Role of XVA in Front Office, Risk, and Finance}
 
     \begin{itemize}
-    \item **Front Office (Trading):** XVA desks are often part of the front office, responsible for pricing XVA into new trades, hedging XVA exposures, and managing the overall XVA P\textbackslash{}&L. They work closely with sales and trading teams to ensure that derivative transactions are priced appropriately and that XVA risks are actively managed.
+    \item **Front Office (Trading):** XVA desks are often part of the front office, responsible for pricing XVA into new trades, hedging XVA exposures, and managing the overall XVA P\&L. They work closely with sales and trading teams to ensure that derivative transactions are priced appropriately and that XVA risks are actively managed.
     \item **Risk Management:** The risk management function plays a crucial role in overseeing XVA. This includes developing and validating XVA models, setting XVA risk limits, monitoring XVA exposures, and ensuring compliance with regulatory requirements. Risk management also provides independent oversight of the XVA desk\'s activities.
     \item **Finance and Accounting:** The finance and accounting departments are responsible for the financial reporting of XVA. This includes ensuring that XVA is calculated and reported in accordance with accounting standards (e.g., IFRS, US GAAP), managing the impact of XVA on the bank\'s financial statements, and providing disclosures to investors and regulators.
     \end{itemize}
