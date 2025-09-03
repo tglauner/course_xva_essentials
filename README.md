@@ -2,12 +2,13 @@
 
 ## XVA Essentials Course
 
-A repository of course materials and a React/Vite website for the XVA Essentials curriculum.
+A repository of course materials, a React/Vite website for the XVA Essentials curriculum, and a FastAPI backend for interactive Python examples.
 
 ## Features
 
 - React-based front end styled with Tailwind CSS
 - LaTeX and markdown sources for the course
+- FastAPI backend for executing interactive Python snippets
 - Build artifacts can be hosted under an Apache sub-path
 
 ## Logging
@@ -15,22 +16,26 @@ A repository of course materials and a React/Vite website for the XVA Essentials
 The project is static and uses browser developer tools for debugging; no server-side logging is included.
 
 ## Local Development (macOS)
-There are no python dependencies
-
 1. **Enable pnpm (once per machine)**
    ```bash
    corepack enable
    ```
-2. **Install dependencies and start the dev server**
+2. **Install frontend dependencies and start the dev server**
    ```bash
    cd frontend
    pnpm install
    pnpm dev
    ```
-3. **Run checks**
+3. **Start the FastAPI backend**
    ```bash
-   pnpm lint
-   pnpm test             # no tests defined yet
+   cd backend
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
+4. **Run checks**
+   ```bash
+   pnpm lint        # requires an ESLint config
+   pnpm test        # no tests defined yet
    ```
 
 ## Production Deployment (DigitalOcean + Apache)

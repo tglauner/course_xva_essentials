@@ -2,6 +2,7 @@ __pycache__/
 *.log
 .env
 node_modules/
+frontend/dist/
 
 # Latex output
 *.aux

@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Separator } from '@/components/ui/separator.jsx'
-import { BookOpen, Calculator, TrendingUp, Users, Award, Download, ExternalLink, ArrowRight, ChevronDown, ChevronUp, LogOut } from 'lucide-react'
+import { BookOpen, Calculator, TrendingUp, Users, Award, Download, ExternalLink, ArrowRight, ChevronDown, ChevronUp, LogOut, Code } from 'lucide-react'
+import PaywallGate from './PaywallGate.jsx'
+import PythonNotebook from '@/components/PythonNotebook.jsx'
 import './App.css'
 
 function App() {
@@ -227,6 +229,14 @@ function App() {
       ],
       icon: Download,
       keyTerms: ['KVA', 'Basel III', 'Wrong-Way Risk', 'ISDA SIMM']
+    },
+    {
+      id: 7,
+      title: "Python Examples",
+      description: "Hands-on Python snippets to experiment with",
+      subsections: ["Interactive Python Notebook"],
+      icon: Code,
+      keyTerms: [],
     }
   ]
 
@@ -602,6 +612,15 @@ function App() {
           `
         }
       }
+    },
+    7: {
+      title: "Module 7: Python Examples",
+      subsections: {
+        0: {
+          title: "7.1 Interactive Python Notebook",
+          component: <PythonNotebook />
+        }
+      }
     }
   }
 
@@ -808,12 +827,16 @@ function App() {
                   <h3 className="text-xl font-semibold mb-4">
                     {moduleContent[activeModule].subsections[activeSubsection].title}
                   </h3>
-                  <div 
-                    className="prose prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ 
-                      __html: moduleContent[activeModule].subsections[activeSubsection].content 
-                    }}
-                  />
+                  {moduleContent[activeModule].subsections[activeSubsection].component ? (
+                    moduleContent[activeModule].subsections[activeSubsection].component
+                  ) : (
+                    <div
+                      className="prose prose-lg max-w-none"
+                      dangerouslySetInnerHTML={{
+                        __html: moduleContent[activeModule].subsections[activeSubsection].content
+                      }}
+                    />
+                  )}
                 </div>
               )}
             </CardContent>
