@@ -4,31 +4,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge.jsx'
 import { Separator } from '@/components/ui/separator.jsx'
 import { BookOpen, Calculator, TrendingUp, Users, Award, Download, ExternalLink, ArrowRight, ChevronDown, ChevronUp, LogOut } from 'lucide-react'
-import PaywallGate from './PaywallGate.jsx'
 import './App.css'
 
 function App() {
-  const [hasAccess, setHasAccess] = useState(false)
   const [activeModule, setActiveModule] = useState(null)
   const [activeSubsection, setActiveSubsection] = useState(null)
   const [glossaryOpen, setGlossaryOpen] = useState(false)
   const [selectedTerm, setSelectedTerm] = useState(null)
   const contentRef = useRef(null)
 
-  // Check access on component mount
-  useEffect(() => {
-    const savedAccess = localStorage.getItem('xva_course_access')
-    if (savedAccess === 'granted') {
-      setHasAccess(true)
-    }
-  }, [])
-
   // Handle logout
   const handleLogout = () => {
     localStorage.removeItem('xva_course_access')
     localStorage.removeItem('xva_course_email')
     localStorage.removeItem('xva_course_code')
-    setHasAccess(false)
     setActiveModule(null)
     setActiveSubsection(null)
     setGlossaryOpen(false)
@@ -71,11 +60,6 @@ function App() {
     document.addEventListener('click', handleTermLinkClick)
     return () => document.removeEventListener('click', handleTermLinkClick)
   }, [handleTermClick])
-
-  // If no access, show paywall
-  if (!hasAccess) {
-    return <PaywallGate onAccessGranted={() => setHasAccess(true)} />
-  }
 
   // Glossary of terms with definitions
   const glossary = {
