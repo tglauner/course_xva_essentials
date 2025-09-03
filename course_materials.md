@@ -222,30 +222,23 @@ These are critical considerations in CVA modeling:
 
 ## 2.4 CVA Hedging and Management: Mitigating Volatility
 
-CVA introduces a new and significant source of risk for banks: CVA risk. This risk arises from changes in counterparty credit spreads or market parameters that can lead to substantial CVA P&L (Profit & Loss) volatility. Effective CVA hedging and management are crucial for maintaining financial stability.
+CVA is the expected loss from counterparty default embedded in derivative pricing. For a bank active in over-the-counter markets, CVA is dynamic; its value fluctuates as exposures evolve and as each counterparty’s credit spread widens or tightens. These movements create direct profit-and-loss volatility, making CVA risk a distinct market risk class alongside interest-rate or FX risk. Regulators therefore require banks to measure, manage, and, where possible, hedge CVA to ensure resilience under stressed conditions.
 
 ### 2.4.1 The Mandate of CVA Desks
 
-Many large financial institutions have established dedicated CVA desks, often within the front office or risk management functions. These desks are responsible for:
-
-*   **Pricing CVA:** Incorporating CVA into the pricing of new derivative transactions.
-*   **Managing CVA P&L:** Monitoring and explaining daily CVA P&L movements.
-*   **Hedging CVA Exposure:** Implementing strategies to mitigate the risk arising from changes in CVA.
-*   **Reporting:** Providing regular CVA reports to senior management and regulators.
+Large institutions now maintain dedicated CVA desks. They quote CVA charges for new trades, embedding counterparty risk costs in deal pricing so that business lines internalize the economic impact of credit risk. The desk continuously monitors an existing portfolio of CVA positions, tracking exposures and sensitivities—often labelled “CVA Greeks.” As markets move, the desk rebalances hedges to stabilize daily P&L and reports material drivers to senior management. It coordinates with trading desks, risk control, and finance to ensure that hedging costs are allocated to deal originators and that residual risks remain understood. Beyond daily operations, the desk also supports stress testing, capital forecasting, and regulatory communication.
 
 ### 2.4.2 Common Hedging Instruments
 
-CVA desks typically use credit derivatives to hedge CVA exposure. The most common instrument is the **Credit Default Swap (CDS)**. A bank can buy CDS protection on its counterparty to offset potential losses from the counterparty's default on a derivative. Other instruments like credit indices (e.g., CDX, iTraxx) can be used for portfolio-level hedging.
+The hedging toolkit centers on credit derivatives. Single-name credit default swaps (CDS) allow the desk to buy protection on specific counterparties, offsetting losses if those names default. When single-name CDS are illiquid, index CDS such as CDX or iTraxx provide proxy hedges across sectors or regions. Options on CDS, credit-linked notes, and bond shorts can address non-linear exposure or maturity mismatches. Some desks supplement credit hedges with interest-rate swaps or foreign-exchange forwards when market factors influence exposure profiles. Instrument selection hinges on liquidity, alignment of maturities, and the ability to capture jump-to-default events.
 
 ### 2.4.3 Challenges in CVA Hedging
 
-Despite the availability of hedging instruments, CVA hedging is inherently complex and presents several challenges:
+Perfect hedges rarely exist. Basis risk is pervasive because the reference entity of a traded CDS may not match the legal entity in the derivative contract, leading to mismatches during stress. Liquidity can disappear for bespoke counterparties, forcing reliance on proxy names that only partially track the exposure. Dynamic rebalancing is necessary to hedge CVA’s sensitivity to market factors, yet sudden spread jumps or outright defaults can produce large unhedged losses. Model risk also looms large: estimating exposures and credit sensitivities relies on complex simulations that may misrepresent correlations or wrong-way risk. Hedge accounting rules introduce further friction, as the P&L profile of hedges may diverge from the underlying CVA adjustments, creating earnings volatility even when economic risk is mitigated. Finally, hedging itself incurs funding costs and consumes balance sheet, so desks must weigh the cost of protection against the benefit of reduced volatility.
 
-*   **Basis Risk:** The credit quality of the specific counterparty may not perfectly correlate with the available hedging instruments (e.g., a liquid CDS might exist for the counterparty's parent company but not the specific legal entity). This mismatch creates basis risk, where the hedge does not perfectly offset the underlying CVA risk.
-*   **Liquidity Risk:** The market for credit derivatives on specific counterparties, especially less common names, might be illiquid, making it difficult to execute hedges efficiently or at fair prices.
-*   **Jump-to-Default Risk:** This is the risk of a sudden and unexpected default of a counterparty, leading to an immediate and significant CVA loss that is difficult to hedge in real-time. Traditional hedging strategies, which rely on continuous rebalancing, are ineffective against such discrete, large events.
-*   **Accounting Mismatches:** Differences in accounting treatment between derivative positions and hedging instruments can create P&L volatility, even if the economic risk is hedged.
-*   **Operational Complexity:** Managing a large portfolio of CVA hedges requires robust systems and processes.
+### 2.4.4 Governance and Communication
+
+Effective CVA management extends beyond trading activity. Robust governance frameworks define limits, escalate breaches, and document hedging rationale. Regular reporting translates technical results into language understood by senior management, auditors, and regulators. The CVA desk coordinates with collateral management, treasury, and finance to ensure that pricing, funding, and accounting treatments remain consistent. Clear communication of CVA costs to client-facing teams encourages informed negotiation of collateral terms and counterparty selection, embedding a culture in which counterparty risk is actively priced and managed rather than passively observed.
 
 ## 2.5 Regulatory Capital for CVA: A Prudential Framework
 
