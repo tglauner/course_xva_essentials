@@ -423,12 +423,20 @@ function App() {
         3: {
           title: "2.4 CVA Hedging and Management: Mitigating Volatility",
           content: `
-            <p>CVA desks hedge changes in counterparty credit spreads to stabilize P&L.</p>
-            <ul>
-              <li><strong>Credit Derivatives:</strong> instruments such as CDS offset CVA exposure.</li>
-              <li><strong>Hedging Difficulties:</strong> basis risk, liquidity constraints, jump-to-default events, and accounting mismatches complicate strategies.</li>
-            </ul>
-          `
+            <p>CVA is the expected loss from counterparty default embedded in derivative pricing. Its value moves with exposures and credit spreads, generating profit-and-loss volatility that banks must actively manage.</p>
+
+            <h4>2.4.1 The Mandate of CVA Desks</h4>
+            <p>Large institutions operate dedicated CVA desks that quote CVA charges on new trades so business lines internalize counterparty credit costs. The desk tracks exposures and CVA Greeks, rebalancing hedges to stabilize daily P&L and supporting stress testing, capital forecasting, and regulatory communication.</p>
+
+            <h4>2.4.2 Common Hedging Instruments</h4>
+            <p>The core hedging toolkit consists of credit derivatives. Single-name CDS offset losses from specific counterparty defaults, while index CDS such as CDX or iTraxx act as liquid proxies when single-name markets are thin. Options on CDS, credit-linked notes, bond shorts, and supplementary rate or FX derivatives address non-linear exposure or maturity mismatches.</p>
+
+            <h4>2.4.3 Challenges in CVA Hedging</h4>
+            <p>Perfect hedges are rare. Basis risk arises when the CDS reference entity differs from the legal counterparty. Liquidity for bespoke names can vanish, forcing reliance on proxies that only partly track exposure. Dynamic rebalancing is needed as spreads jump, yet defaults can still leave residual losses. Model uncertainty, hedge accounting mismatches, and the funding cost of protection add further complexity.</p>
+
+            <h4>2.4.4 Governance and Communication</h4>
+            <p>Effective CVA programs rely on governance frameworks that define limits, escalate breaches, and document hedging rationale. Regular reporting translates technical metrics for senior management, auditors, and regulators. Coordination with collateral management, treasury, and finance ensures consistent pricing and funding treatment, while transparent communication of CVA costs guides collateral negotiations and counterparty selection.</p>
+          `,
         },
         4: {
           title: "2.5 Regulatory Capital for CVA: A Prudential Framework",
