@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { SignedIn, SignedOut, SignIn, UserButton } from '@clerk/clerk-react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Separator } from '@/components/ui/separator.jsx'
-import { BookOpen, Calculator, TrendingUp, Users, Award, Download, ExternalLink, ArrowRight, ChevronDown, ChevronUp, LogOut, Code } from 'lucide-react'
-import PaywallGate from './PaywallGate.jsx'
+import { BookOpen, Calculator, TrendingUp, Users, Award, Download, ExternalLink, ArrowRight, ChevronDown, ChevronUp, Code } from 'lucide-react'
 import PythonNotebook from '@/components/PythonNotebook.jsx'
 import './App.css'
 
@@ -14,17 +14,6 @@ function App() {
   const [glossaryOpen, setGlossaryOpen] = useState(false)
   const [selectedTerm, setSelectedTerm] = useState(null)
   const contentRef = useRef(null)
-
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.removeItem('xva_course_access')
-    localStorage.removeItem('xva_course_email')
-    localStorage.removeItem('xva_course_code')
-    setActiveModule(null)
-    setActiveSubsection(null)
-    setGlossaryOpen(false)
-    setSelectedTerm(null)
-  }
 
   // Module and subsection handlers
   const handleModuleClick = (moduleId) => {
@@ -625,13 +614,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
+    <>
+      <SignedOut>
+        <div className="min-h-screen flex items-center justify-center">
+          <SignIn routing="hash" />
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+          {/* Header */}
+          <header className="bg-white shadow-sm border-b sticky top-0 z-40">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
               <p className="text-lg text-gray-600 mt-2">Advanced study of X-Value Adjustments in derivative pricing</p>
             </div>
             <div className="flex items-center space-x-4">
@@ -643,14 +639,7 @@ function App() {
               >
                 Glossary
               </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleLogout}
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
+              <UserButton afterSignOutUrl="/" />
             </div>
           </div>
         </div>
@@ -854,6 +843,8 @@ function App() {
         </footer>
       </div>
     </div>
+      </SignedIn>
+    </>
   )
 }
 

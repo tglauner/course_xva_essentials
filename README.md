@@ -10,6 +10,7 @@ A repository of course materials, a React/Vite website for the XVA Essentials cu
 - LaTeX and markdown sources for the course
 - FastAPI backend for executing interactive Python snippets
 - Build artifacts can be hosted under an Apache sub-path
+- User authentication handled by [Clerk](https://clerk.com)
 
 ## Logging
 
@@ -23,6 +24,7 @@ The project is static and uses browser developer tools for debugging; no server-
 2. **Install frontend dependencies and start the dev server**
    ```bash
    cd frontend
+   cp .env.example .env  # add your Clerk publishable key
    pnpm install
    pnpm dev
    ```
