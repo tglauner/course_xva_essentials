@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { SignedIn, SignedOut, SignIn, UserButton } from '@clerk/clerk-react'
+import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
@@ -15,14 +15,25 @@ function App() {
   const [selectedTerm, setSelectedTerm] = useState(null)
   const contentRef = useRef(null)
 
+  const { isLoaded, isSignedIn } = useUser()
+  const isReadOnly = !isLoaded || !isSignedIn
+
   // Module and subsection handlers
   const handleModuleClick = (moduleId) => {
-    setActiveModule(activeModule === moduleId ? null : moduleId)
+    if (isReadOnly) {
+      return
+    }
+
+    setActiveModule((previous) => (previous === moduleId ? null : moduleId))
     setActiveSubsection(null)
   }
 
   const handleSubsectionClick = (subsectionIndex) => {
-    setActiveSubsection(activeSubsection === subsectionIndex ? null : subsectionIndex)
+    if (isReadOnly) {
+      return
+    }
+
+    setActiveSubsection((previous) => (previous === subsectionIndex ? null : subsectionIndex))
 
     // Scroll to content after a brief delay to allow for DOM updates
     setTimeout(() => {
@@ -34,9 +45,13 @@ function App() {
 
   // Term selection handler
   const handleTermClick = useCallback((term) => {
+    if (isReadOnly) {
+      return
+    }
+
     setSelectedTerm(term)
     setGlossaryOpen(true)
-  }, [])
+  }, [isReadOnly])
 
   // Add click listeners for term links
   useEffect(() => {
@@ -51,6 +66,15 @@ function App() {
     document.addEventListener('click', handleTermLinkClick)
     return () => document.removeEventListener('click', handleTermLinkClick)
   }, [handleTermClick])
+
+  useEffect(() => {
+    if (isReadOnly) {
+      setActiveModule(null)
+      setActiveSubsection(null)
+      setGlossaryOpen(false)
+      setSelectedTerm(null)
+    }
+  }, [isReadOnly])
 
   // Glossary of terms with definitions
   const glossary = {
@@ -614,39 +638,47 @@ function App() {
   }
 
   return (
-    <>
-      <SignedOut>
-        <div className="min-h-screen flex items-center justify-center">
-          <SignIn routing="hash" />
-        </div>
-      </SignedOut>
-      <SignedIn>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-          {/* Header */}
-          <header className="bg-white shadow-sm border-b sticky top-0 z-40">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
               <p className="text-lg text-gray-600 mt-2">Advanced study of X-Value Adjustments in derivative pricing</p>
             </div>
             <div className="flex items-center space-x-4">
               <Badge variant="secondary" className="text-sm">Graduate Level</Badge>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setGlossaryOpen(!glossaryOpen)}
-              >
-                Glossary
-              </Button>
-              <UserButton afterSignOutUrl="/" />
+              {isReadOnly ? (
+                <div className="flex items-center space-x-2">
+                  <SignInButton mode="modal">
+                    <Button variant="outline" size="sm">
+                      Sign In
+                    </Button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <Button size="sm">Sign Up</Button>
+                  </SignUpButton>
+                </div>
+              ) : (
+                <>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setGlossaryOpen(!glossaryOpen)}
+                  >
+                    Glossary
+                  </Button>
+                  <UserButton afterSignOutUrl="/" />
+                </>
+              )}
             </div>
           </div>
         </div>
       </header>
 
       {/* Glossary Sidebar */}
-      {glossaryOpen && (
+      {isSignedIn && glossaryOpen && (
         <div className="fixed inset-y-0 right-0 w-96 bg-white shadow-xl z-50 overflow-y-auto">
           <div className="p-6">
             <div className="flex items-center justify-between mb-4">
@@ -657,8 +689,8 @@ function App() {
             </div>
             <div className="space-y-4">
               {Object.entries(glossary).map(([key, value]) => (
-                <div 
-                  key={key} 
+                <div
+                  key={key}
                   className={`p-3 rounded-lg border cursor-pointer transition-colors ${
                     selectedTerm === key ? 'bg-blue-50 border-blue-200' : 'hover:bg-gray-50'
                   }`}
@@ -687,6 +719,15 @@ function App() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {!isSignedIn && (
+          <Card className="mb-6 border-blue-200 bg-white/80">
+            <CardContent className="py-4">
+              <p className="text-sm text-gray-700">
+                Sign in with Clerk to unlock interactive modules, glossary exploration, and the embedded Python notebook.
+              </p>
+            </CardContent>
+          </Card>
+        )}
         {/* Course Overview */}
         <div className="mb-12">
           <Card>
@@ -725,12 +766,18 @@ function App() {
           {modules.map((module) => {
             const IconComponent = module.icon
             return (
-              <Card 
-                key={module.id} 
-                className={`cursor-pointer transition-all duration-200 hover:shadow-lg touch-manipulation ${
-                  activeModule === module.id ? 'ring-2 ring-blue-500 bg-blue-50' : ''
-                }`}
-                onClick={() => handleModuleClick(module.id)}
+              <Card
+                key={module.id}
+                className={`transition-all duration-200 touch-manipulation ${
+                  isReadOnly ? 'cursor-not-allowed opacity-70' : 'cursor-pointer hover:shadow-lg'
+                } ${!isReadOnly && activeModule === module.id ? 'ring-2 ring-blue-500 bg-blue-50' : ''}`}
+                onClick={() => {
+                  if (isReadOnly) {
+                    return
+                  }
+
+                  handleModuleClick(module.id)
+                }}
                 style={{ touchAction: 'manipulation' }}
               >
                 <CardHeader>
@@ -754,12 +801,18 @@ function App() {
                     <h5 className="text-xs font-medium text-gray-500 mb-2">Key Terms:</h5>
                     <div className="flex flex-wrap gap-1">
                       {module.keyTerms.map((term, index) => (
-                        <Badge 
-                          key={index} 
-                          variant="outline" 
-                          className="text-xs cursor-pointer hover:bg-blue-50"
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className={`text-xs ${
+                            isReadOnly ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:bg-blue-50'
+                          }`}
                           onClick={(e) => {
                             e.stopPropagation()
+                            if (isReadOnly) {
+                              return
+                            }
+
                             handleTermClick(term)
                           }}
                         >
@@ -769,12 +822,17 @@ function App() {
                     </div>
                   </div>
                   
-                  <Button 
-                    variant={activeModule === module.id ? "default" : "outline"} 
+                  <Button
+                    variant={!isReadOnly && activeModule === module.id ? "default" : "outline"}
                     className="w-full touch-manipulation"
                     style={{ touchAction: 'manipulation' }}
+                    disabled={isReadOnly}
                   >
-                    {activeModule === module.id ? "Hide Content" : "Explore Module"}
+                    {isReadOnly
+                      ? "Sign in to Explore"
+                      : activeModule === module.id
+                      ? "Hide Content"
+                      : "Explore Module"}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -784,7 +842,7 @@ function App() {
         </div>
 
         {/* Module Content */}
-        {activeModule && moduleContent[activeModule] && (
+        {!isReadOnly && activeModule && moduleContent[activeModule] && (
           <Card className="mb-12" ref={contentRef}>
             <CardHeader>
               <CardTitle className="text-2xl">{moduleContent[activeModule].title}</CardTitle>
@@ -843,8 +901,6 @@ function App() {
         </footer>
       </div>
     </div>
-      </SignedIn>
-    </>
   )
 }
 
