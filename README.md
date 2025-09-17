@@ -54,6 +54,7 @@ The project is static and uses browser developer tools for debugging; no server-
    Copy the `dist/` directory to `/var/www/html/course_xva_essentials/frontend/dist` on the Droplet.
 3. **Configure Apache**
    Enable required modules (`a2enmod rewrite headers`). Deploy the `deploy/apache.conf` vhost so that it serves
+
    `https://www.course-xva-essentials.tglauner.com` directly from the built frontend:
    ```
    a2ensite course-xva-essentials
