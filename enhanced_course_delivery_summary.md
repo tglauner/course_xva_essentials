@@ -5,7 +5,7 @@
 This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Markets has been significantly deepened and enriched with sophisticated interactive elements, comprehensive academic content, and elegant design features. The course now provides an immersive, scholarly experience suitable for advanced graduate study.
 
 ## 🌐 **Live Website URL**
-**https://www.course-xva-essential.tglauner.com**
+**https://www.course-xva-essentials.tglauner.com**
 
 ## 📚 **Enhanced Course Structure**
 
@@ -127,7 +127,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 - **Styling**: Tailwind CSS with custom sophisticated design system
 - **UI Components**: Shadcn/ui for professional interface elements
 - **Icons**: Lucide React for consistent iconography
-- **Deployment**: DigitalOcean Droplet with Apache serving https://www.course-xva-essential.tglauner.com
+- **Deployment**: DigitalOcean Droplet with Apache serving https://www.course-xva-essentials.tglauner.com
 
 ### **Performance Features**
 - **Optimized Loading**: Lazy loading and code splitting
@@ -172,7 +172,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 
 ## 🚀 **Deployment Details**
 
-- **Permanent URL**: https://www.course-xva-essential.tglauner.com
+- **Permanent URL**: https://www.course-xva-essentials.tglauner.com
 - **Hosting**: DigitalOcean Droplet with Let's Encrypt TLS
 - **SSL Certificate**: Secure HTTPS connection
 - **Performance**: Optimized for fast loading worldwide
@@ -181,7 +181,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 ## 📖 **Usage Instructions**
 
 ### **For Students**
-1. **Navigate to the website**: https://www.course-xva-essential.tglauner.com
+1. **Navigate to the website**: https://www.course-xva-essentials.tglauner.com
 2. **Explore modules**: Click on any module to expand its content
 3. **Dive deep**: Select sub-sections for detailed content
 4. **Use the glossary**: Click on highlighted terms or use the glossary button

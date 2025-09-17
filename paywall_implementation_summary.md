@@ -3,7 +3,7 @@
 ## 🎓 **Enhanced Graduate Course: XVA in Financial Markets**
 
 ### 🌐 **New Website URL with Paywall**
-**https://www.course-xva-essential.tglauner.com**
+**https://www.course-xva-essentials.tglauner.com**
 
 ---
 
@@ -136,7 +136,7 @@
 ## 🚀 **Deployment Information**
 
 ### **Website Details**
-- **URL**: https://www.course-xva-essential.tglauner.com
+- **URL**: https://www.course-xva-essentials.tglauner.com
 - **Hosting**: DigitalOcean Droplet fronted by Apache with Let's Encrypt TLS
 - **SSL Certificate**: Secure HTTPS connection
 - **Performance**: Optimized for fast loading worldwide

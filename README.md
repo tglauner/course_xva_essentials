@@ -9,7 +9,7 @@ A repository of course materials, a React/Vite website for the XVA Essentials cu
 - React-based front end styled with Tailwind CSS
 - LaTeX and markdown sources for the course
 - FastAPI backend for executing interactive Python snippets
-- Production deployment served from https://www.course-xva-essential.tglauner.com (DigitalOcean + Apache)
+- Production deployment served from https://www.course-xva-essentials.tglauner.com (DigitalOcean + Apache)
 - User authentication handled by [Clerk](https://clerk.com)
 
 ## Logging
@@ -54,27 +54,28 @@ The project is static and uses browser developer tools for debugging; no server-
    Copy the `dist/` directory to `/var/www/html/course_xva_essentials/frontend/dist` on the Droplet.
 3. **Configure Apache**
    Enable required modules (`a2enmod rewrite headers`). Deploy the `deploy/apache.conf` vhost so that it serves
-   `https://www.course-xva-essential.tglauner.com` directly from the built frontend:
+
+   `https://www.course-xva-essentials.tglauner.com` directly from the built frontend:
    ```
-   a2ensite course-xva-essential
+   a2ensite course-xva-essentials
    systemctl reload apache2
    ```
-Update DNS and TLS certificates for `www.course-xva-essential.tglauner.com` before switching traffic.
+Update DNS and TLS certificates for `www.course-xva-essentials.tglauner.com` before switching traffic.
 
 ## Platform Configuration Checklist for the New Domain
 
 ### DigitalOcean / Apache
-- Point the `www.course-xva-essential.tglauner.com` DNS record to the Droplet (A record) and add an `ALIAS/ANAME` or redirect for the root `course-xva-essential.tglauner.com` if desired.
-- Install or renew Let's Encrypt certificates for the new hostname (e.g., using `certbot --apache -d course-xva-essential.tglauner.com -d www.course-xva-essential.tglauner.com`).
+- Point the `www.course-xva-essentials.tglauner.com` DNS record to the Droplet (A record) and add an `ALIAS/ANAME` or redirect for the root `course-xva-essentials.tglauner.com` if desired.
+- Install or renew Let's Encrypt certificates for the new hostname (e.g., using `certbot --apache -d course-xva-essentials.tglauner.com -d www.course-xva-essentials.tglauner.com`).
 - Deploy the updated `deploy/apache.conf`, then reload Apache to serve the site from the new DocumentRoot (`/var/www/html/course_xva_essentials/frontend/dist`).
 - Verify that any reverse proxies or firewalls allow HTTPS traffic for the new domain and that the backend API remains reachable.
 
 ### Clerk (Authentication)
-- In the Clerk dashboard, add `https://www.course-xva-essential.tglauner.com` to the list of allowed origins and redirect URLs (sign-in, sign-up, and OAuth callbacks if used).
+- In the Clerk dashboard, add `https://www.course-xva-essentials.tglauner.com` to the list of allowed origins and redirect URLs (sign-in, sign-up, and OAuth callbacks if used).
 - Update production publishable and secret keys in the frontend/backend `.env` files if the instance changes.
 - Regenerate webhook endpoints or JWT templates bound to the previous domain so that post-authentication redirects resolve to the new site.
 
 ### Stripe (Payments)
-- Update any success, cancel, and webhook endpoint URLs in the Stripe Dashboard to point at `https://www.course-xva-essential.tglauner.com` (or associated backend routes).
+- Update any success, cancel, and webhook endpoint URLs in the Stripe Dashboard to point at `https://www.course-xva-essentials.tglauner.com` (or associated backend routes).
 - Review webhook signing secrets and environment variables; rotate them if you recreate the endpoint.
 - If Stripe Checkout is embedded, ensure the `allowed_origin` or `domain` settings include the new hostname and re-test the paywall flow end-to-end.
