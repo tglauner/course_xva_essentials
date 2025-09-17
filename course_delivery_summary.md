@@ -7,7 +7,7 @@ This comprehensive graduate-level course on X-Value Adjustments (XVA) in financi
 ## Deliverables
 
 ### 1. Interactive Website (Permanently Deployed)
-**URL:** https://eqghuyar.manus.space
+**URL:** https://www.course-xva-essential.tglauner.com
 
 The course has been deployed as a fully interactive website featuring:
 - **Responsive Design:** Works seamlessly on desktop and mobile devices, including improved touch interaction for tablets like iPad.
@@ -75,7 +75,7 @@ A complete LaTeX Beamer presentation containing:
 - **Frontend Framework:** React 18 with Vite
 - **Styling:** Tailwind CSS with shadcn/ui components
 - **Icons:** Lucide React icons
-- **Deployment:** Permanent hosting on Manus platform
+- **Deployment:** DigitalOcean Droplet + Apache serving https://www.course-xva-essential.tglauner.com
 - **Responsive Design:** Mobile-first approach with responsive grid layouts and enhanced touch support
 
 ### LaTeX Implementation:
@@ -108,7 +108,7 @@ A complete LaTeX Beamer presentation containing:
 ## Usage Instructions
 
 ### For the Website:
-1. Visit https://eqghuyar.manus.space
+1. Visit https://www.course-xva-essential.tglauner.com
 2. Navigate through the course overview
 3. Click on any module card to expand its content
 4. Use the "View Content" buttons to access detailed explanations
@@ -134,7 +134,7 @@ The course content has been:
 
 This graduate-level XVA course represents a comprehensive educational resource that combines theoretical rigor with practical applications. The dual delivery format (interactive website and LaTeX presentation) ensures maximum accessibility and usability for both students and instructors.
 
-The permanent website deployment at https://eqghuyar.manus.space provides immediate access to the course content, while the LaTeX Beamer presentation offers a traditional academic format suitable for classroom instruction.
+The permanent website deployment at https://www.course-xva-essential.tglauner.com provides immediate access to the course content, while the LaTeX Beamer presentation offers a traditional academic format suitable for classroom instruction.
 
 ---
 

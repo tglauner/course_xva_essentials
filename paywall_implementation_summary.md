@@ -3,7 +3,7 @@
 ## 🎓 **Enhanced Graduate Course: XVA in Financial Markets**
 
 ### 🌐 **New Website URL with Paywall**
-**https://nyqhrsue.manussite.space**
+**https://www.course-xva-essential.tglauner.com**
 
 ---
 
@@ -136,8 +136,8 @@
 ## 🚀 **Deployment Information**
 
 ### **Website Details**
-- **URL**: https://nyqhrsue.manussite.space
-- **Hosting**: Professional CDN with global distribution
+- **URL**: https://www.course-xva-essential.tglauner.com
+- **Hosting**: DigitalOcean Droplet fronted by Apache with Let's Encrypt TLS
 - **SSL Certificate**: Secure HTTPS connection
 - **Performance**: Optimized for fast loading worldwide
 - **Uptime**: 99.9% availability guarantee
