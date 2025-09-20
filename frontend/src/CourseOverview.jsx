@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
-import { modules, glossary } from '@/lib/courseData.js'
+import { modules, glossary } from '@/lib/courseData.jsx'
 import './App.css'
 
 function CourseOverview() {
