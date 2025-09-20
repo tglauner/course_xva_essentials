@@ -14,7 +14,9 @@ A repository of course materials, a React/Vite website for the XVA Essentials cu
 
 ## Logging
 
-The project is static and uses browser developer tools for debugging; no server-side logging is included.
+The project is primarily static and uses browser developer tools for debugging. When diagnosing production-only routing
+issues (for example, deep links that fail to render the SPA shell), inspect the Apache error log at
+`/var/log/apache2/error.log` on the Droplet.
 
 ## Local Development (macOS)
 1. **Enable pnpm (once per machine)**
@@ -53,9 +55,11 @@ The project is static and uses browser developer tools for debugging; no server-
 2. **Upload to the server**
    Copy the `dist/` directory to `/var/www/html/course_xva_essentials/frontend/dist` on the Droplet.
 3. **Configure Apache**
-   Enable required modules (`a2enmod rewrite headers`). Deploy the `deploy/apache.conf` vhost so that it serves
+   Enable required modules (`a2enmod rewrite headers dir`) so that the SPA rewrite rules and security headers are applied.
+   Deploy the `deploy/apache.conf` vhost so that it serves
 
-   `https://www.course-xva-essentials.tglauner.com` directly from the built frontend:
+   `https://www.course-xva-essentials.tglauner.com` directly from the built frontend with deep-link rewriting handled by
+   `mod_rewrite`:
    ```
    a2ensite course-xva-essentials
    systemctl reload apache2
@@ -67,7 +71,8 @@ Update DNS and TLS certificates for `www.course-xva-essentials.tglauner.com` bef
 ### DigitalOcean / Apache
 - Point the `www.course-xva-essentials.tglauner.com` DNS record to the Droplet (A record) and add an `ALIAS/ANAME` or redirect for the root `course-xva-essentials.tglauner.com` if desired.
 - Install or renew Let's Encrypt certificates for the new hostname (e.g., using `certbot --apache -d course-xva-essentials.tglauner.com -d www.course-xva-essentials.tglauner.com`).
-- Deploy the updated `deploy/apache.conf`, then reload Apache to serve the site from the new DocumentRoot (`/var/www/html/course_xva_essentials/frontend/dist`).
+- Deploy the updated `deploy/apache.conf`, then reload Apache to serve the site from the new DocumentRoot (`/var/www/html/course_xva_essentials/frontend/dist`) and ensure the rewrite rules forward unknown routes to `index.html`.
+- If deep links return server errors, inspect `/var/log/apache2/error.log` for rewrite-related failures (e.g., modules not enabled).
 - Verify that any reverse proxies or firewalls allow HTTPS traffic for the new domain and that the backend API remains reachable.
 
 ### Clerk (Authentication)
