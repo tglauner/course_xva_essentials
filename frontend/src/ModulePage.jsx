@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge.jsx'
 import { Separator } from '@/components/ui/separator.jsx'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { modules, moduleContent, glossary } from '@/lib/courseData.js'
+import { modules, moduleContent, glossary } from '@/lib/courseData.jsx'
 import './App.css'
 
 function ModulePage() {
