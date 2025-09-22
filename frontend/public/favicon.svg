@@ -1,23 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">XVA Course Favicon</title>
-  <desc id="desc">Stylized XVA monogram on a blue gradient background</desc>
+  <title id="title">XVA Essentials Icon</title>
+  <desc id="desc">Rounded gradient badge with a luminous XVA monogram</desc>
   <defs>
-    <linearGradient id="xvaGradient" x1="12" y1="12" x2="116" y2="116" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0b4f6c" />
-      <stop offset="100%" stop-color="#3a86ff" />
+    <linearGradient id="badgeGradient" x1="20" y1="16" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#13294b" />
+      <stop offset="45%" stop-color="#1b4d75" />
+      <stop offset="100%" stop-color="#1aa6b7" />
     </linearGradient>
-    <linearGradient id="xvaHighlight" x1="32" y1="24" x2="96" y2="104" gradientUnits="userSpaceOnUse">
+    <radialGradient id="centerGlow" cx="64" cy="44" r="64" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
-    </linearGradient>
+    </radialGradient>
   </defs>
-  <rect x="12" y="12" width="104" height="104" rx="28" fill="url(#xvaGradient)" />
-  <rect x="20" y="20" width="88" height="88" rx="24" fill="url(#xvaHighlight)" />
-  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
-    <path d="M36 40 L56 88" />
-    <path d="M56 40 L36 88" />
-    <path d="M70 40 L82 88 L94 40" />
-    <path d="M102 88 L114 40 L126 88" />
-    <path d="M106 66 H120" />
+  <g transform="translate(8 8)">
+    <rect width="112" height="112" rx="28" fill="url(#badgeGradient)" />
+    <rect width="112" height="112" rx="28" fill="url(#centerGlow)" />
+    <rect width="112" height="112" rx="28" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="3.5" />
+    <g transform="translate(18 24)">
+      <path d="M0 0 L24 56 M24 0 L0 56" fill="none" stroke="#f4fbff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M40 0 L52 56 L64 0" fill="none" stroke="#f4fbff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M80 56 L92 0 L104 56" fill="none" stroke="#f4fbff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M86 32 H98" fill="none" stroke="#f4fbff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
   </g>
 </svg>
