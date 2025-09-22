@@ -44,7 +44,7 @@ issues (for example, deep links that fail to render the SPA shell), inspect the 
 
 ## Production Deployment (DigitalOcean + Apache)
 
-1. **Build the site**
+1. **Build the site locally on MAC**
    ```bash
    cd frontend
    corepack enable   # ensure pnpm is available
@@ -53,7 +53,11 @@ issues (for example, deep links that fail to render the SPA shell), inspect the 
    ```
    The compiled files appear in `dist/`.
 2. **Upload to the server**
-   Copy the `dist/` directory to `/var/www/html/course_xva_essentials/frontend/dist` on the Droplet.
+   Copy local `dist/` to droplet.
+   ```bash
+   scp -r dist root@45.55.196.120:/var/www/html/course_xva_essentials/frontend
+   ```
+   
 3. **Configure Apache**
    Enable required modules (`a2enmod rewrite headers dir`) so that the SPA rewrite rules and security headers are applied.
    Deploy the `deploy/apache.conf` vhost so that it serves
