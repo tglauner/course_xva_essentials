@@ -116,7 +116,7 @@ const PaywallGate = ({ onAccessGranted }) => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="h-12 w-12 text-blue-600 mr-3" />
-            <h1 className="text-4xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
+            <h1 className="text-4xl font-bold text-gray-900">XVA Essentials in Financial Markets</h1>
           </div>
           <p className="text-xl text-gray-600 mb-6">Advanced study of X-Value Adjustments in derivative pricing</p>
           

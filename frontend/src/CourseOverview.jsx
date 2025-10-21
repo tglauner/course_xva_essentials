@@ -51,7 +51,7 @@ function CourseOverview() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Graduate Course: XVA in Financial Markets</h1>
+              <h1 className="text-3xl font-bold text-gray-900">XVA Essentials in Financial Markets</h1>
               <p className="text-lg text-gray-600 mt-2">Advanced study of X-Value Adjustments in derivative pricing</p>
             </div>
             <div className="flex items-center space-x-4">
@@ -236,10 +236,10 @@ function CourseOverview() {
 
         <footer className="text-center py-8 border-t">
           <p className="text-gray-600">
-            Graduate Course: XVA in Financial Markets | Enhanced Interactive Version with Access Control
+            XVA Essentials in Financial Markets | Enhanced Interactive Version with Access Control
           </p>
           <p className="text-sm text-gray-500 mt-2">
-            Comprehensive coverage with interactive elements, internal links, and deep academic content
+            Comprehensive coverage with interactive elements, internal links, and practival as well as academic content
           </p>
         </footer>
       </div>

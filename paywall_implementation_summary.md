@@ -1,13 +1,15 @@
 # XVA Course with Paywall Implementation - Complete Delivery
 
-## 🎓 **Enhanced Graduate Course: XVA in Financial Markets**
+## 🎓 **XVA Essentials in Financial Markets**
 
 ### 🌐 **New Website URL with Paywall**
-**https://www.course-xva-essentials.tglauner.com**
+**https://course-xva-essentials.tglauner.com/**
 
 ---
 
 ## 💰 **Paywall Implementation Details**
+
+## NOT YET IMPLEMENTED. CURRENT APPROACH IS TO NEED LOGIN BUT IT'S FREE
 
 ### **Business Model**
 - **Price**: $10 one-time payment for lifetime access
