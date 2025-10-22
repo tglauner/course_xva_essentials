@@ -1,6 +1,7 @@
 import { Award } from 'lucide-react'
 import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
 
+
 export const module5Metadata = {
   id: 5,
   title: "Margin Valuation Adjustment (MVA)",
