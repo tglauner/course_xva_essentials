@@ -129,7 +129,8 @@ function CourseOverview() {
           <Card className="mb-6 border-blue-200 bg-white/80">
             <CardContent className="py-4">
               <p className="text-sm text-gray-700">
-                Sign in with Clerk to unlock interactive modules, glossary exploration, and the embedded Python notebook.
+                Sign in with Clerk to unlock interactive modules, glossary exploration, and updates on the Interactive Jupyter
+                XVA Sandbox roadmap.
               </p>
             </CardContent>
           </Card>
