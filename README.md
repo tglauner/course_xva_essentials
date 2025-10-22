@@ -2,13 +2,13 @@
 
 ## XVA Essentials Course
 
-A repository of course materials, a React/Vite website for the XVA Essentials curriculum, and a FastAPI backend for interactive Python examples.
+A repository of course materials and a React/Vite website for the XVA Essentials curriculum. Module 7 now highlights the
+"Roadmap: Interactive Jupyter XVA Sandbox," outlining the forthcoming embedded notebook experience.
 
 ## Features
 
 - React-based front end styled with Tailwind CSS
 - LaTeX and markdown sources for the course
-- FastAPI backend for executing interactive Python snippets
 - Production deployment served from https://www.course-xva-essentials.tglauner.com (DigitalOcean + Apache)
 - User authentication handled by [Clerk](https://clerk.com)
 
@@ -30,13 +30,7 @@ issues (for example, deep links that fail to render the SPA shell), inspect the 
    pnpm install
    pnpm dev
    ```
-3. **Start the FastAPI backend**
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   uvicorn main:app --reload
-   ```
-4. **Run checks**
+3. **Run checks**
    ```bash
    pnpm lint        # requires an ESLint config
    pnpm test        # no tests defined yet
@@ -77,14 +71,14 @@ Update DNS and TLS certificates for `www.course-xva-essentials.tglauner.com` bef
 - Install or renew Let's Encrypt certificates for the new hostname (e.g., using `certbot --apache -d course-xva-essentials.tglauner.com -d www.course-xva-essentials.tglauner.com`).
 - Deploy the updated `deploy/apache.conf`, then reload Apache to serve the site from the new DocumentRoot (`/var/www/html/course_xva_essentials/frontend/dist`) and ensure the rewrite rules forward unknown routes to `index.html`.
 - If deep links return server errors, inspect `/var/log/apache2/error.log` for rewrite-related failures (e.g., modules not enabled).
-- Verify that any reverse proxies or firewalls allow HTTPS traffic for the new domain and that the backend API remains reachable.
+- Verify that any reverse proxies or firewalls allow HTTPS traffic for the new domain and that the static assets deploy correctly.
 
 ### Clerk (Authentication)
 - In the Clerk dashboard, add `https://www.course-xva-essentials.tglauner.com` to the list of allowed origins and redirect URLs (sign-in, sign-up, and OAuth callbacks if used).
-- Update production publishable and secret keys in the frontend/backend `.env` files if the instance changes.
+- Update production publishable and secret keys in the frontend `.env` files if the instance changes.
 - Regenerate webhook endpoints or JWT templates bound to the previous domain so that post-authentication redirects resolve to the new site.
 
 ### Stripe (Payments)
-- Update any success, cancel, and webhook endpoint URLs in the Stripe Dashboard to point at `https://www.course-xva-essentials.tglauner.com` (or associated backend routes).
+- Update any success, cancel, and webhook endpoint URLs in the Stripe Dashboard to point at `https://www.course-xva-essentials.tglauner.com`.
 - Review webhook signing secrets and environment variables; rotate them if you recreate the endpoint.
 - If Stripe Checkout is embedded, ensure the `allowed_origin` or `domain` settings include the new hostname and re-test the paywall flow end-to-end.
