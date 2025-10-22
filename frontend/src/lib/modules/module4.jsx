@@ -1,5 +1,5 @@
 import { Users } from 'lucide-react'
-import { BlockMath, InlineMath } from 'better-react-mathjax'
+import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
 
 export const module4Metadata = {
   id: 4,

@@ -1,5 +1,5 @@
 import { Download } from 'lucide-react'
-import { MathJaxContext, BlockMath, InlineMath } from 'better-react-mathjax'
+import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
 
 const mathJaxConfig = {
   tex: {

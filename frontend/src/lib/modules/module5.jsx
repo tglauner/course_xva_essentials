@@ -1,5 +1,6 @@
 import { Award } from 'lucide-react'
-import { BlockMath, InlineMath } from 'better-react-mathjax'
+import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
+
 
 export const module5Metadata = {
   id: 5,
