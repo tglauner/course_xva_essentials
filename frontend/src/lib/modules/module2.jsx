@@ -17,7 +17,9 @@ const SectionOne = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Core CVA Representation</p>
-        <BlockMath math="\\mathrm{CVA} = (1 - R) \\int_0^T \\mathbb{E}^Q[(V_t)^+]\\, dPD_t" />
+        <BlockMath
+          math="\\mathrm{CVA} = (1 - R) \\int_0^T \\mathbb{E}^Q\\left[D(0, t) (V_t)^+\\right]\\, dPD(t)"
+        />
         <BlockMath math="\\mathrm{CVA} \\approx \\sum_i EE(t_i) \\times \\Delta PD(t_i) \\times LGD \\times DF(t_i)" />
       </div>
     </div>

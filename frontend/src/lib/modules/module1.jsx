@@ -118,7 +118,9 @@ const SectionTwo = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Expected Counterparty Loss</p>
-        <BlockMath math="\mathrm{CVA} = \int_0^T EE(t) \times PD'(t) \times LGD \times DF(t)\, dt" />
+        <BlockMath
+          math="\mathrm{CVA} = (1 - R) \int_0^T \mathbb{E}^Q\left[D(0, t) (V_t)^+\right]\, dPD(t)"
+        />
       </div>
       <div>
         <p className="text-blue-900 font-semibold">Funding Spread Impact</p>
