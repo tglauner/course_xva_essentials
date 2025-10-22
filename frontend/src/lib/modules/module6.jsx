@@ -30,10 +30,15 @@ export const module6Content = {
           </div>
           <div className="formula-box space-y-4">
             <h5>Systemic Links</h5>
-            <BlockMath math="\\text{XVA}_{\\text{total}} = \\text{CVA} - \\text{DVA} + \\text{FVA} + \\text{KVA} + \\text{MVA}" />
-            <BlockMath math="\\text{CVA} = (1 - R_c) \\int_0^T EPE(t)\\,\\lambda_c(t)\\,S_c(t)\\,D(0,t)\\,dt" />
-            <BlockMath math="\\text{FVA} = \\int_0^T EPE(t)\\,[f(t) - r(t)]\\,D(0,t)\\,dt" />
+            <BlockMath
+              math={String.raw`\begin{aligned}
+\mathrm{XVA}_{\mathrm{total}} &= \mathrm{CVA} - \mathrm{DVA} + \mathrm{FVA} + \mathrm{KVA} + \mathrm{MVA},\\
+\mathrm{CVA}(0) &= (1 - R_c) \int_0^T \mathrm{EPE}(t)\,\lambda_c(t)\,S_c(t)\,D(0,t)\,dt,\\
+\mathrm{FVA}(0) &= \int_0^T \mathrm{EPE}(t)\,\bigl[f(t) - r(t)\bigr]\,D(0,t)\,dt.
+\end{aligned}`}
+            />
           </div>
+
           <div className="space-y-4">
             <p>
               Understanding the interdependencies among XVA components begins with the realisation that each adjustment is a valuation of the same underlying portfolio viewed through a different risk lens. Credit Valuation Adjustment quantifies the expected loss caused by counterparty default; Debit Valuation Adjustment mirrors that loss from the bank’s own credit standing; Funding Valuation Adjustment captures the friction between risk-free discounting and the institution’s liquidity reality; Capital Valuation Adjustment reflects the opportunity cost of regulatory capital; Margin Valuation Adjustment assesses the drag from segregated initial margin. When modellers alter inputs to one component, they inevitably perturb pathways feeding the others. Stronger collateral agreements, for instance, reduce exposure profiles and compress CVA, yet the resulting variation margin postings increase short-term funding requirements, elevating FVA unless the treasury desk mobilises inexpensive cash. Likewise, conservative margin add-ons push MVA higher while lowering CVA, so the holistic view must weigh the net economic effect rather than isolated headlines.
@@ -74,9 +79,14 @@ export const module6Content = {
           </div>
           <div className="formula-box space-y-4">
             <h5>Transfer Pricing Mechanics</h5>
-            <BlockMath math="\\text{Deal Price} = \\text{Base Value} + \\text{CVA} - \\text{DVA} + \\text{FVA} + \\text{KVA} + \\text{MVA}" />
-            <BlockMath math="\\text{Service Level Index} = 1 - \\frac{\\text{Delayed Quotes}}{\\text{Total Quote Requests}}" />
+            <BlockMath
+              math={String.raw`\Pi_{\mathrm{client}} = V_{\mathrm{base}} + \mathrm{CVA} - \mathrm{DVA} + \mathrm{FVA} + \mathrm{KVA} + \mathrm{MVA}`}
+            />
+            <BlockMath
+              math={String.raw`\mathrm{SLI} = 1 - \frac{N_{\mathrm{delayed}}}{N_{\mathrm{requests}}}`}
+            />
           </div>
+
           <div className="space-y-4">
             <p>
               A modern XVA desk operates as the nerve centre linking trading desks, treasury, risk management, finance, and technology. Its mandate spans quoting valuation adjustments on new trades, managing hedge inventories, orchestrating collateral and funding strategies, and ensuring that regulatory and accounting standards are met. To accomplish this, desks are structured into specialised subteams. Front-line pricers engage directly with sales and structurers, advising on deal feasibility and embedding adjustments such as <InlineMath math="\\text{CVA}" /> and <InlineMath math="\\text{FVA}" /> into client quotes. Quantitative analysts build exposure models, calibrate credit and funding curves, and analyse sensitivity profiles. Treasury liaisons translate funding needs into term funding plans, repo trades, and liquidity buffers, while collateral specialists negotiate credit support annexes, monitor disputes, and forecast margin calls.
@@ -126,9 +136,14 @@ export const module6Content = {
           </div>
           <div className="formula-box space-y-4">
             <h5>Supervisory Metrics</h5>
-            <BlockMath math="\\text{SA-CVA} = \\sqrt{\\sum_i K_i^2 + 2 \\sum_{i<j} \\rho_{ij} K_i K_j}" />
-            <BlockMath math="\\text{Stress Capital Buffer} = \\max(\\text{Projected Loss} - \\text{Allowances}, 0) / \\text{Risk-Weighted Assets}" />
+            <BlockMath
+              math={String.raw`\mathrm{SA\mbox{-}CVA} = \sqrt{\sum_i K_i^2 + 2 \sum_{i<j} \rho_{ij}\,K_i K_j}`}
+            />
+            <BlockMath
+              math={String.raw`\mathrm{SCB} = \frac{\max\bigl(\mathrm{Projected\ Loss} - \mathrm{Allowances}, 0\bigr)}{\mathrm{RWA}}`}
+            />
           </div>
+
           <div className="space-y-4">
             <p>
               Regulatory oversight of XVA has intensified as authorities recognised that valuation adjustments can transmit stress through the financial system even without realised defaults. Basel III introduced capital, liquidity, and leverage reforms that influence XVA methodology, while accounting standards such as IFRS&nbsp;13 and ASC&nbsp;820 demand fair-value measurements reflecting credit and funding effects. Supervisors now expect banks to demonstrate that their XVA frameworks align with these requirements, are consistently applied across legal entities, and are supported by rigorous governance.
@@ -175,9 +190,14 @@ export const module6Content = {
           </div>
           <div className="formula-box space-y-4">
             <h5>Evaluating Outcomes</h5>
-            <BlockMath math="\\text{Hedge Effectiveness} = 1 - \\frac{\\Delta \\text{Unhedged CVA}}{\\Delta \\text{Gross CVA}}" />
-            <BlockMath math="\\text{Capital Impact Ratio} = \\frac{\\text{Post-Remediation CVA Capital}}{\\text{Pre-Remediation CVA Capital}}" />
+            <BlockMath
+              math={String.raw`\mathrm{HE} = 1 - \frac{\Delta \mathrm{CVA}_{\mathrm{unhedged}}}{\Delta \mathrm{CVA}_{\mathrm{gross}}}`}
+            />
+            <BlockMath
+              math={String.raw`\mathrm{CIR} = \frac{K^{\mathrm{CVA}}_{\mathrm{post}}}{K^{\mathrm{CVA}}_{\mathrm{pre}}}`}
+            />
           </div>
+
           <div className="space-y-4">
             <p>
               Case studies provide tangible evidence of how XVA frameworks behave under pressure and how institutions adapt their operating models. One instructive example comes from the 2008 failure of Lehman Brothers. Counterparties discovered that legally netted exposures could still yield sizeable losses because collateral agreements lacked daily settlement discipline and dispute mechanisms. Banks that had invested in robust collateral management suffered smaller CVA hits and recovered assets more swiftly. The episode spurred a wave of documentation upgrades, central clearing adoption, and the creation of dedicated XVA desks tasked with enterprise oversight of counterparty risk. It also highlighted the value of pre-agreed termination provisions and close-out valuations aligned with market data sources, reducing litigation and uncertainty during default resolution.
@@ -221,9 +241,14 @@ export const module6Content = {
           </div>
           <div className="formula-box space-y-4">
             <h5>Innovation Benchmarks</h5>
-            <BlockMath math="\\text{Automation Gain} = \\frac{\\text{Legacy Runtime} - \\text{Cloud Runtime}}{\\text{Legacy Runtime}}" />
-            <BlockMath math="\\text{ESG Funding Spread} = f_0 + \\gamma \\cdot \\text{ESG Score}" />
+            <BlockMath
+              math={String.raw`\Gamma_{\mathrm{auto}} = \frac{T_{\mathrm{legacy}} - T_{\mathrm{cloud}}}{T_{\mathrm{legacy}}}`}
+            />
+            <BlockMath
+              math={String.raw`s_{\mathrm{ESG}} = f_0 + \gamma \cdot \mathrm{ESG}`}
+            />
           </div>
+
           <div className="space-y-4">
             <p>
               Anticipating future trends in XVA requires synthesising signals from technology, regulation, market structure, and sustainability. One dominant theme is automation. As portfolios grow and supervisory expectations tighten, institutions are investing in cloud-native risk engines capable of streaming exposures, sensitivities, and valuation adjustments throughout the day. These platforms leverage containerised services, serverless orchestration, and elastic compute to run Monte Carlo simulations and stress tests on demand. Automation extends to workflow tools that reconcile market data, manage margin disputes, and trigger governance approvals. The payoff is faster decision-making and reduced operational risk, but success depends on robust data lineage, cyber resilience, and talent capable of blending quantitative expertise with DevOps practices.
