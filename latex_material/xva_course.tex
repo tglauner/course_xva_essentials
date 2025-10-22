@@ -331,7 +331,7 @@
 
 \begin{frame}
     \section*{Module 4: Funding Valuation Adjustment (FVA)}
-    \frametitle{Module 4: Funding Valuation Adjustment (FVA)}
+\frametitle{Module 4: Funding Valuation Adjustment (FVA)}
 
 \end{frame}
 
@@ -339,13 +339,13 @@
     \subsection*{Topic 4.1: Definition and Rationale of FVA}
     \frametitle{Topic 4.1: Definition and Rationale of FVA}
 
-    Funding Valuation Adjustment (FVA) accounts for the funding costs or benefits associated with uncollateralized derivative transactions. Unlike CVA and DVA, which are credit risk adjustments, FVA is a funding cost adjustment.
+    Funding Valuation Adjustment captures the present value of liquidity spreads applied to unsecured derivative exposure. When the mark-to-market $V(t)$ is positive, the dealer must borrow at a spread above the overnight indexed swap (OIS) curve; negative exposure delivers a benefit that is typically less generous than OIS. Collateral thresholds, liquidity buffers, and contingency funding policies therefore determine how aggressively FVA accrues over the life of a trade.
 
-    \framesubtitle{Why FVA is Necessary}
-
-    In a world of perfect markets, a bank could fund all its assets and liabilities at the risk-free rate. However, in reality, banks fund themselves at a spread above the risk-free rate. For uncollateralized derivative positions, the bank needs to fund the MTM of the derivative. If the MTM is positive (bank is owed money), the bank needs to fund this asset. If the MTM is negative (bank owes money), the bank receives a funding benefit.
-
-    FVA captures the present value of the expected future funding costs or benefits arising from these uncollateralized exposures.
+    \begin{itemize}
+    \item Positive unsecured exposure $E^{+}(t) = \max(V(t), 0)$ requires funding at the treasury curve.
+    \item Negative exposure $E^{-}(t) = \max(-V(t), 0)$ yields an investing benefit bounded by reinvestment bases.
+    \item FVA complements CVA/DVA by embedding real-world liquidity frictions in transfer pricing.
+    \end{itemize}
 
 \end{frame}
 
@@ -353,72 +353,46 @@
     \subsection*{Topic 4.2: Mathematical Formulation of FVA}
     \frametitle{Topic 4.2: Mathematical Formulation of FVA}
 
-    FVA is calculated based on the expected funding costs or benefits over the life of the derivative. The general idea is to discount the expected funding costs/benefits at the bank\'s funding rate.
-
-    FVA = Sum[i=1 to T] (Funding\_Cost\_Benefit\_i * DF\_i)
-
-    Where `Funding\_Cost\_Benefit\_i` depends on the expected exposure and the bank\'s funding spread.
-
-    More specifically:
+    \begin{align*}
+        \text{FVA}(t_0) &= \int_0^T \mathbb{E}^{\mathbb{Q}}\big[ s(t)E^{+}(t) - b(t)E^{-}(t) \big] D_d(t)\, dt, \\
+        \text{FVA} &\approx -\sum_{j=1}^{M} \Delta t_j D_{d,j} s_j \bar{E}^{+}_j + \sum_{j=1}^{M} \Delta t_j D_{d,j} b_j \bar{E}^{-}_j.
+    \end{align*}
 
     \begin{itemize}
-    \item If the bank has a positive expected exposure (EE), it needs to fund this asset, incurring a cost. The cost is `EE * Funding\_Spread * dt`.
-    \item If the bank has a negative expected exposure (ENE), it receives a funding benefit. The benefit is `ENE * Funding\_Spread * dt`.
+    \item $s(t) = r_f(t) - r_d(t)$ is the unsecured funding spread; $b(t) = r_d(t) - r_i(t)$ captures reinvestment bases.
+    \item $D_d(t)$ denotes discount factors derived from the OIS curve used for collateralised valuation.
+    \item Monte Carlo engines produce scenario-averaged exposures $\bar{E}^{\pm}_j$ aligned with treasury funding term structures.
+    \item Wrong-way risk links counterparty stress to widening funding spreads, requiring joint simulation of credit and liquidity factors.
     \end{itemize}
-
-    The FVA formula can be broken down into two components:
-
-    FVA = FVA\_long + FVA\_short
-
-    Where:
-
-    \begin{itemize}
-    \item `FVA\_long`: Funding cost for positive expected exposure (bank is owed money).
-    \item `FVA\_short`: Funding benefit for negative expected exposure (bank owes money).
-    \end{itemize}
-
-    The calculation of FVA often involves simulating future exposure profiles (similar to CVA) and applying the bank\'s funding curve.
 
 \end{frame}
 
 \begin{frame}
-    \subsection*{Topic 4.3: Relationship between FVA, Collateral, and OIS Discounting}
-    \frametitle{Topic 4.3: Relationship between FVA, Collateral, and OIS Discounting}
+    \subsection*{Topic 4.3: Collateral, Discounting, and Infrastructure}
+    \frametitle{Topic 4.3: Collateral, Discounting, and Infrastructure}
 
     \begin{itemize}
-    \item **Collateralization:** FVA is primarily relevant for uncollateralized or partially collateralized trades. For fully collateralized trades, the funding costs are typically covered by the interest paid on collateral (e.g., OIS rate).
-    \item **OIS Discounting:** Post-crisis, the industry standard for discounting collateralized derivative cash flows shifted from LIBOR to the Overnight Index Swap (OIS) rate. This is because the OIS rate better reflects the funding cost of collateral. However, for uncollateralized trades, the bank\'s own funding cost remains relevant, leading to FVA.
+    \item \textbf{Thresholds and Minimum Transfer Amounts:} Determine how much exposure remains unsecured before collateral moves.
+    \item \textbf{Rehypothecation Rights:} If collateral cannot be reused, the investing benefit term $b(t)E^{-}(t)$ collapses.
+    \item \textbf{Discount-Curve Coordination:} FVA must remain consistent with the curves used for CVA/DVA to avoid double counting.
+    \item \textbf{Data Lineage:} Exposure cubes, funding curves, and stress scenarios require shared identifiers and governance.
     \end{itemize}
 
-\end{frame}
-
-
-\begin{frame}
-    \subsection*{Topic 4.4: The FVA Debate: Is it a Real Cost?}
-    \frametitle{Topic 4.4: The FVA Debate: Is it a Real Cost?}
-
-    The inclusion of FVA in derivative pricing has been debated. Critics argue that funding costs are already reflected in a bank's overall cost of capital, while proponents note that uncollateralized trades consume funding resources that should be explicitly priced.
-
-    \begin{itemize}
-    \item **Proponents:** FVA captures the opportunity cost of funding positive exposures and the benefit of funding negative exposures.
-    \item **Critics:** Some view FVA as double-counting when credit spreads already embed funding effects.
-    \item **Industry Practice:** Most major banks now include FVA, but methodologies vary.
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \subsection*{Topic 4.5: FVA Hedging and Management}
-    \frametitle{Topic 4.5: FVA Hedging and Management}
+    \subsection*{Topic 4.4: Debate, Hedging, and Management}
+    \frametitle{Topic 4.4: Debate, Hedging, and Management}
 
-    Managing FVA involves balancing funding strategies and liquidity risk.
+    The economic interpretation of FVA remains debated. Proponents view it as essential to internalise scarce liquidity; critics warn of double counting relative to credit spreads. Governance frameworks document modelling assumptions, stress scenario design, and accounting treatment to manage this debate.
 
     \begin{itemize}
-    \item **Internal Funding Desks:** Coordinate funding for trading books and optimize collateral usage.
-    \item **Hedging Tools:** Banks may use term funding, repos, or structured notes to manage funding exposure.
-    \item **Challenges:** Funding spreads can be volatile, and hedging instruments may introduce additional basis and liquidity risks.
+    \item \textbf{Funding Strategy:} Mix of unsecured debt, repos, and collateral transformation to stabilise $s(t)$.
+    \item \textbf{Client Terms:} Negotiating thresholds, eligible collateral, and clearing choices to minimise expected exposure.
+    \item \textbf{Monitoring:} Dashboards track sensitivities to spreads, collateral assumptions, and wrong-way risk correlations.
     \end{itemize}
-\end{frame}
 
+\end{frame}
 
 \begin{frame}
     \section*{Module 5: Margin Valuation Adjustment (MVA)}
@@ -430,11 +404,13 @@
     \subsection*{Topic 5.1: Definition and Rationale of MVA}
     \frametitle{Topic 5.1: Definition and Rationale of MVA}
 
-    Margin Valuation Adjustment (MVA) is the cost associated with funding the initial margin (IM) required for non-centrally cleared derivatives. Regulatory reforms (e.g., BCBS-IOSCO) have mandated the exchange of IM for a wider range of bilateral OTC derivatives, making MVA an increasingly important XVA component.
+    Margin Valuation Adjustment quantifies the opportunity cost of posting segregated initial margin (IM) for cleared and bilateral portfolios. IM is bankruptcy-remote and often remunerated below the dealer's funding curve, creating a persistent funding wedge that is sensitive to volatility regimes, concentration limits, and collateral eligibility schedules.
 
-    \framesubtitle{Why MVA is Necessary}
-
-    Initial margin is typically held in a segregated account and cannot be rehypothecated (reused) by the posting party. This means that the posting party incurs a funding cost for the IM amount over the life of the transaction. MVA quantifies the present value of these expected future funding costs.
+    \begin{itemize}
+    \item Regulatory mandates under BCBS--IOSCO expand the scope of trades requiring IM.
+    \item IM balances are path dependent because they respond to portfolio composition and market volatility.
+    \item Treasury attributes a funds-transfer-pricing spread to support segregated collateral over the trade horizon.
+    \end{itemize}
 
 \end{frame}
 
@@ -442,60 +418,55 @@
     \subsection*{Topic 5.2: Mathematical Formulation of MVA}
     \frametitle{Topic 5.2: Mathematical Formulation of MVA}
 
-    MVA is calculated as the present value of the expected future funding costs of initial margin. This involves projecting future initial margin requirements and discounting them at the bank\'s funding rate.
-
-    MVA = Sum[i=1 to T] (EIM\_i * Funding\_Spread * dt * DF\_i)
-
-    Where:
-
-    \begin{itemize}
-    \item `EIM (Expected Initial Margin):` The expected amount of initial margin required at a future point in time. This is typically calculated using quantitative models (e.g., ISDA SIMM).
-    \item `Funding\_Spread:` The bank\'s funding spread over the risk-free rate.
-    \item `dt:` The time interval.
-    \item `DF\_i:` Discount Factor to time `t\_i`.
-    \end{itemize}
-
-    Calculating EIM can be complex, as it depends on the portfolio\'s composition, market volatility, and the specific IM model used.
-
-\end{frame}
-
-\begin{frame}
-    \subsection*{Topic 5.3: Initial Margin Models (e.g., ISDA SIMM)}
-    \frametitle{Topic 5.3: Initial Margin Models (e.g., ISDA SIMM)}
+    \begin{align*}
+        \text{MVA} &= \mathbb{E}^{\mathbb{Q}}\left[ \int_0^T D(t) IM(t) \big(s_f(t) - r_{rem}(t)\big) \mathbf{1}_{\{t < \tau_c \wedge \tau_b\}} dt \right], \\
+        \text{MVA} &\approx \sum_{k=1}^{n} IM(t_k) \big(s_f(t_k) - r_{rem}(t_k)\big) D(t_k) \Delta t.
+    \end{align*}
 
     \begin{itemize}
-    \item **ISDA SIMM (Standard Initial Margin Model):** A standardized methodology developed by ISDA (International Swaps and Derivatives Association) for calculating initial margin for non-centrally cleared derivatives. It is widely adopted by the industry to comply with regulatory requirements.
-    \item **Other IM Models:** Some institutions may use their own proprietary internal models, subject to regulatory approval.
+    \item $IM(t)$ is derived from the institution's initial margin model applied to Monte Carlo exposure cubes.
+    \item $s_f(t)$ captures funds-transfer-pricing spreads; $r_{rem}(t)$ is the custodian remuneration rate.
+    \item Integration stops at the first default time $\tau_c \wedge \tau_b$, reflecting close-out mechanics.
+    \item Wrong-way risk links funding spreads and margin surges under stress scenarios.
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-    \subsection*{Topic 5.4: MVA Hedging and Management}
-    \frametitle{Topic 5.4: MVA Hedging and Management}
-
-    Hedging MVA is challenging because initial margin requirements depend on portfolio composition and market volatility.
+    \subsection*{Topic 5.3: Initial Margin Models}
+    \frametitle{Topic 5.3: Initial Margin Models}
 
     \begin{itemize}
-    \item **Margin Optimization:** Banks may restructure trades or use margin-efficient products to reduce initial margin needs.
-    \item **Funding Strategies:** Dedicated funding for initial margin, such as collateralized borrowing, can reduce costs but introduces liquidity considerations.
-    \item **Operational Challenges:** Frequent recalculation of IM and settlement cycles add complexity.
+    \item \textbf{ISDA SIMM:} Sensitivity-based approach with prescribed buckets, risk weights, and correlations; transparent but potentially conservative for bespoke portfolios.
+    \item \textbf{Internal VaR/ES Models:} Simulate potential future exposure over liquidation horizons, capturing diversification but demanding rigorous back-testing and supervisory approval.
+    \item \textbf{Hybrid Governance:} Institutions reconcile standardized and internal results via overrides, buffers, and model-risk controls.
     \end{itemize}
+
 \end{frame}
 
 \begin{frame}
-    \subsection*{Topic 5.5: Regulatory Impact: Driving Behavioral Change}
-    \frametitle{Topic 5.5: Regulatory Impact: Driving Behavioral Change}
-
-    Regulatory reforms mandating initial margin have reshaped derivatives markets.
+    \subsection*{Topic 5.4: Hedging and Management}
+    \frametitle{Topic 5.4: Hedging and Management}
 
     \begin{itemize}
-    \item **BCBS-IOSCO Framework:** Phased implementation has brought more counterparties into scope, increasing demand for high-quality collateral.
-    \item **Product Innovation:** The cost of posting IM has encouraged the use of cleared products and compression services.
-    \item **Strategic Considerations:** Institutions evaluate trade profitability after accounting for MVA, influencing deal structures and client pricing.
+    \item \textbf{Collateral Optimisation:} Portfolio compression, clearing mandates, and collateral transformation to reduce IM balances.
+    \item \textbf{Funding Strategy:} Term repos, committed liquidity facilities, and structured notes to lock in spreads before volatility spikes.
+    \item \textbf{Transfer Pricing:} Treasury dashboards attribute funding costs back to trading desks, promoting margin-efficient deal design.
     \end{itemize}
+
 \end{frame}
 
+\begin{frame}
+    \subsection*{Topic 5.5: Regulatory Impact}
+    \frametitle{Topic 5.5: Regulatory Impact}
+
+    \begin{itemize}
+    \item \textbf{BCBS--IOSCO Governance:} Phased implementation, eligible collateral schedules, and dispute resolution expectations.
+    \item \textbf{Operational Investment:} Margin analytics, reconciliation tooling, and legal documentation embedded into pricing.
+    \item \textbf{Stress Testing:} Supervisors scrutinise scenarios where volatility-driven IM surges coincide with widening funding spreads.
+    \end{itemize}
+
+\end{frame}
 
 \begin{frame}
     \section*{Module 6: Advanced Topics and Integrated XVA}
@@ -507,44 +478,29 @@
     \subsection*{Topic 6.1: Interdependencies of XVA Components}
     \frametitle{Topic 6.1: Interdependencies of XVA Components}
 
-    While each XVA component (CVA, DVA, FVA, MVA, KVA) addresses a specific risk or cost, they are not independent. These adjustments interact with each other, and a comprehensive XVA framework must consider these interdependencies to avoid double-counting or underestimating the total valuation adjustment. The goal is to arrive at a single, economically sound price for a derivative that incorporates all relevant risks and costs.
-
-    \framesubtitle{How CVA, DVA, FVA, and MVA Interact}
+    \begin{align*}
+        \text{XVA}_{\text{total}} &= \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}, \\
+        \text{CVA} &= (1 - R_c) \int_0^T EPE(t) \lambda_c(t) S_c(t) D(0,t)\, dt, \\
+        \text{FVA} &= \int_0^T EPE(t) [f(t) - r(t)] D(0,t)\, dt.
+    \end{align*}
 
     \begin{itemize}
-    \item **CVA and DVA:** These are inherently linked, as they represent the credit risk of the counterparty and the bank itself, respectively. In a bilateral contract, one party\'s CVA is the other\'s DVA. Netting agreements impact both CVA and DVA by reducing the net exposure.
-    \item **FVA and Collateral:** FVA is heavily influenced by collateralization. Collateral reduces uncollateralized exposure, thereby lowering FVA. However, the type of collateral and the interest paid on it can also affect funding costs. For example, if cash collateral is posted and earns a risk-free rate, while the bank\'s funding cost is higher, there is still a net funding cost.
-    \item **MVA and Funding:** MVA directly captures the funding cost of initial margin. This is distinct from the funding costs associated with variation margin or uncollateralized exposure, which are covered by FVA. However, the overall funding strategy of the bank will influence both FVA and MVA.
-    \item **KVA and Other XVAs:** KVA reflects the cost of regulatory capital. The amount of regulatory capital required is influenced by the riskiness of the derivative portfolio, which is affected by CVA, DVA, FVA, and MVA. For example, effective CVA hedging can reduce the CVA capital charge, thereby lowering KVA.
+    \item Collateral choices shift expected exposure profiles, altering credit, funding, and capital metrics simultaneously.
+    \item Scenario generation must remain synchronised across credit, funding, and margin models to avoid inconsistent adjustments.
+    \item Hedging decisions are evaluated on their joint impact across CVA, FVA, MVA, and KVA.
     \end{itemize}
-
-    \framesubtitle{Total XVA Calculation}
-
-    Calculating the total XVA for a derivative portfolio involves more than simply summing the individual XVA components. A sophisticated XVA framework typically uses a unified Monte Carlo simulation that can simultaneously model market risk, credit risk, funding costs, and margin requirements. This allows for a more accurate assessment of the interactions between different XVA components.
-
-    The total XVA is often expressed as:
-
-    Total XVA = CVA + DVA + FVA + MVA + KVA
-
-    However, the calculation of each component must be done in a consistent and integrated manner. For example, the expected exposure profiles used for CVA, DVA, and FVA should be derived from the same underlying simulation and should account for netting and collateral in a consistent way.
 
 \end{frame}
 
 \begin{frame}
-    \subsection*{Topic 6.2: XVA Desks and Organizational Structure}
-    \frametitle{Topic 6.2: XVA Desks and Organizational Structure}
-
-    The emergence of XVA has led to significant changes in the organizational structure of financial institutions, particularly in how derivative trading and risk management are conducted. Many large banks have established dedicated XVA desks to manage these complex valuation adjustments.
-
-    \framesubtitle{Role of XVA in Front Office, Risk, and Finance}
+    \subsection*{Topic 6.2: XVA Desks and Organisational Structure}
+    \frametitle{Topic 6.2: XVA Desks and Organisational Structure}
 
     \begin{itemize}
-    \item **Front Office (Trading):** XVA desks are often part of the front office, responsible for pricing XVA into new trades, hedging XVA exposures, and managing the overall XVA P\&L. They work closely with sales and trading teams to ensure that derivative transactions are priced appropriately and that XVA risks are actively managed.
-    \item **Risk Management:** The risk management function plays a crucial role in overseeing XVA. This includes developing and validating XVA models, setting XVA risk limits, monitoring XVA exposures, and ensuring compliance with regulatory requirements. Risk management also provides independent oversight of the XVA desk\'s activities.
-    \item **Finance and Accounting:** The finance and accounting departments are responsible for the financial reporting of XVA. This includes ensuring that XVA is calculated and reported in accordance with accounting standards (e.g., IFRS, US GAAP), managing the impact of XVA on the bank\'s financial statements, and providing disclosures to investors and regulators.
+    \item \textbf{Integrated Operating Model:} Centralised XVA desks align front office pricing with treasury funding and capital costs.
+    \item \textbf{Governance:} Risk management validates methodologies, finance ensures accounting alignment, and treasury manages liquidity.
+    \item \textbf{Data Infrastructure:} Golden-source identifiers and real-time data feeds support fast recalibration when markets shift.
     \end{itemize}
-
-    Effective XVA management requires close collaboration between these different functions, as well as with other areas such as IT (for systems and data) and legal (for netting and collateral agreements).
 
 \end{frame}
 
@@ -552,19 +508,15 @@
     \subsection*{Topic 6.3: Regulatory Landscape and Future of XVA}
     \frametitle{Topic 6.3: Regulatory Landscape and Future of XVA}
 
-    The regulatory landscape for XVA is constantly evolving, with new rules and interpretations emerging from bodies like the Basel Committee on Banking Supervision (BCBS), the International Organization of Securities Commissions (IOSCO), and national regulators.
-
-    \framesubtitle{Basel IV and Other Upcoming Regulations}
-
-    Basel IV (also known as the finalization of Basel III) continues to refine capital requirements for banks, including those related to derivatives. While not introducing entirely new XVA components, it impacts the calculation of risk-weighted assets (RWA) and capital floors, which in turn affect KVA. Regulators are also increasingly focused on the consistency and robustness of XVA models across institutions.
-
-    \framesubtitle{Impact of New Technologies (e.g., Blockchain, AI)}
-
-    New technologies are poised to further shape the future of XVA:
+    \begin{align*}
+        \text{SA-CVA} &= \sqrt{\sum_i K_i^2 + 2 \sum_{i<j} \rho_{ij} K_i K_j}, \\
+        \text{Stress Capital Buffer} &= \frac{\max(\text{Projected Loss} - \text{Allowances}, 0)}{\text{Risk-Weighted Assets}}.
+    \end{align*}
 
     \begin{itemize}
-    \item **Blockchain/Distributed Ledger Technology (DLT):** Could potentially reduce counterparty risk and operational inefficiencies in derivative markets through smart contracts and real-time settlement, thereby impacting CVA and DVA. Streamlined collateral management on DLT platforms could also affect funding costs.
-    \item **Artificial Intelligence (AI) and Machine Learning (ML):** Can be used to improve the accuracy and efficiency of XVA calculations, particularly in exposure modeling (e.g., more sophisticated Monte Carlo simulations, faster calibration of models) and in predicting probabilities of default. AI could also enhance hedging strategies and optimize capital allocation.
+    \item FRTB-CVA emphasises risk-sensitive capital metrics and robust scenario generation.
+    \item Supervisors expect transparent model governance, documented data lineage, and climate-aware stress scenarios.
+    \item Technological innovation (cloud, AI, DLT) must be paired with explainability and operational resilience.
     \end{itemize}
 
 \end{frame}
@@ -573,16 +525,16 @@
     \subsection*{Topic 6.4: Case Studies and Real-World Examples}
     \frametitle{Topic 6.4: Case Studies and Real-World Examples}
 
-    To solidify understanding, the course will incorporate various case studies and real-world examples. These will illustrate how XVA is applied in practice, the challenges encountered, and the impact on financial institutions.
+    \begin{align*}
+        \text{Hedge Effectiveness} &= 1 - \frac{\Delta \text{Unhedged CVA}}{\Delta \text{Gross CVA}}, \\
+        \text{Capital Impact Ratio} &= \frac{\text{Post-Remediation CVA Capital}}{\text{Pre-Remediation CVA Capital}}.
+    \end{align*}
 
     \begin{itemize}
-    \item **Case Study 1: Lehman Brothers Default:** Analyze the impact of the Lehman Brothers default on counterparty exposures and the subsequent recognition of CVA losses across the financial industry.
-    \item **Case Study 2: Impact of Central Clearing:** Examine how the mandatory central clearing of certain OTC derivatives has shifted risk and impacted XVA calculations, particularly MVA.
-    \item **Case Study 3: Bank-Specific Funding Costs:** Explore how differences in bank funding costs translate into varying FVA charges for similar derivative portfolios.
-    \item **Case Study 4: Wrong-Way Risk Incidents:** Discuss historical examples of wrong-way risk events and their implications for CVA modeling and management.
+    \item Case studies examine funding shocks, collateral disputes, and remediation programmes.
+    \item Metrics quantify whether hedges, process upgrades, or data investments delivered expected economic relief.
+    \item Lessons inform governance enhancements and client communication strategies.
     \end{itemize}
-
-    These case studies will provide practical insights into the theoretical concepts and highlight the importance of robust XVA frameworks in managing financial risk.
 
 \end{frame}
 
@@ -590,18 +542,14 @@
     \subsection*{Topic 6.5: Future Trends and Challenges in XVA}
     \frametitle{Topic 6.5: Future Trends and Challenges in XVA}
 
-    As financial markets evolve, XVA practices continue to develop.
-
     \begin{itemize}
-    \item **Model Risk and Automation:** Increased use of machine learning and automated risk engines raises governance and validation challenges.
-    \item **Central Clearing Expansion:** Wider adoption of central clearing and standardized products may reduce certain XVA components while increasing others like MVA.
-    \item **Sustainability Considerations:** Emerging regulatory focus on ESG factors could influence funding costs and capital requirements, impacting FVA and KVA.
+    \item \textbf{Climate and ESG Analytics:} Integrating transition and physical risk scenarios into valuation adjustments.
+    \item \textbf{Technology Enablement:} AI-driven exposure approximations and DLT-based collateral management with strong model-risk controls.
+    \item \textbf{Operational Resilience:} Cybersecurity, data quality, and senior-management accountability as core supervisory themes.
     \end{itemize}
+
 \end{frame}
-
-
-\begin{frame}
-    \section*{References}
+\section*{References}
     \frametitle{References}
 
     \begin{itemize}

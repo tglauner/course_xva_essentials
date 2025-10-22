@@ -7,7 +7,21 @@ import { Badge } from '@/components/ui/badge.jsx'
 import { Separator } from '@/components/ui/separator.jsx'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { modules, moduleContent, glossary } from '@/lib/courseData.jsx'
+import { MathJaxContext } from 'better-react-mathjax'
 import './App.css'
+
+const mathJaxConfig = {
+  tex: {
+    inlineMath: [
+      ['$', '$'],
+      ['\\(', '\\)']
+    ],
+    displayMath: [
+      ['$$', '$$'],
+      ['\\[', '\\]']
+    ]
+  }
+}
 
 function ModulePage() {
   const { moduleId } = useParams()
@@ -123,7 +137,7 @@ function ModulePage() {
     }
 
     return (
-      <>
+      <MathJaxContext config={mathJaxConfig} version={3}>
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="text-2xl">{moduleData.title}</CardTitle>
@@ -197,7 +211,7 @@ function ModulePage() {
             Close Lecture Tab
           </Button>
         </div>
-      </>
+      </MathJaxContext>
     )
   }
 
