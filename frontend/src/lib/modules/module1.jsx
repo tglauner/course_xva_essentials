@@ -1,4 +1,538 @@
 import { BookOpen } from 'lucide-react'
+import { BlockMath, InlineMath } from '@/lib/math/MathComponents.jsx'
+
+const SectionOne = () => (
+  <div className="space-y-6">
+    <div className="summary-box">
+      <p>
+        XVA, or X-Value Adjustment, captures the spectrum of valuation adjustments applied to derivative portfolios to reconcile
+        theoretical prices with real-world trading constraints. This summary introduces the motivation for bundling credit,
+        funding, margin, and capital effects into a single analytical family. It frames XVA as an overlay that transforms a
+        frictionless valuation baseline into an economically sound price reflecting institutional balance sheet pressures. The
+        paragraph also highlights the way each component responds to different drivers—from counterparty solvency to
+        liquidity—while emphasizing that all adjustments share the goal of improving transparency, profitability measurement, and
+        risk-sensitive decision-making for trading desks and risk managers today.
+      </p>
+    </div>
+    <div className="formula-box space-y-4">
+      <div>
+        <p className="text-blue-900 font-semibold">Total XVA</p>
+        <BlockMath math="\mathrm{XVA} = \mathrm{CVA} + \mathrm{DVA} + \mathrm{FVA} + \mathrm{MVA} + \mathrm{KVA}" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Risk-Adjusted Fair Value</p>
+        <BlockMath math="V_{\text{adjusted}} = V_{\text{risk-neutral}} + \mathrm{XVA}" />
+      </div>
+    </div>
+    <div className="discussion space-y-4">
+      <p>
+        XVA is best interpreted as a disciplined attempt to embed credit-, funding-, and capital-related frictions into pricing
+        so that an institution’s derivative valuations reflect the economic realities of its balance sheet. In the simplest
+        replication arguments, a bank hedges a derivative by trading underlying assets and continuously rebalancing risk-free
+        borrowing and lending accounts. That stylized approach collapses when counterparties can default, collateral is
+        imperfect, and balance sheet capacity is costly. The XVA framework reintroduces those constraints explicitly, allowing
+        pricing teams to quantify how much value erosion occurs when the institution must reserve economic resources to survive
+        adverse states of the world.
+      </p>
+      <p>
+        The first analytical pillar is counterparty credit risk. When a bank is owed money by a counterparty, it faces the
+        possibility that the exposure may vanish if default occurs prior to settlement. The credit valuation adjustment recognizes
+        this risk by estimating expected losses as the product of exposure profiles, default probabilities, and loss-given-default
+        parameters. Importantly, CVA is path dependent; it requires Monte Carlo simulation or structural models to forecast
+        positive exposure over time, and it must incorporate netting sets, collateral agreements, and wrong-way risk effects where
+        exposures and default likelihoods become correlated.
+      </p>
+      <p>
+        Debit valuation adjustment expands the lens by acknowledging that the bank itself may default. Economically, DVA
+        represents a benefit to shareholders because the bank could walk away from liabilities when it fails. Yet the recognition
+        of DVA is contentious. Regulators and senior management prefer to manage the institution as a going concern, so they focus
+        on mitigating circumstances that would force default. Traders, however, observe that accounting standards require DVA for
+        fair-value reporting. Consequently, XVA desks track DVA internally but may exclude it from transfer pricing to discourage
+        traders from assuming that the bank’s own default is an acceptable profit source.
+      </p>
+      <p>
+        Funding valuation adjustment captures liquidity imperfections. In a frictionless model, hedging flows are financed at the
+        risk-free rate. Realistically, treasury desks must issue debt, tap secured funding markets, or reallocate scarce cash to
+        support hedges. Those activities occur at spreads above the overnight indexed swap curve. FVA therefore measures the
+        present value of those spreads applied to uncollateralized exposures. It also incorporates the cost of maintaining
+        liquidity buffers mandated by internal stress tests. Since funding spreads fluctuate with market stress, FVA can become
+        the dominant driver of total XVA during crises when liquidity vanishes and secured funding haircuts escalate.
+      </p>
+      <p>
+        Margin valuation adjustment responds to regulatory reforms that require initial margin postings for cleared and bilateral
+        trades. Initial margin is segregated cash or high-quality collateral that cannot be rehypothecated. Although the bank
+        earns a modest interest return, the opportunity cost of locking away that collateral is material. MVA measures the
+        discounted funding spread on the segregated margin profile. Its calculation necessitates simulating potential future
+        exposure under standardized or internal models to determine how margin requirements evolve across market scenarios.
+      </p>
+      <p>
+        Capital valuation adjustment addresses the cost of equity capital tied up to satisfy regulatory capital charges.
+        Derivatives generate capital requirements under counterparty credit risk, market risk, and credit valuation adjustment
+        risk frameworks. Banks expect a hurdle rate on that capital, often aligned with shareholder return targets. KVA therefore
+        represents the discounted cost of holding capital over the life of the trade, typically computed by projecting
+        risk-weighted assets and applying the internal cost-of-capital rate. Because capital charges respond slowly to market
+        states relative to exposure-based adjustments, KVA often exhibits smoother dynamics yet can be large for long-dated or
+        concentrated portfolios.
+      </p>
+      <p>
+        What makes XVA compelling is the integration across these channels. Each adjustment is sensitive to collateralization,
+        netting sets, and the institution’s strategic posture. A collateral upgrade negotiation with a counterparty simultaneously
+        reduces CVA, FVA, and MVA. Conversely, a deterioration in the bank’s credit rating inflates both funding spreads and
+        regulatory capital add-ons. Effective XVA management therefore depends on cross-functional governance: trading desks align
+        trade structures with treasury’s funding mix, credit officers calibrate counterparty limits to exposure simulations, and
+        risk controllers ensure that the entire adjustment stack is measured consistently with regulatory expectations.
+      </p>
+      <p>
+        Operationally, banks organize XVA desks to centralize expertise. The desk runs simulation engines that produce expected
+        exposure profiles under thousands of market scenarios. Those engines feed analytic layers that compute CVA, DVA, FVA, MVA,
+        and KVA, often with sensitivities to underlying risk factors. The resulting adjustments are then allocated to business
+        units through transfer pricing add-ons, ensuring that traders incorporate the full economic cost into deal pricing.
+        Technology architecture must support intraday recalculations as markets move, while governance frameworks validate models,
+        track backtesting results, and document assumptions for auditors and regulators.
+      </p>
+      <p>
+        The broader strategic implication is that XVA transforms derivatives from pure market risk instruments into
+        multi-dimensional balance sheet commitments. Banks that excel at managing collateral, diversifying funding sources, and
+        optimizing capital usage achieve a competitive advantage by quoting tighter prices without sacrificing profitability.
+        Conversely, institutions that ignore XVA face hidden costs that materialize during stress, undermining earnings and
+        eroding trust with stakeholders. The XVA toolkit, grounded in rigorous quantitative modeling and practical treasury
+        insight, thus becomes indispensable for sustainable derivatives businesses.
+      </p>
+    </div>
+  </div>
+)
+
+const SectionTwo = () => (
+  <div className="space-y-6">
+    <div className="summary-box">
+      <p>
+        The evolution of XVA is rooted in the recognition that pre-crisis risk-neutral pricing ignored counterparty failure,
+        liquidity stress, and regulatory capital drag. This summary highlights the journey from the simplicity of early models to
+        the multi-layered analytics that emerged after institutions suffered losses such as those tied to Lehman Brothers. It
+        introduces the regulatory milestones, accounting pronouncements, and infrastructure reforms that forced banks to
+        institutionalize valuation adjustments. Finally, it signals how history reshaped governance, technology, and market
+        practices, establishing XVA desks as central actors in protecting profitability and resilience across modern derivatives
+        businesses worldwide. These lessons still guide policy teams.
+      </p>
+    </div>
+    <div className="formula-box space-y-4">
+      <div>
+        <p className="text-blue-900 font-semibold">Expected Counterparty Loss</p>
+        <BlockMath math="\mathrm{CVA} = \int_0^T EE(t) \times PD'(t) \times LGD \times DF(t)\, dt" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Funding Spread Impact</p>
+        <BlockMath math="\mathrm{FVA} = \int_0^T \text{Exposure}_{\text{uncoll}}(t) \times \text{Funding Spread}(t) \times DF(t)\, dt" />
+      </div>
+    </div>
+    <div className="discussion space-y-4">
+      <p>
+        The pre-crisis era of derivative pricing was anchored in the elegant mathematics of the Black-Scholes-Merton paradigm,
+        which assumed frictionless markets and default-free counterparties. Banks relied on credit lines, collateral thresholds,
+        and bilateral trust to manage exposures. Because defaults among major dealers seemed remote, the industry allocated little
+        computational effort to quantifying bilateral credit risk. In that environment, valuation adjustments were mostly
+        idiosyncratic reserves held by credit officers rather than systematic, trade-level pricing metrics.
+      </p>
+      <p>
+        The implosion of the U.S. subprime mortgage market from 2007 onward shattered those assumptions. Structured credit
+        portfolios deteriorated rapidly, impairing the balance sheets of globally active banks. As funding markets tightened,
+        institutions that once rolled commercial paper effortlessly suddenly faced haircuts and escalating spreads. Counterparties
+        that had been considered rock solid—Bear Stearns, Lehman Brothers, AIG—demonstrated that investment-grade ratings could
+        not guarantee solvency when liquidity evaporated. For derivatives desks, the consequence was stark: previously neglected
+        counterparty exposure crystallized into multi-billion-dollar losses.
+      </p>
+      <p>
+        CVA rose to prominence as institutions realized that expected counterparty losses were material and observable. Lehman
+        Brothers’ default, for instance, forced counterparties to mark down the positive value of their swaps, options, and
+        structured trades. Firms that had not priced this risk experienced sudden hits to earnings. Meanwhile, funding spreads
+        surged as unsecured borrowing became scarce, motivating the formalization of FVA to reflect the elevated cost of
+        financing hedges. Liquidity crunches exposed how reliant the industry had been on short-term funding, further reinforcing
+        the need for dedicated valuation adjustments.
+      </p>
+      <p>
+        Reforms that followed the crisis solidified these practices. The Basel III framework introduced explicit capital charges
+        for CVA risk, credit valuation adjustment risk capital (CVA VAR), and leverage ratios that penalized large derivatives
+        inventories. Central clearing mandates under the Dodd-Frank Act and the European Market Infrastructure Regulation (EMIR)
+        imposed initial margin requirements, motivating the concept of margin valuation adjustment. The International Swaps and
+        Derivatives Association (ISDA) published the Standard Initial Margin Model to harmonize margin calculations for uncleared
+        derivatives, further institutionalizing MVA. Each reform forced banks to invest in data, analytics, and governance to
+        manage valuation adjustments across the trade lifecycle.
+      </p>
+      <p>
+        Infrastructure advances accompanied regulatory change. Pre-crisis architectures often consisted of disconnected trading
+        books and spreadsheets. Post-crisis, banks built centralized exposure simulation engines capable of generating expected
+        exposure, potential future exposure, and credit-adjusted sensitivities across large portfolios. These engines fed
+        enterprise data warehouses and risk dashboards accessible to trading, risk, treasury, and finance functions. The emergence
+        of specialized XVA desks allowed subject matter experts to interpret model outputs, reconcile them with accounting
+        figures, and communicate their implications to senior management and regulators.
+      </p>
+      <p>
+        The historical narrative also reveals how industry collaboration shaped XVA practice. Industry working groups coordinated
+        by ISDA, the Basel Committee, and the Financial Stability Board established common terminology, modelling expectations,
+        and stress testing frameworks. Banks benchmarked their XVA methodologies through quantitative impact studies and shared
+        anonymized data to calibrate default probabilities and loss-given-default assumptions. Vendors entered the market with
+        specialized XVA platforms, enabling mid-sized institutions to adopt sophisticated analytics without building every
+        component internally.
+      </p>
+      <p>
+        Perhaps the most enduring lesson from this evolution is that valuation adjustments are not temporary crisis-era patches.
+        They represent a permanent recognition that derivatives pricing must account for the financial institution’s survival
+        constraints. Today, even during periods of market calm, banks continuously monitor counterparty creditworthiness, funding
+        spreads, and capital budgets because historical experience demonstrated how swiftly conditions can deteriorate. The memory
+        of Lehman and AIG keeps risk managers vigilant, while regulatory requirements ensure that complacency is penalized through
+        higher capital charges or supervisory findings.
+      </p>
+      <p>
+        Ultimately, the historical arc from pre-crisis complacency to post-crisis rigor underscores why modern derivative
+        businesses treat XVA as integral to strategy. By embedding the adjustments into day-one pricing, institutions avoid the
+        surprise losses that once blindsided them. They can articulate to stakeholders how much profit is left after compensating
+        for credit risk, liquidity usage, and capital deployment. The narrative therefore reinforces that XVA is not just a
+        technical modelling exercise but a response to the lived experiences of market participants navigating systemic stress and
+        rebuilding trust in global derivatives markets.
+      </p>
+    </div>
+  </div>
+)
+
+const SectionThree = () => (
+  <div className="space-y-6">
+    <div className="summary-box">
+      <p>
+        Derivatives span forwards, futures, options, and swaps, enabling institutions to transfer market risks while generating
+        exposures that feed directly into XVA calculations. This summary sketches how instrument design, trading venues, and
+        collateralization styles influence exposure dynamics. It underscores that over-the-counter markets dominate XVA
+        discussions because bespoke contracts embed bilateral credit risk, while exchange-traded products offer clearing
+        protections that mute adjustment needs. By previewing netting, collateral, and product-specific payoff structures, the
+        paragraph prepares readers to connect contractual mechanics with exposure profiles that drive credit, funding, margin, and
+        capital charges in real-world valuation workflows used by modern XVA desks for risk teams.
+      </p>
+    </div>
+    <div className="formula-box space-y-4">
+      <div>
+        <p className="text-blue-900 font-semibold">Forward Mark-to-Market</p>
+        <BlockMath math="V_{\text{forward}}(t) = S(t) - K \times DF(t)" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Option Seller Exposure</p>
+        <BlockMath math="\text{Exposure}(t) = \max\big[S(t) - K, 0\big]" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Interest Rate Swap Value</p>
+        <BlockMath math="V_{\text{swap}}(t) = PV_{\text{float}}(t) - PV_{\text{fixed}}(t)" />
+      </div>
+    </div>
+    <div className="discussion space-y-4">
+      <p>
+        To understand how XVA operates, we must unpack the derivative instruments that populate dealer portfolios and examine how
+        each contract generates exposure over time. Forwards and futures commit parties to exchange an asset at a predetermined
+        price on a future date. The exposure of a long forward increases as the underlying price rises, while a short position
+        gains when prices fall. Exchange-traded futures mitigate counterparty risk through daily variation margin and central
+        clearing, but bespoke forwards traded bilaterally accumulate uncollateralized exposure that feeds directly into CVA and
+        FVA calculations. Commodity dealers, for instance, often negotiate long-dated physical forwards with corporate clients;
+        the lack of daily margining means expected exposure can build substantially as market prices drift.
+      </p>
+      <p>
+        Options introduce convex exposure profiles. A purchased call yields positive exposure when the underlying surpasses the
+        strike, while the downside is limited to the premium already paid. From an XVA perspective, the asymmetry matters: the
+        bank selling the option faces unbounded exposure as markets rally, which increases expected positive exposure and thus
+        CVA. Options also generate non-linear sensitivities, requiring simulation engines to capture gamma and vega effects on
+        exposure distributions. Exotic options—barriers, Asians, cliquets—compound the challenge because their payoffs depend on
+        path-dependent events and averaging features. Accurately modelling exposure for such structures demands high-resolution
+        simulation grids and sophisticated stochastic models, increasing computational requirements for XVA desks.
+      </p>
+      <p>
+        Swaps, including interest rate swaps, cross-currency swaps, and credit default swaps, are central to XVA because of their
+        long maturities and large notionals. In an interest rate swap, parties exchange fixed and floating cash flows; the
+        mark-to-market fluctuates with the yield curve. Counterparty risk arises when the swap moves in-the-money for one party.
+        Collateral agreements with thresholds and minimum transfer amounts shape how much of that exposure is covered by variation
+        margin, while the residual uncollateralized portion contributes to CVA and FVA. Cross-currency swaps add another layer:
+        exchanges of principal in different currencies create significant exposures at maturity, and currency basis spreads
+        influence funding adjustments. Credit default swaps concentrate credit risk explicitly; selling protection produces
+        exposure to the reference entity’s default as well as to the counterparty’s ability to pay if a credit event occurs.
+      </p>
+      <p>
+        Beyond vanilla instruments, structured products combine multiple derivatives into bespoke payoff profiles tailored to
+        client objectives. Equity-linked structured notes may embed barrier options, digital payouts, and leverage features, all
+        issued through unsecured notes. The bank’s exposure to the investor is therefore equivalent to the note’s full market
+        value. These transactions typically lack daily collateralization because they are funded by the investor’s purchase price,
+        elevating the importance of CVA, FVA, and KVA. Similarly, corporate solutions desks may engineer commodity hedges that
+        blend swaps, options, and collars. Each component’s exposure must be aggregated within a netting set to compute
+        portfolio-level XVA.
+      </p>
+      <p>
+        The trading venue also shapes exposure. Over-the-counter contracts rely on bilateral credit support annexes (CSAs) to
+        govern collateral posting. Key terms include eligible collateral types, haircuts, thresholds, minimum transfer amounts,
+        and dispute resolution timelines. A CSA with low thresholds and daily variation margin dramatically reduces expected
+        positive exposure, thereby shrinking CVA and FVA. Conversely, a high threshold or infrequent margining schedule leaves
+        significant unsecured exposure outstanding for days, increasing adjustments. Netting agreements allow counterparties to
+        offset positive and negative positions across products, lowering net exposure. Central counterparties (CCPs) standardize
+        margining and default management, transferring counterparty risk from individual dealers to the clearinghouse and reducing
+        bilateral XVA, although members still bear the cost of initial margin and default fund contributions captured in MVA and
+        KVA calculations.
+      </p>
+      <p>
+        Exposure measurement requires robust modelling. Dealers project expected exposure (EE) and expected positive exposure
+        (EPE) under thousands of simulated market paths. These metrics feed directly into CVA as weighted averages multiplied by
+        default probability term structures. For instruments with callable features or early termination options, exposure becomes
+        contingent on optimal exercise strategies, necessitating backward induction or least-squares Monte Carlo techniques. The
+        modelling complexity is highest for portfolios containing correlation products such as basket options or credit tranches,
+        where joint movements of multiple underlyings determine exposure.
+      </p>
+      <p>
+        Collateralization interacts with funding and margin adjustments. Variation margin posted in cash can be reused, offsetting
+        funding needs, whereas securities collateral may require transformation trades that introduce additional funding spreads.
+        Initial margin is segregated and cannot be rehypothecated, so the bank must source high-quality liquid assets to post at
+        the CCP or counterparty. The funding spread applied to that locked collateral forms the basis of MVA. Dealers often
+        evaluate alternative structures—such as switching from bilateral to cleared trading—to balance the cost of initial margin
+        against the benefits of reduced CVA.
+      </p>
+      <p>
+        Operational realities add another layer. Settlement timing, trade confirmation lags, and collateral disputes all influence
+        effective exposure. For example, if a counterparty disputes a variation margin call, exposure remains outstanding longer,
+        increasing the area under the exposure curve and magnifying CVA. Legal terms governing close-out netting determine how
+        positions are valued upon default; discrepancies between contractual valuation methods and risk-neutral modelling can
+        create residual losses not captured by headline XVA metrics. Consequently, legal teams collaborate with XVA desks to
+        ensure documentation aligns with modelling assumptions.
+      </p>
+      <p>
+        Finally, derivatives portfolios evolve dynamically as trades mature, compress, or novate to other counterparties.
+        Portfolio rebalancing efforts, such as tear-up exercises and compression runs, reduce gross notional outstanding, thereby
+        lowering exposure profiles and associated XVA. Conversely, client demand for long-dated bespoke hedges can reintroduce
+        concentrated exposures that require hedging through back-to-back trades with other dealers. These intermediation trades
+        propagate counterparty risk through the network of dealers, making aggregate industry exposures a systemic consideration.
+        XVA analytics thus provide the lens through which institutions monitor and manage the intricate exposure web created by
+        the diverse derivative instruments that underpin modern financial markets.
+      </p>
+    </div>
+  </div>
+)
+
+const SectionFour = () => (
+  <div className="space-y-6">
+    <div className="summary-box">
+      <p>
+        Risk-neutral pricing assumes frictionless markets, default-free counterparties, and costless funding, enabling elegant
+        valuation formulas but masking the real-world burdens that XVA seeks to capture. This summary distills the core
+        idealizations—perfect collateralization, continuous hedging, and infinite liquidity—and notes how each collapses during
+        stress. It introduces the gap between theoretical replication strategies and the institutional constraints imposed by
+        credit lines, treasury budgets, and regulatory oversight. By flagging these disconnects upfront, the paragraph sets the
+        stage for examining why practitioners augment classic pricing models with valuation adjustments that quantify genuine
+        balance sheet costs and survival considerations for trading businesses for modern risk control.
+      </p>
+    </div>
+    <div className="formula-box space-y-4">
+      <div>
+        <p className="text-blue-900 font-semibold">Risk-Neutral Valuation</p>
+        <BlockMath math="V_0 = \mathbb{E}^Q\left[e^{-\int_0^T r(t)\, dt} \cdot \text{Payoff}\right]" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Economic Price</p>
+        <BlockMath math="V_{\text{economic}} = V_0 + \mathrm{XVA}" />
+      </div>
+    </div>
+    <div className="discussion space-y-4">
+      <p>
+        Risk-neutral pricing derives from the idea that investors are indifferent between risky and risk-free assets after
+        adjusting for discounted expected payoffs under a risk-neutral measure. The framework assumes that a derivative can be
+        replicated exactly by trading the underlying asset and borrowing or lending at the risk-free rate. Under this idealization,
+        arbitrage-free prices emerge elegantly from stochastic calculus. However, the replication argument presumes perfect
+        markets: continuous trading, zero transaction costs, unlimited short-selling, and, critically, the absence of counterparty
+        default. Each of these assumptions becomes questionable when derivatives are transacted between real-world institutions
+        that face credit limits, liquidity constraints, and regulatory capital requirements.
+      </p>
+      <p>
+        Consider the assumption of default-free counterparties. In risk-neutral theory, the bank hedging a derivative does not
+        worry about the solvency of its counterparty because the replication strategy guarantees payoff equivalence. In practice,
+        the bank only realizes the derivative’s value if the counterparty survives to honor its obligations. If the counterparty
+        defaults, the bank may recover only a fraction of the exposure. This reality invalidates the replication argument: the
+        hedger cannot offset counterparty default by trading the underlying asset alone. Instead, the hedger must account for
+        expected losses, leading directly to the concept of credit valuation adjustment. The presence of default risk therefore
+        breaks the symmetry underlying risk-neutral pricing.
+      </p>
+      <p>
+        Funding is another critical friction. The classic framework assumes that the hedger can borrow and lend unlimited amounts
+        at the risk-free rate. Real institutions borrow at rates reflecting their credit quality and prevailing market liquidity.
+        During stress, funding spreads widen dramatically, raising the cost of maintaining hedges. Moreover, banks must comply
+        with liquidity coverage ratios and net stable funding ratios, limiting their ability to expand balance sheets. These
+        constraints mean that even if the derivative’s theoretical price is fair, the act of hedging imposes additional funding
+        costs that the dealer must recover through FVA. Ignoring funding spreads leads to systematic underpricing, particularly
+        for long-dated, uncollateralized trades.
+      </p>
+      <p>
+        Continuous hedging and infinite liquidity further strain credibility. Risk-neutral derivations assume that hedging
+        instruments can be traded instantaneously in any quantity without moving the market. In reality, large hedges move prices,
+        incur bid-ask spreads, and may be infeasible during volatile conditions. Transaction costs accumulate over the life of the
+        derivative, deviating from the costless rebalancing assumed in theory. Liquidity shortages can trap dealers in unhedged
+        positions, exposing them to market risk beyond what the model anticipates. These frictions motivate additional valuation
+        adjustments, such as liquidity valuation adjustments, that some institutions incorporate alongside the standard XVA stack.
+      </p>
+      <p>
+        Collateralization partially mitigates counterparty risk but introduces its own complexities. Credit support annexes define
+        thresholds, minimum transfer amounts, and eligible collateral types. Risk-neutral pricing assumes perfect
+        collateralization with instant, frictionless transfers. In practice, collateral moves according to business day schedules,
+        subject to settlement lags and operational disputes. Non-cash collateral may require transformation trades, incurring
+        haircuts and funding costs. Additionally, collateral agreements often stipulate different discounting curves from the
+        risk-free rate assumed in textbook models. The need to reconcile multiple discount curves undermines the simplicity of
+        risk-neutral valuation and necessitates carefully calibrated valuation adjustments.
+      </p>
+      <p>
+        Regulatory capital requirements further separate theory from practice. Banks must hold capital against counterparty
+        credit exposure, market risk, and CVA risk. The cost of capital is real: shareholders expect returns commensurate with the
+        risk of deploying equity. Risk-neutral pricing ignores this opportunity cost because the replication argument relies solely
+        on borrowing and lending. In reality, if a trade consumes capital, the dealer must earn enough to meet the institution’s
+        hurdle rate. Capital valuation adjustment quantifies this burden. Without it, traders might accept deals that appear
+        profitable under risk-neutral metrics but erode shareholder value after considering capital charges.
+      </p>
+      <p>
+        A more subtle limitation arises from model risk. Risk-neutral valuation depends on a chosen stochastic process for the
+        underlying asset, calibrated to observed market prices. During benign periods, calibration may seem reliable. Yet stress
+        events reveal that models can misrepresent tail behavior, correlation dynamics, or volatility smiles. When models
+        understate risk, hedges fail to perform as expected, leading to residual losses not captured in theoretical pricing. XVA
+        frameworks force institutions to confront model risk explicitly by stress testing exposure simulations, incorporating
+        conservative assumptions, and applying reserves when model uncertainty is significant.
+      </p>
+      <p>
+        The interplay between accounting standards and risk-neutral pricing also creates tension. Fair value accounting requires
+        incorporating non-performance risk, even when it produces counterintuitive results such as gains from widening own credit
+        spreads. Risk-neutral pricing offers no guidance on how to reconcile these accounting outcomes with economic intuition.
+        XVA governance fills the gap by establishing policies on recognizing, reporting, and hedging adjustments like DVA.
+        Institutions develop layered reporting structures distinguishing between accounting values and internal transfer prices to
+        ensure decision-making aligns with economic reality.
+      </p>
+      <p>
+        Finally, systemic interdependence challenges the isolation assumed in risk-neutral models. The theory treats the market as
+        an external environment unaffected by the hedger’s actions. In practice, large dealers are interconnected through chains of
+        derivatives, collateral rehypothecation, and shared funding markets. A shock to one institution propagates through the
+        network, altering funding spreads, default probabilities, and collateral valuations for everyone. XVA analytics incorporate
+        these feedback loops by linking adjustments to macroeconomic indicators, stress scenarios, and contagion models. This
+        systemic perspective is essential for regulatory stress testing and internal capital planning, yet it lies outside the
+        classical risk-neutral paradigm.
+      </p>
+      <p>
+        In summary, risk-neutral pricing remains an indispensable starting point for derivatives valuation, but its assumptions
+        are deliberately idealized. The gulf between theory and practice encompasses counterparty default, funding frictions,
+        liquidity constraints, collateral imperfections, regulatory capital, model uncertainty, and systemic interdependence. XVA
+        provides the bridge by quantifying how each friction alters the value transmitted between counterparties. By embedding
+        these adjustments into pricing, institutions safeguard profitability, satisfy regulators, and ensure that trading desks
+        internalize the true economic cost of their activities—objectives that traditional risk-neutral models alone cannot
+        deliver.
+      </p>
+    </div>
+  </div>
+)
+
+const SectionFive = () => (
+  <div className="space-y-6">
+    <div className="summary-box">
+      <p>
+        XVA components do not exist in isolation; their magnitudes respond to common drivers such as collateralization quality,
+        portfolio netting, market volatility, and an institution’s balance sheet strategy. This summary captures how CVA and DVA
+        form a bilateral credit equation, FVA responds to treasury funding policies, MVA reflects margin segregation, and KVA
+        tracks regulatory capital deployment. It also emphasizes governance: centralized XVA desks orchestrate data, modelling,
+        and stakeholder communication to reconcile these moving parts. By foreshadowing scenario analysis and optimization levers,
+        the paragraph frames the forthcoming deep dive into managing XVA holistically across trading, treasury, credit, and risk
+        functions for stakeholders.
+      </p>
+    </div>
+    <div className="formula-box space-y-4">
+      <div>
+        <p className="text-blue-900 font-semibold">Total Adjustment Stack</p>
+        <BlockMath math="\mathrm{XVA}_{\text{total}} = \mathrm{CVA} + \mathrm{DVA} + \mathrm{FVA} + \mathrm{MVA} + \mathrm{KVA}" />
+      </div>
+      <div>
+        <p className="text-blue-900 font-semibold">Incremental Impact</p>
+        <BlockMath math="\Delta \mathrm{XVA} = \sum_i \frac{\partial \mathrm{XVA}_i}{\partial \text{Factor}} \times \Delta \text{Factor}" />
+      </div>
+    </div>
+    <div className="discussion space-y-4">
+      <p>
+        Managing XVA holistically involves recognizing the interdependencies among its components and orchestrating organizational
+        responses that optimize the total adjustment rather than any single metric. Credit valuation adjustment and debit
+        valuation adjustment form the bilateral core. When a bank trades with a counterparty, the netting set of positions creates
+        positive and negative exposures over time. Netting agreements and collateral terms determine how much of those exposures
+        remain unsecured. A tighter collateral agreement reduces the area under the positive exposure curve, lowering CVA, but it
+        simultaneously obliges the bank to post more collateral when positions move against it, influencing FVA and liquidity
+        usage. DVA adds symmetry: as the bank’s own credit spread widens, the accounting benefit of potential non-performance
+        increases, yet the same spread increase typically raises funding costs, offsetting the apparent gain. Understanding these
+        linkages prevents misinterpretation of headline adjustments.
+      </p>
+      <p>
+        Funding valuation adjustment connects directly to treasury strategy. Dealers fund hedges through internal transfer pricing
+        desks that charge rates reflecting the institution’s weighted average cost of funds. When collateral is segregated or when
+        trades are uncollateralized, the dealer must borrow cash at the transfer price to support hedging flows. If treasury
+        negotiates more favorable funding sources—longer-term debt issuance, secured funding backed by high-quality collateral, or
+        central bank facilities—FVA decreases across the portfolio. Conversely, stress scenarios that reduce market liquidity can
+        amplify FVA dramatically, overwhelming the savings achieved through CVA mitigation. Scenario analysis that shocks funding
+        spreads alongside credit spreads reveals how correlated stress can elevate both CVA and FVA, requiring contingency plans
+        for liquidity support.
+      </p>
+      <p>
+        Margin valuation adjustment introduces a temporal dimension because initial margin requirements evolve with market
+        volatility and portfolio composition. Dealers simulate potential future exposure to project how much margin they must post
+        at CCPs or bilaterally under ISDA SIMM. Higher volatility regimes increase margin, raising the cost captured in MVA.
+        Importantly, collateral that reduces CVA by tightening thresholds can increase MVA if it leads to larger segregated
+        balances. XVA desks therefore weigh the trade-offs: is it preferable to accept higher CVA in exchange for lower MVA, or
+        vice versa? The answer depends on the institution’s funding mix, the opportunity cost of eligible collateral, and
+        regulatory pressures emphasizing either credit risk mitigation or liquidity conservation.
+      </p>
+      <p>
+        Capital valuation adjustment encompasses longer-horizon constraints. Regulatory capital charges depend on exposure-at-
+        default metrics influenced by the same simulations that drive CVA and FVA. When a bank improves collateralization,
+        exposure-at-default declines, reducing capital requirements and thus KVA. However, regulatory regimes such as the
+        standardized approach for counterparty credit risk may still assign non-trivial add-ons for certain product types
+        regardless of collateralization. Moreover, capital is allocated at the portfolio or business unit level, so a single
+        trade’s impact on KVA depends on diversification benefits and correlation assumptions within the capital model. XVA
+        governance committees review how incremental trades affect capital utilization to ensure pricing reflects the marginal cost
+        rather than average historical figures.
+      </p>
+      <p>
+        Effective management hinges on data integration. Exposure simulation engines feed a central data lake that captures trade
+        attributes, collateral terms, market data, and counterparty hierarchies. From this repository, analytics teams compute
+        sensitivities of each XVA component to risk factors such as interest rates, credit spreads, foreign exchange rates, and
+        volatility. These sensitivities inform hedging strategies: CVA desks may hedge counterparty credit spread risk through
+        credit default swaps or single-name total return swaps, while FVA sensitivities might be hedged implicitly by issuing debt
+        in specific tenors. Coordinated hedging prevents offsetting trades from working at cross purposes—for example, hedging CVA
+        with a credit default swap that increases initial margin requirements could inadvertently raise MVA if executed without
+        consultation.
+      </p>
+      <p>
+        Governance structures formalize decision-making. Many banks operate XVA steering committees including representatives from
+        trading, treasury, risk management, finance, and technology. These committees review pricing policies, approve model
+        changes, and oversee stress testing. They ensure that transfer pricing add-ons charged to traders align with the
+        institution’s risk appetite and regulatory commitments. When a new product is introduced, the committee assesses its XVA
+        profile, determining whether existing models capture the necessary dynamics or whether model development is required. The
+        committee also arbitrates resource allocation—for instance, approving investments in collateral optimization platforms that
+        can reduce both CVA and FVA by reassigning scarce collateral to the most impactful counterparties.
+      </p>
+      <p>
+        Technology plays a decisive role in managing interdependencies. Modern XVA platforms support grid computing, GPU
+        acceleration, and cloud elasticity to run massive simulation workloads. They provide dashboards that visualize the
+        contribution of each counterparty, product type, and business line to the overall XVA stack. Scenario analysis modules
+        allow users to toggle collateral terms, funding spreads, or regulatory parameters and observe the knock-on effects across
+        CVA, FVA, MVA, and KVA simultaneously. Such transparency enables proactive decision-making: a trader can evaluate whether
+        restructuring a deal to clear through a central counterparty reduces total XVA sufficiently to justify the operational
+        changes required.
+      </p>
+      <p>
+        Communication with external stakeholders is equally important. Regulators expect detailed documentation of XVA
+        methodologies, governance controls, and model validation results. Investors scrutinize disclosures about derivative
+        valuation adjustments to assess earnings volatility and risk management discipline. Rating agencies examine whether XVA
+        practices align with the institution’s stated risk appetite. By maintaining consistent narratives about how XVA components
+        interact, the institution builds credibility and avoids misinterpretation of financial statements when adjustments
+        fluctuate.
+      </p>
+      <p>
+        Ultimately, holistic XVA management is about optimization under constraints. Institutions balance client service—providing
+        competitive prices and bespoke solutions—with the imperative to preserve capital and liquidity. They deploy optimization
+        algorithms to allocate collateral efficiently, select hedging instruments that minimize combined XVA sensitivities, and
+        design pricing add-ons that incentivize traders to favor structures with lower adjustment footprints. Continuous feedback
+        loops between business units ensure that insights from XVA analytics translate into contract negotiation tactics, client
+        education, and product innovation. Through this integrated approach, the bank transforms the complexity of XVA into a
+        strategic asset that guides profitable growth while safeguarding resilience against market stress.
+      </p>
+    </div>
+  </div>
+)
 
 export const module1Metadata = {
   id: 1,
@@ -20,121 +554,23 @@ export const module1Content = {
   subsections: {
     0: {
       title: "1.1 What is XVA? The Foundational Concept",
-      content: `
-        <div class="summary-box">
-          <p>XVA, or X-Value Adjustment, captures the spectrum of valuation adjustments applied to derivative portfolios to reconcile theoretical prices with real-world trading constraints. This summary introduces the motivation for bundling credit, funding, margin, and capital effects into a single analytical family. It frames XVA as an overlay that transforms a frictionless valuation baseline into an economically sound price reflecting institutional balance sheet pressures. The paragraph also highlights the way each component responds to different drivers—from counterparty solvency to liquidity—while emphasizing that all adjustments share the goal of improving transparency, profitability measurement, and risk-sensitive decision-making for trading desks and risk managers today.</p>
-        </div>
-        <div class="formula-box">
-          <p><strong>Total XVA:</strong> XVA = CVA + DVA + FVA + MVA + KVA</p>
-          <p><strong>Risk-Adjusted Fair Value:</strong> V<sub>adjusted</sub> = V<sub>risk-neutral</sub> + XVA</p>
-        </div>
-        <div class="discussion">
-          <p>XVA is best interpreted as a disciplined attempt to embed credit-, funding-, and capital-related frictions into pricing so that an institution’s derivative valuations reflect the economic realities of its balance sheet. In the simplest replication arguments, a bank hedges a derivative by trading underlying assets and continuously rebalancing risk-free borrowing and lending accounts. That stylized approach collapses when counterparties can default, collateral is imperfect, and balance sheet capacity is costly. The XVA framework reintroduces those constraints explicitly, allowing pricing teams to quantify how much value erosion occurs when the institution must reserve economic resources to survive adverse states of the world.</p>
-          <p>The first analytical pillar is counterparty credit risk. When a bank is owed money by a counterparty, it faces the possibility that the exposure may vanish if default occurs prior to settlement. The credit valuation adjustment recognizes this risk by estimating expected losses as the product of exposure profiles, default probabilities, and loss-given-default parameters. Importantly, CVA is path dependent; it requires Monte Carlo simulation or structural models to forecast positive exposure over time, and it must incorporate netting sets, collateral agreements, and wrong-way risk effects where exposures and default likelihoods become correlated.</p>
-          <p>Debit valuation adjustment expands the lens by acknowledging that the bank itself may default. Economically, DVA represents a benefit to shareholders because the bank could walk away from liabilities when it fails. Yet the recognition of DVA is contentious. Regulators and senior management prefer to manage the institution as a going concern, so they focus on mitigating circumstances that would force default. Traders, however, observe that accounting standards require DVA for fair-value reporting. Consequently, XVA desks track DVA internally but may exclude it from transfer pricing to discourage traders from assuming that the bank’s own default is an acceptable profit source.</p>
-          <p>Funding valuation adjustment captures liquidity imperfections. In a frictionless model, hedging flows are financed at the risk-free rate. Realistically, treasury desks must issue debt, tap secured funding markets, or reallocate scarce cash to support hedges. Those activities occur at spreads above the overnight indexed swap curve. FVA therefore measures the present value of those spreads applied to uncollateralized exposures. It also incorporates the cost of maintaining liquidity buffers mandated by internal stress tests. Since funding spreads fluctuate with market stress, FVA can become the dominant driver of total XVA during crises when liquidity vanishes and secured funding haircuts escalate.</p>
-          <p>Margin valuation adjustment responds to regulatory reforms that require initial margin postings for cleared and bilateral trades. Initial margin is segregated cash or high-quality collateral that cannot be rehypothecated. Although the bank earns a modest interest return, the opportunity cost of locking away that collateral is material. MVA measures the discounted funding spread on the segregated margin profile. Its calculation necessitates simulating potential future exposure under standardized or internal models to determine how margin requirements evolve across market scenarios.</p>
-          <p>Capital valuation adjustment addresses the cost of equity capital tied up to satisfy regulatory capital charges. Derivatives generate capital requirements under counterparty credit risk, market risk, and credit valuation adjustment risk frameworks. Banks expect a hurdle rate on that capital, often aligned with shareholder return targets. KVA therefore represents the discounted cost of holding capital over the life of the trade, typically computed by projecting risk-weighted assets and applying the internal cost-of-capital rate. Because capital charges respond slowly to market states relative to exposure-based adjustments, KVA often exhibits smoother dynamics yet can be large for long-dated or concentrated portfolios.</p>
-          <p>What makes XVA compelling is the integration across these channels. Each adjustment is sensitive to collateralization, netting sets, and the institution’s strategic posture. A collateral upgrade negotiation with a counterparty simultaneously reduces CVA, FVA, and MVA. Conversely, a deterioration in the bank’s credit rating inflates both funding spreads and regulatory capital add-ons. Effective XVA management therefore depends on cross-functional governance: trading desks align trade structures with treasury’s funding mix, credit officers calibrate counterparty limits to exposure simulations, and risk controllers ensure that the entire adjustment stack is measured consistently with regulatory expectations.</p>
-          <p>Operationally, banks organize XVA desks to centralize expertise. The desk runs simulation engines that produce expected exposure profiles under thousands of market scenarios. Those engines feed analytic layers that compute CVA, DVA, FVA, MVA, and KVA, often with sensitivities to underlying risk factors. The resulting adjustments are then allocated to business units through transfer pricing add-ons, ensuring that traders incorporate the full economic cost into deal pricing. Technology architecture must support intraday recalculations as markets move, while governance frameworks validate models, track backtesting results, and document assumptions for auditors and regulators.</p>
-          <p>The broader strategic implication is that XVA transforms derivatives from pure market risk instruments into multi-dimensional balance sheet commitments. Banks that excel at managing collateral, diversifying funding sources, and optimizing capital usage achieve a competitive advantage by quoting tighter prices without sacrificing profitability. Conversely, institutions that ignore XVA face hidden costs that materialize during stress, undermining earnings and eroding trust with stakeholders. The XVA toolkit, grounded in rigorous quantitative modeling and practical treasury insight, thus becomes indispensable for sustainable derivatives businesses.</p>
-        </div>
-      `
+      component: <SectionOne />
     },
     1: {
       title: "1.2 Historical Context and Evolution: A Post-Crisis Paradigm Shift",
-      content: `
-        <div class="summary-box">
-          <p>The evolution of XVA is rooted in the recognition that pre-crisis risk-neutral pricing ignored counterparty failure, liquidity stress, and regulatory capital drag. This summary highlights the journey from the simplicity of early models to the multi-layered analytics that emerged after institutions suffered losses such as those tied to Lehman Brothers. It introduces the regulatory milestones, accounting pronouncements, and infrastructure reforms that forced banks to institutionalize valuation adjustments. Finally, it signals how history reshaped governance, technology, and market practices, establishing XVA desks as central actors in protecting profitability and resilience across modern derivatives businesses worldwide. These lessons still guide policy teams.</p>
-        </div>
-        <div class="formula-box">
-          <p><strong>Expected Counterparty Loss:</strong> CVA = ∫₀ᵀ EE(t) × PD′(t) × LGD × DF(t) dt</p>
-          <p><strong>Funding Spread Impact:</strong> FVA = ∫₀ᵀ Exposure<sub>uncoll</sub>(t) × Funding Spread(t) × DF(t) dt</p>
-        </div>
-        <div class="discussion">
-          <p>The pre-crisis era of derivative pricing was anchored in the elegant mathematics of the Black-Scholes-Merton paradigm, which assumed frictionless markets and default-free counterparties. Banks relied on credit lines, collateral thresholds, and bilateral trust to manage exposures. Because defaults among major dealers seemed remote, the industry allocated little computational effort to quantifying bilateral credit risk. In that environment, valuation adjustments were mostly idiosyncratic reserves held by credit officers rather than systematic, trade-level pricing metrics.</p>
-          <p>The implosion of the U.S. subprime mortgage market from 2007 onward shattered those assumptions. Structured credit portfolios deteriorated rapidly, impairing the balance sheets of globally active banks. As funding markets tightened, institutions that once rolled commercial paper effortlessly suddenly faced haircuts and escalating spreads. Counterparties that had been considered rock solid—Bear Stearns, Lehman Brothers, AIG—demonstrated that investment-grade ratings could not guarantee solvency when liquidity evaporated. For derivatives desks, the consequence was stark: previously neglected counterparty exposure crystallized into multi-billion-dollar losses.</p>
-          <p>CVA rose to prominence as institutions realized that expected counterparty losses were material and observable. Lehman Brothers’ default, for instance, forced counterparties to mark down the positive value of their swaps, options, and structured notes. Because few had priced the possibility of default explicitly, the losses felt like surprise hits to capital. Accounting standards such as FAS 157 and IFRS 13 soon mandated that fair value measurements incorporate non-performance risk. This regulatory shift transformed CVA from a discretionary reserve into a mandatory adjustment that auditors, regulators, and investors scrutinized.</p>
-          <p>Simultaneously, the debate over debit valuation adjustment intensified. IFRS 13 required entities to reflect their own non-performance risk in fair value. Banks confronted the uncomfortable optics of booking profits when their credit spreads widened. Some institutions, wary of sending perverse incentives to traders, began reporting DVA separately from operating performance. Nonetheless, the accounting requirement cemented bilateral valuation as a core element of fair-value reporting. The dialogue around DVA also accelerated the development of centralized XVA desks that could explain the adjustment’s sources and control how it influenced internal pricing.</p>
-          <p>Funding costs emerged as a second fault line. During the crisis, unsecured funding markets seized up, and even secured borrowing through repos became expensive as counterparties demanded higher-quality collateral and larger haircuts. Banks that relied heavily on short-term funding found that hedging derivative books now required scarce balance sheet capacity. This practical pain point motivated the formalization of funding valuation adjustment. Treasury departments collaborated with trading desks to quantify the spread between internal funding rates and the overnight indexed swap curve, embedding those spreads into derivative prices to ensure deals covered their true liquidity cost.</p>
-          <p>Reforms that followed the crisis solidified these practices. The Basel III framework introduced explicit capital charges for CVA risk, credit valuation adjustment risk capital (CVA VAR), and leverage ratios that penalized large derivatives inventories. Central clearing mandates under the Dodd-Frank Act and the European Market Infrastructure Regulation (EMIR) imposed initial margin requirements, motivating the concept of margin valuation adjustment. The International Swaps and Derivatives Association (ISDA) published the Standard Initial Margin Model to harmonize margin calculations for uncleared derivatives, further institutionalizing MVA. Each reform forced banks to invest in data, analytics, and governance to manage valuation adjustments across the trade lifecycle.</p>
-          <p>Infrastructure advances accompanied regulatory change. Pre-crisis architectures often consisted of disconnected trading books and spreadsheets. Post-crisis, banks built centralized exposure simulation engines capable of generating expected exposure, potential future exposure, and credit-adjusted sensitivities across large portfolios. These engines fed enterprise data warehouses and risk dashboards accessible to trading, risk, treasury, and finance functions. The emergence of specialized XVA desks allowed subject matter experts to interpret model outputs, reconcile them with accounting figures, and communicate their implications to senior management and regulators.</p>
-          <p>The historical narrative also reveals how industry collaboration shaped XVA practice. Industry working groups coordinated by ISDA, the Basel Committee, and the Financial Stability Board established common terminology, modelling expectations, and stress testing frameworks. Banks benchmarked their XVA methodologies through quantitative impact studies and shared anonymized data to calibrate default probabilities and loss-given-default assumptions. Vendors entered the market with specialized XVA platforms, enabling mid-sized institutions to adopt sophisticated analytics without building every component internally.</p>
-          <p>Perhaps the most enduring lesson from this evolution is that valuation adjustments are not temporary crisis-era patches. They represent a permanent recognition that derivatives pricing must account for the financial institution’s survival constraints. Today, even during periods of market calm, banks continuously monitor counterparty creditworthiness, funding spreads, and capital budgets because historical experience demonstrated how swiftly conditions can deteriorate. The memory of Lehman and AIG keeps risk managers vigilant, while regulatory requirements ensure that complacency is penalized through higher capital charges or supervisory findings.</p>
-          <p>Ultimately, the historical arc from pre-crisis complacency to post-crisis rigor underscores why modern derivative businesses treat XVA as integral to strategy. By embedding the adjustments into day-one pricing, institutions avoid the surprise losses that once blindsided them. They can articulate to stakeholders how much profit is left after compensating for credit risk, liquidity usage, and capital deployment. The narrative therefore reinforces that XVA is not just a technical modelling exercise but a response to the lived experiences of market participants navigating systemic stress and rebuilding trust in global derivatives markets.</p>
-        </div>
-      `
+      component: <SectionTwo />
     },
     2: {
       title: "1.3 Overview of Derivative Instruments and Markets: The XVA Landscape",
-      content: `
-        <div class="summary-box">
-          <p>Derivatives span forwards, futures, options, and swaps, enabling institutions to transfer market risks while generating exposures that feed directly into XVA calculations. This summary sketches how instrument design, trading venues, and collateralization styles influence exposure dynamics. It underscores that over-the-counter markets dominate XVA discussions because bespoke contracts embed bilateral credit risk, while exchange-traded products offer clearing protections that mute adjustment needs. By previewing netting, collateral, and product-specific payoff structures, the paragraph prepares readers to connect contractual mechanics with exposure profiles that drive credit, funding, margin, and capital charges in real-world valuation workflows used by modern XVA desks for risk teams.</p>
-        </div>
-        <div class="formula-box">
-          <p><strong>Forward Mark-to-Market:</strong> V<sub>forward</sub>(t) = S(t) − K × DF(t)</p>
-          <p><strong>Option Seller Exposure:</strong> Exposure(t) = max[S(t) − K, 0]</p>
-          <p><strong>Interest Rate Swap Value:</strong> V<sub>swap</sub>(t) = PV<sub>float</sub>(t) − PV<sub>fixed</sub>(t)</p>
-        </div>
-        <div class="discussion">
-          <p>To understand how XVA operates, we must unpack the derivative instruments that populate dealer portfolios and examine how each contract generates exposure over time. Forwards and futures commit parties to exchange an asset at a predetermined price on a future date. The exposure of a long forward increases as the underlying price rises, while a short position gains when prices fall. Exchange-traded futures mitigate counterparty risk through daily variation margin and central clearing, but bespoke forwards traded bilaterally accumulate uncollateralized exposure that feeds directly into CVA and FVA calculations. Commodity dealers, for instance, often negotiate long-dated physical forwards with corporate clients; the lack of daily margining means expected exposure can build substantially as market prices drift.</p>
-          <p>Options introduce convex exposure profiles. A purchased call yields positive exposure when the underlying surpasses the strike, while the downside is limited to the premium already paid. From an XVA perspective, the asymmetry matters: the bank selling the option faces unbounded exposure as markets rally, which increases expected positive exposure and thus CVA. Options also generate non-linear sensitivities, requiring simulation engines to capture gamma and vega effects on exposure distributions. Exotic options—barriers, Asians, cliquets—compound the challenge because their payoffs depend on path-dependent events and averaging features. Accurately modelling exposure for such structures demands high-resolution simulation grids and sophisticated stochastic models, increasing computational requirements for XVA desks.</p>
-          <p>Swaps, including interest rate swaps, cross-currency swaps, and credit default swaps, are central to XVA because of their long maturities and large notionals. In an interest rate swap, parties exchange fixed and floating cash flows; the mark-to-market fluctuates with the yield curve. Counterparty risk arises when the swap moves in-the-money for one party. Collateral agreements with thresholds and minimum transfer amounts shape how much of that exposure is covered by variation margin, while the residual uncollateralized portion contributes to CVA and FVA. Cross-currency swaps add another layer: exchanges of principal in different currencies create significant exposures at maturity, and currency basis spreads influence funding adjustments. Credit default swaps concentrate credit risk explicitly; selling protection produces exposure to the reference entity’s default as well as to the counterparty’s ability to pay if a credit event occurs.</p>
-          <p>Beyond vanilla instruments, structured products combine multiple derivatives into bespoke payoff profiles tailored to client objectives. Equity-linked structured notes may embed barrier options, digital payouts, and leverage features, all issued through unsecured notes. The bank’s exposure to the investor is therefore equivalent to the note’s full market value. These transactions typically lack daily collateralization because they are funded by the investor’s purchase price, elevating the importance of CVA, FVA, and KVA. Similarly, corporate solutions desks may engineer commodity hedges that blend swaps, options, and collars. Each component’s exposure must be aggregated within a netting set to compute portfolio-level XVA.</p>
-          <p>The trading venue also shapes exposure. Over-the-counter contracts rely on bilateral credit support annexes (CSAs) to govern collateral posting. Key terms include eligible collateral types, haircuts, thresholds, minimum transfer amounts, and dispute resolution timelines. A CSA with low thresholds and daily variation margin dramatically reduces expected positive exposure, thereby shrinking CVA and FVA. Conversely, a high threshold or infrequent margining schedule leaves significant unsecured exposure outstanding for days, increasing adjustments. Netting agreements allow counterparties to offset positive and negative positions across products, lowering net exposure. Central counterparties (CCPs) standardize margining and default management, transferring counterparty risk from individual dealers to the clearinghouse and reducing bilateral XVA, although members still bear the cost of initial margin and default fund contributions captured in MVA and KVA calculations.</p>
-          <p>Exposure measurement requires robust modelling. Dealers project expected exposure (EE) and expected positive exposure (EPE) under thousands of simulated market paths. These metrics feed directly into CVA as weighted averages multiplied by default probability term structures. For instruments with callable features or early termination options, exposure becomes contingent on optimal exercise strategies, necessitating backward induction or least-squares Monte Carlo techniques. The modelling complexity is highest for portfolios containing correlation products such as basket options or credit tranches, where joint movements of multiple underlyings determine exposure.</p>
-          <p>Collateralization interacts with funding and margin adjustments. Variation margin posted in cash can be reused, offsetting funding needs, whereas securities collateral may require transformation trades that introduce additional funding spreads. Initial margin is segregated and cannot be rehypothecated, so the bank must source high-quality liquid assets to post at the CCP or counterparty. The funding spread applied to that locked collateral forms the basis of MVA. Dealers often evaluate alternative structures—such as switching from bilateral to cleared trading—to balance the cost of initial margin against the benefits of reduced CVA.</p>
-          <p>Operational realities add another layer. Settlement timing, trade confirmation lags, and collateral disputes all influence effective exposure. For example, if a counterparty disputes a variation margin call, exposure remains outstanding longer, increasing the area under the exposure curve and magnifying CVA. Legal terms governing close-out netting determine how positions are valued upon default; discrepancies between contractual valuation methods and risk-neutral modelling can create residual losses not captured by headline XVA metrics. Consequently, legal teams collaborate with XVA desks to ensure documentation aligns with modelling assumptions.</p>
-          <p>Finally, derivatives portfolios evolve dynamically as trades mature, compress, or novate to other counterparties. Portfolio rebalancing efforts, such as tear-up exercises and compression runs, reduce gross notional outstanding, thereby lowering exposure profiles and associated XVA. Conversely, client demand for long-dated bespoke hedges can reintroduce concentrated exposures that require hedging through back-to-back trades with other dealers. These intermediation trades propagate counterparty risk through the network of dealers, making aggregate industry exposures a systemic consideration. XVA analytics thus provide the lens through which institutions monitor and manage the intricate exposure web created by the diverse derivative instruments that underpin modern financial markets.</p>
-        </div>
-      `
+      component: <SectionThree />
     },
     3: {
       title: "1.4 Limitations of Risk-Neutral Pricing: The Imperfect World",
-      content: `
-        <div class="summary-box">
-          <p>Risk-neutral pricing assumes frictionless markets, default-free counterparties, and costless funding, enabling elegant valuation formulas but masking the real-world burdens that XVA seeks to capture. This summary distills the core idealizations—perfect collateralization, continuous hedging, and infinite liquidity—and notes how each collapses during stress. It introduces the gap between theoretical replication strategies and the institutional constraints imposed by credit lines, treasury budgets, and regulatory oversight. By flagging these disconnects upfront, the paragraph sets the stage for examining why practitioners augment classic pricing models with valuation adjustments that quantify genuine balance sheet costs and survival considerations for trading businesses for modern risk control.</p>
-        </div>
-        <div class="formula-box">
-          <p><strong>Risk-Neutral Valuation:</strong> V₀ = E<sup>Q</sup>[e<sup>−∫₀ᵀ r(t) dt</sup> × Payoff]</p>
-          <p><strong>Economic Price:</strong> V<sub>economic</sub> = V₀ + XVA</p>
-        </div>
-        <div class="discussion">
-          <p>Risk-neutral pricing derives from the idea that investors are indifferent between risky and risk-free assets after adjusting for discounted expected payoffs under a risk-neutral measure. The framework assumes that a derivative can be replicated exactly by trading the underlying asset and borrowing or lending at the risk-free rate. Under this idealization, arbitrage-free prices emerge elegantly from stochastic calculus. However, the replication argument presumes perfect markets: continuous trading, zero transaction costs, unlimited short-selling, and, critically, the absence of counterparty default. Each of these assumptions becomes questionable when derivatives are transacted between real-world institutions that face credit limits, liquidity constraints, and regulatory capital requirements.</p>
-          <p>Consider the assumption of default-free counterparties. In risk-neutral theory, the bank hedging a derivative does not worry about the solvency of its counterparty because the replication strategy guarantees payoff equivalence. In practice, the bank only realizes the derivative’s value if the counterparty survives to honor its obligations. If the counterparty defaults, the bank may recover only a fraction of the exposure. This reality invalidates the replication argument: the hedger cannot offset counterparty default by trading the underlying asset alone. Instead, the hedger must account for expected losses, leading directly to the concept of credit valuation adjustment. The presence of default risk therefore breaks the symmetry underlying risk-neutral pricing.</p>
-          <p>Funding is another critical friction. The classic framework assumes that the hedger can borrow and lend unlimited amounts at the risk-free rate. Real institutions borrow at rates reflecting their credit quality and prevailing market liquidity. During stress, funding spreads widen dramatically, raising the cost of maintaining hedges. Moreover, banks must comply with liquidity coverage ratios and net stable funding ratios, limiting their ability to expand balance sheets. These constraints mean that even if the derivative’s theoretical price is fair, the act of hedging imposes additional funding costs that the dealer must recover through FVA. Ignoring funding spreads leads to systematic underpricing, particularly for long-dated, uncollateralized trades.</p>
-          <p>Continuous hedging and infinite liquidity further strain credibility. Risk-neutral derivations assume that hedging instruments can be traded instantaneously in any quantity without moving the market. In reality, large hedges move prices, incur bid-ask spreads, and may be infeasible during volatile conditions. Transaction costs accumulate over the life of the derivative, deviating from the costless rebalancing assumed in theory. Liquidity shortages can trap dealers in unhedged positions, exposing them to market risk beyond what the model anticipates. These frictions motivate additional valuation adjustments, such as liquidity valuation adjustments, that some institutions incorporate alongside the standard XVA stack.</p>
-          <p>Collateralization partially mitigates counterparty risk but introduces its own complexities. Credit support annexes define thresholds, minimum transfer amounts, and eligible collateral types. Risk-neutral pricing assumes perfect collateralization with instant, frictionless transfers. In practice, collateral moves according to business day schedules, subject to settlement lags and operational disputes. Non-cash collateral may require transformation trades, incurring haircuts and funding costs. Additionally, collateral agreements often stipulate different discounting curves from the risk-free rate assumed in textbook models. The need to reconcile multiple discount curves undermines the simplicity of risk-neutral valuation and necessitates carefully calibrated valuation adjustments.</p>
-          <p>Regulatory capital requirements further separate theory from practice. Banks must hold capital against counterparty credit exposure, market risk, and CVA risk. The cost of capital is real: shareholders expect returns commensurate with the risk of deploying equity. Risk-neutral pricing ignores this opportunity cost because the replication argument relies solely on borrowing and lending. In reality, if a trade consumes capital, the dealer must earn enough to meet the institution’s hurdle rate. Capital valuation adjustment quantifies this burden. Without it, traders might accept deals that appear profitable under risk-neutral metrics but erode shareholder value after considering capital charges.</p>
-          <p>A more subtle limitation arises from model risk. Risk-neutral valuation depends on a chosen stochastic process for the underlying asset, calibrated to observed market prices. During benign periods, calibration may seem reliable. Yet stress events reveal that models can misrepresent tail behavior, correlation dynamics, or volatility smiles. When models understate risk, hedges fail to perform as expected, leading to residual losses not captured in theoretical pricing. XVA frameworks force institutions to confront model risk explicitly by stress testing exposure simulations, incorporating conservative assumptions, and applying reserves when model uncertainty is significant.</p>
-          <p>The interplay between accounting standards and risk-neutral pricing also creates tension. Fair value accounting requires incorporating non-performance risk, even when it produces counterintuitive results such as gains from widening own credit spreads. Risk-neutral pricing offers no guidance on how to reconcile these accounting outcomes with economic intuition. XVA governance fills the gap by establishing policies on recognizing, reporting, and hedging adjustments like DVA. Institutions develop layered reporting structures distinguishing between accounting values and internal transfer prices to ensure decision-making aligns with economic reality.</p>
-          <p>Finally, systemic interdependence challenges the isolation assumed in risk-neutral models. The theory treats the market as an external environment unaffected by the hedger’s actions. In practice, large dealers are interconnected through chains of derivatives, collateral rehypothecation, and shared funding markets. A shock to one institution propagates through the network, altering funding spreads, default probabilities, and collateral valuations for everyone. XVA analytics incorporate these feedback loops by linking adjustments to macroeconomic indicators, stress scenarios, and contagion models. This systemic perspective is essential for regulatory stress testing and internal capital planning, yet it lies outside the classical risk-neutral paradigm.</p>
-          <p>In summary, risk-neutral pricing remains an indispensable starting point for derivatives valuation, but its assumptions are deliberately idealized. The gulf between theory and practice encompasses counterparty default, funding frictions, liquidity constraints, collateral imperfections, regulatory capital, model uncertainty, and systemic interdependence. XVA provides the bridge by quantifying how each friction alters the value transmitted between counterparties. By embedding these adjustments into pricing, institutions safeguard profitability, satisfy regulators, and ensure that trading desks internalize the true economic cost of their activities—objectives that traditional risk-neutral models alone cannot deliver.</p>
-        </div>
-      `
+      component: <SectionFour />
     },
     4: {
       title: "1.5 The Interplay of XVA Components: A Holistic View",
-      content: `
-        <div class="summary-box">
-          <p>XVA components do not exist in isolation; their magnitudes respond to common drivers such as collateralization quality, portfolio netting, market volatility, and an institution’s balance sheet strategy. This summary captures how CVA and DVA form a bilateral credit equation, FVA responds to treasury funding policies, MVA reflects margin segregation, and KVA tracks regulatory capital deployment. It also emphasizes governance: centralized XVA desks orchestrate data, modelling, and stakeholder communication to reconcile these moving parts. By foreshadowing scenario analysis and optimization levers, the paragraph frames the forthcoming deep dive into managing XVA holistically across trading, treasury, credit, and risk functions for stakeholders.</p>
-        </div>
-        <div class="formula-box">
-          <p><strong>Total Adjustment Stack:</strong> XVA<sub>total</sub> = CVA + DVA + FVA + MVA + KVA</p>
-          <p><strong>Incremental Impact:</strong> ΔXVA = Σ<sub>i</sub> (∂XVA<sub>i</sub>/∂Factor) × ΔFactor</p>
-        </div>
-        <div class="discussion">
-          <p>Managing XVA holistically involves recognizing the interdependencies among its components and orchestrating organizational responses that optimize the total adjustment rather than any single metric. Credit valuation adjustment and debit valuation adjustment form the bilateral core. When a bank trades with a counterparty, the netting set of positions creates positive and negative exposures over time. Netting agreements and collateral terms determine how much of those exposures remain unsecured. A tighter collateral agreement reduces the area under the positive exposure curve, lowering CVA, but it simultaneously obliges the bank to post more collateral when positions move against it, influencing FVA and liquidity usage. DVA adds symmetry: as the bank’s own credit spread widens, the accounting benefit of potential non-performance increases, yet the same spread increase typically raises funding costs, offsetting the apparent gain. Understanding these linkages prevents misinterpretation of headline adjustments.</p>
-          <p>Funding valuation adjustment connects directly to treasury strategy. Dealers fund hedges through internal transfer pricing desks that charge rates reflecting the institution’s weighted average cost of funds. When collateral is segregated or when trades are uncollateralized, the dealer must borrow cash at the transfer price to support hedging flows. If treasury negotiates more favorable funding sources—longer-term debt issuance, secured funding backed by high-quality collateral, or central bank facilities—FVA decreases across the portfolio. Conversely, stress scenarios that reduce market liquidity can amplify FVA dramatically, overwhelming the savings achieved through CVA mitigation. Scenario analysis that shocks funding spreads alongside credit spreads reveals how correlated stress can elevate both CVA and FVA, requiring contingency plans for liquidity support.</p>
-          <p>Margin valuation adjustment introduces a temporal dimension because initial margin requirements evolve with market volatility and portfolio composition. Dealers simulate potential future exposure to project how much margin they must post at CCPs or bilaterally under ISDA SIMM. Higher volatility regimes increase margin, raising the cost captured in MVA. Importantly, collateral that reduces CVA by tightening thresholds can increase MVA if it leads to larger segregated balances. XVA desks therefore weigh the trade-offs: is it preferable to accept higher CVA in exchange for lower MVA, or vice versa? The answer depends on the institution’s funding mix, the opportunity cost of eligible collateral, and regulatory pressures emphasizing either credit risk mitigation or liquidity conservation.</p>
-          <p>Capital valuation adjustment encompasses longer-horizon constraints. Regulatory capital charges depend on exposure-at-default metrics influenced by the same simulations that drive CVA and FVA. When a bank improves collateralization, exposure-at-default declines, reducing capital requirements and thus KVA. However, regulatory regimes such as the standardized approach for counterparty credit risk may still assign non-trivial add-ons for certain product types regardless of collateralization. Moreover, capital is allocated at the portfolio or business unit level, so a single trade’s impact on KVA depends on diversification benefits and correlation assumptions within the capital model. XVA governance committees review how incremental trades affect capital utilization to ensure pricing reflects the marginal cost rather than average historical figures.</p>
-          <p>Effective management hinges on data integration. Exposure simulation engines feed a central data lake that captures trade attributes, collateral terms, market data, and counterparty hierarchies. From this repository, analytics teams compute sensitivities of each XVA component to risk factors such as interest rates, credit spreads, foreign exchange rates, and volatility. These sensitivities inform hedging strategies: CVA desks may hedge counterparty credit spread risk through credit default swaps or single-name total return swaps, while FVA sensitivities might be hedged implicitly by issuing debt in specific tenors. Coordinated hedging prevents offsetting trades from working at cross purposes—for example, hedging CVA with a credit default swap that increases initial margin requirements could inadvertently raise MVA if executed without consultation.</p>
-          <p>Governance structures formalize decision-making. Many banks operate XVA steering committees including representatives from trading, treasury, risk management, finance, and technology. These committees review pricing policies, approve model changes, and oversee stress testing. They ensure that transfer pricing add-ons charged to traders align with the institution’s risk appetite and regulatory commitments. When a new product is introduced, the committee assesses its XVA profile, determining whether existing models capture the necessary dynamics or whether model development is required. The committee also arbitrates resource allocation—for instance, approving investments in collateral optimization platforms that can reduce both CVA and FVA by reassigning scarce collateral to the most impactful counterparties.</p>
-          <p>Technology plays a decisive role in managing interdependencies. Modern XVA platforms support grid computing, GPU acceleration, and cloud elasticity to run massive simulation workloads. They provide dashboards that visualize the contribution of each counterparty, product type, and business line to the overall XVA stack. Scenario analysis modules allow users to toggle collateral terms, funding spreads, or regulatory parameters and observe the knock-on effects across CVA, FVA, MVA, and KVA simultaneously. Such transparency enables proactive decision-making: a trader can evaluate whether restructuring a deal to clear through a central counterparty reduces total XVA sufficiently to justify the operational changes required.</p>
-          <p>Communication with external stakeholders is equally important. Regulators expect detailed documentation of XVA methodologies, governance controls, and model validation results. Investors scrutinize disclosures about derivative valuation adjustments to assess earnings volatility and risk management discipline. Rating agencies examine whether XVA practices align with the institution’s stated risk appetite. By maintaining consistent narratives about how XVA components interact, the institution builds credibility and avoids misinterpretation of financial statements when adjustments fluctuate.</p>
-          <p>Ultimately, holistic XVA management is about optimization under constraints. Institutions balance client service—providing competitive prices and bespoke solutions—with the imperative to preserve capital and liquidity. They deploy optimization algorithms to allocate collateral efficiently, select hedging instruments that minimize combined XVA sensitivities, and design pricing add-ons that incentivize traders to favor structures with lower adjustment footprints. Continuous feedback loops between business units ensure that insights from XVA analytics translate into contract negotiation tactics, client education, and product innovation. Through this integrated approach, the bank transforms the complexity of XVA into a strategic asset that guides profitable growth while safeguarding resilience against market stress.</p>
-        </div>
-      `
+      component: <SectionFive />
     }
   }
 }
