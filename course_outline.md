@@ -61,40 +61,42 @@ Upon successful completion of this course, students will be able to:
 ### Module 4: Funding Valuation Adjustment (FVA)
 
 *   **Topic 4.1:** Definition and Rationale of FVA
-    *   Funding costs in derivative transactions
-    *   Impact of collateralization
+    *   Liquidity transfer pricing for unsecured positive and negative exposure
+    *   Interaction between treasury funding curves and collateral terms
 *   **Topic 4.2:** Mathematical Formulation of FVA
-    *   Bank's own funding curve
-    *   Expected funding costs/benefits
-*   **Topic 4.3:** Practical Aspects of FVA Calculation
-    *   Funding models and assumptions
-    *   Interaction with CVA and DVA
-*   **Topic 4.4:** FVA Controversies and Market Practice
+    *   Continuous-time expression $\text{FVA}(t_0) = \int_0^T \mathbb{E}^{\mathbb{Q}}[(s(t)E^{+}(t) - b(t)E^{-}(t)) D_d(t)] dt$
+    *   Discrete Monte Carlo implementation with scenario-averaged exposures and wrong-way risk considerations
+*   **Topic 4.3:** Collateral, Discounting, and Infrastructure
+    *   Thresholds, minimum transfer amounts, and rehypothecation rights
+    *   Data lineage linking exposure cubes, treasury curves, and stress scenarios
+*   **Topic 4.4:** Hedging and Governance
+    *   Transfer-pricing policy, funding strategy selection, and management of debate around economic interpretation
 
 ### Module 5: Margin Valuation Adjustment (MVA)
 
 *   **Topic 5.1:** Definition and Rationale of MVA
-    *   Initial Margin (IM) requirements
-    *   Cost of funding IM
+    *   Opportunity cost of segregated initial margin under regulatory mandates
+    *   Path dependence created by volatility, concentration, and eligibility schedules
 *   **Topic 5.2:** Mathematical Formulation of MVA
-    *   Expected Initial Margin (EIM)
-    *   Impact of regulatory frameworks (e.g., BCBS-IOSCO 261)
-*   **Topic 5.3:** Practical Aspects of MVA Calculation
-    *   IM models (e.g., ISDA SIMM)
-    *   Optimization strategies
+    *   Integral representation incorporating default times $\tau_c \wedge \tau_b$
+    *   Discrete approximation $\sum IM(t_k)(s_f(t_k)-r_{rem}(t_k)) D(t_k) \Delta t$
+*   **Topic 5.3:** Initial Margin Modelling Frameworks
+    *   Comparison of ISDA SIMM with internal VaR/ES approaches and hybrid governance
+*   **Topic 5.4:** Hedging, Funding Strategy, and Regulatory Impact
+    *   Collateral optimisation, committed liquidity facilities, and supervisory expectations for stress testing
 
 ### Module 6: Advanced Topics and Integrated XVA
 
 *   **Topic 6.1:** Interdependencies of XVA Components
-    *   How CVA, DVA, FVA, and MVA interact
-    *   Total XVA calculation
-*   **Topic 6.2:** XVA Desks and Organizational Structure
-    *   Role of XVA in front office, risk, and finance
+    *   Aggregate metric $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$
+    *   Scenario coordination across credit, funding, capital, and margin analytics
+*   **Topic 6.2:** XVA Desks and Organisational Structure
+    *   Operating models spanning front office, risk, finance, and treasury with shared data infrastructure
 *   **Topic 6.3:** Regulatory Landscape and Future of XVA
-    *   Basel IV and other upcoming regulations
-    *   Impact of new technologies (e.g., blockchain, AI)
+    *   FRTB-CVA standardised capital (e.g., $\text{SA-CVA} = \sqrt{\sum_i K_i^2 + 2 \sum_{i<j} \rho_{ij} K_i K_j}$)
+    *   Emerging expectations around stress capital buffers, climate scenarios, and advanced technology adoption
 *   **Topic 6.4:** Case Studies and Real-World Examples
-    *   Analysis of XVA in different market scenarios
+    *   Measuring hedge effectiveness and capital impact ratios in post-remediation reviews
 
 ## Assessment
 

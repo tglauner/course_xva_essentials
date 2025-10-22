@@ -69,25 +69,25 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 5. **DVA Management and Hedging Challenges**
 
 ### **Module 4: Funding Valuation Adjustment (FVA)** (5 Sub-sections)
-1. **Definition and Rationale: The Cost of Funding**
-2. **Mathematical Formulation: Pricing the Funding Spread**
-3. **Relationship with Collateral and OIS Discounting**
-4. **The FVA Debate: Is it a Real Cost?**
-5. **FVA Hedging and Management**
+1. **Definition and Rationale: The Cost of Funding** — liquidity transfer pricing for unsecured exposure and treasury curves
+2. **Mathematical Formulation: Pricing the Funding Spread** — $\text{FVA}(t_0) = \int_0^T \mathbb{E}^{\mathbb{Q}}[(s(t)E^{+}(t) - b(t)E^{-}(t)) D_d(t)] dt$
+3. **Relationship with Collateral and OIS Discounting** — thresholds, rehypothecation rights, and data lineage
+4. **The FVA Debate: Is it a Real Cost?** — governance responses to double-counting concerns
+5. **FVA Hedging and Management** — funding strategy selection, collateral upgrades, and stress dashboards
 
 ### **Module 5: Margin Valuation Adjustment (MVA)** (5 Sub-sections)
-1. **Definition and Rationale: The Cost of Initial Margin**
-2. **Mathematical Formulation: Projecting Future IM Costs**
-3. **Initial Margin Models: Standardized vs. Internal**
-4. **MVA Hedging and Management: A Complex Endeavor**
-5. **Regulatory Impact: Driving Behavioral Change**
+1. **Definition and Rationale: The Cost of Initial Margin** — segregated IM, volatility path dependence, and opportunity cost
+2. **Mathematical Formulation: Projecting Future IM Costs** — $\text{MVA} = \mathbb{E}^{\mathbb{Q}}[\int_0^T D(t) IM(t) (s_f(t) - r_{rem}(t)) \mathbf{1}_{\{t<\tau_c \wedge \tau_b\}} dt]$
+3. **Initial Margin Models: Standardized vs. Internal** — ISDA SIMM sensitivities versus VaR/ES internal engines
+4. **MVA Hedging and Management: A Complex Endeavor** — collateral optimisation, term funding, and liquidity facilities
+5. **Regulatory Impact: Driving Behavioral Change** — BCBS–IOSCO governance, dispute processes, and stress expectations
 
 ### **Module 6: Advanced Topics and Integration** (5 Sub-sections)
-1. **Interdependencies of XVA Components: The Holistic View**
-2. **XVA Desks and Organizational Structure**
-3. **Regulatory Landscape and Future of XVA**
-4. **Case Studies and Real-World Examples**
-5. **Future Trends and Challenges in XVA**
+1. **Interdependencies of XVA Components: The Holistic View** — $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$ and shared scenarios
+2. **XVA Desks and Organizational Structure** — integrated operating models across front office, risk, finance, and treasury
+3. **Regulatory Landscape and Future of XVA** — FRTB-CVA, stress capital buffers, and climate/technology guidance
+4. **Case Studies and Real-World Examples** — hedge effectiveness and capital impact metrics
+5. **Future Trends and Challenges in XVA** — AI-enabled exposure analytics, DLT collateral rails, and climate-risk integration
 
 ## 🔧 **Interactive Features & Enhancements**
 

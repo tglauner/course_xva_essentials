@@ -54,20 +54,20 @@ A complete LaTeX Beamer presentation containing:
 - Controversies and Accounting Treatment of DVA
 
 #### Module 4: Funding Valuation Adjustment (FVA)
-- Definition and Rationale of FVA
-- Mathematical Formulation of FVA
-- Relationship between FVA, Collateral, and OIS Discounting
+- Liquidity transfer pricing for unsecured positive/negative exposure and treasury funding curves
+- Quantitative framework $\text{FVA}(t_0) = \int_0^T \mathbb{E}^{\mathbb{Q}}[(s(t)E^{+}(t) - b(t)E^{-}(t)) D_d(t)] dt$ with Monte Carlo discretisation
+- Collateral threshold management, rehypothecation limits, and data infrastructure for stress scenarios
 
 #### Module 5: Margin Valuation Adjustment (MVA)
-- Definition and Rationale of MVA
-- Mathematical Formulation of MVA
-- Initial Margin Models (e.g., ISDA SIMM)
+- Economic cost of segregated initial margin and volatility-driven path dependence
+- Integral expression $\text{MVA} = \mathbb{E}^{\mathbb{Q}}[\int_0^T D(t) IM(t) (s_f(t) - r_{rem}(t)) \mathbf{1}_{\{t<\tau_c \wedge \tau_b\}} dt]$ and discrete approximations
+- Comparison of ISDA SIMM and internal models, plus hedging via collateral optimisation and committed liquidity facilities
 
 #### Module 6: Advanced Topics and Integrated XVA
-- Interdependencies of XVA Components
-- XVA Desks and Organizational Structure
-- Regulatory Landscape and Future of XVA
-- Case Studies and Real-World Examples
+- Holistic metric $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$ and shared scenario governance
+- Organisational design of XVA desks across front office, risk, finance, and treasury
+- Regulatory emphasis on FRTB-CVA, stress capital buffers, and climate/technology trends
+- Case studies measuring hedge effectiveness and capital impact following remediation programmes
 
 ## Technical Implementation
 

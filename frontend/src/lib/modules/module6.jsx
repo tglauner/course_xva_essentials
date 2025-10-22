@@ -1,25 +1,6 @@
 import { Download } from 'lucide-react'
 import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
 
-const mathJaxConfig = {
-  tex: {
-    inlineMath: [
-      ['$', '$'],
-      ['\\(', '\\)']
-    ],
-    displayMath: [
-      ['$$', '$$'],
-      ['\\[', '\\]']
-    ]
-  }
-}
-
-const SectionWrapper = ({ children }) => (
-  <MathJaxContext config={mathJaxConfig} version={3}>
-    <div className="space-y-6">{children}</div>
-  </MathJaxContext>
-)
-
 export const module6Metadata = {
   id: 6,
   title: 'Advanced Topics and Integration',
@@ -41,7 +22,7 @@ export const module6Content = {
     0: {
       title: '6.1 Interdependencies of XVA Components: The Holistic View',
       component: (
-        <SectionWrapper>
+        <div className="space-y-6">
           <div className="summary-box">
             <p>
               Interdependencies among CVA, DVA, FVA, KVA, and MVA shape every pricing conversation; this subsection surveys the full feedback network binding them together. We highlight how collateralization shifts expected exposure profiles, how funding spreads reverberate through credit adjustments, and how regulatory capital costs influence product design. Readers will grasp why no adjustment can be optimized in isolation, how treasury transfer pricing creates portfolio-wide incentives, and why modelling teams must coordinate curve construction, scenario generation, and governance routines. The summary frames the holistic lens needed before diving into quantitative mechanics and institutional workflows, emphasising disciplined communication across desks, controllers, and risk committees.
@@ -79,13 +60,13 @@ export const module6Content = {
               Ultimately, mastering interdependencies involves disciplined change management. Any proposal to tweak modelling assumptions, collateral terms, or hedging tactics should pass through an XVA steering committee that examines multidimensional impacts. Pre-implementation assessments quantify changes across all adjustments, while post-implementation reviews verify that realised outcomes align with forecasts. By documenting the end-to-end causal chain, banks build institutional memory that accelerates future decision-making. Without the holistic mindset described here, even sophisticated quantitative machinery risks producing fragmented signals that erode stakeholder trust and economic value.
             </p>
           </div>
-        </SectionWrapper>
+        </div>
       )
     },
     1: {
       title: '6.2 XVA Desks and Organizational Structure',
       component: (
-        <SectionWrapper>
+        <div className="space-y-6">
           <div className="summary-box">
             <p>
               This summary examines how modern XVA desks orchestrate pricing, risk transfer, liquidity planning, and stakeholder engagement across the trading floor. We outline functional roles spanning structuring, modelling, quantitative development, and technology, then connect them with governance forums that adjudicate methodologies and resource allocation. Attention falls on communication lines with treasury, collateral management, finance, and regulatory reporting so that funding constraints and capital signals loop quickly into deal negotiation. By framing organisational design questions upfront, the subsection prepares readers to interrogate case studies, benchmark staffing models, and recognise the cultural traits that let multidisciplinary desks sustain resilient XVA operations under stress.
@@ -131,13 +112,13 @@ export const module6Content = {
               Cultural attributes ultimately determine success. Effective desks foster transparency, encouraging escalation of issues and sharing of lessons learned. They cultivate a mindset that views XVA not as a compliance burden but as a strategic tool for allocating scarce balance-sheet resources. Leadership models collaborative behaviour by involving stakeholders early in decisions and celebrating cross-team achievements. When crises strike, this culture enables rapid mobilisation, clear communication, and disciplined execution. By continuously refining coordination mechanisms and investing in people and platforms, institutions transform the desk from a reactive reporting unit into a proactive driver of competitive advantage.
             </p>
           </div>
-        </SectionWrapper>
+        </div>
       )
     },
     2: {
       title: '6.3 Regulatory Landscape and Future of XVA',
       component: (
-        <SectionWrapper>
+        <div className="space-y-6">
           <div className="summary-box">
             <p>
               The regulatory landscape for XVA evolves alongside macroprudential priorities, technology shifts, and climate-linked disclosures; this summary distils the moving parts. We describe how Basel frameworks, jurisdictional add-ons, and supervisory stress testing recalibrate valuation adjustments, highlighting themes regulators emphasise during onsite reviews. We also foreshadow how distributed ledger adoption, real-time data aggregation, and artificial intelligence influence compliance expectations. Readers gain a map of upcoming policy milestones, interdependencies between accounting and capital rules, and the dialogue channels needed to keep methodologies approved. The overview primes a deeper discussion on strategic adaptation, regulatory engagement, and forward planning disciplines across global supervisory colleges today.
@@ -180,13 +161,13 @@ export const module6Content = {
               Engagement with regulators is an ongoing process rather than a periodic inspection. Banks maintain dialogue through supervisory meetings, thematic reviews, and on-site examinations. They prepare self-assessments benchmarked against regulatory guidance, highlighting strengths and action plans for identified gaps. When proposing methodological changes—such as switching exposure models or adopting new hedging strategies—institutions submit detailed impact assessments and seek non-objection. Proactive communication builds trust, reduces surprises during inspections, and can accelerate approvals for innovative approaches. Looking forward, supervisors are likely to focus on real-time data capabilities, resilience to extreme but plausible events, and harmonisation of global standards. Institutions that invest in transparent, well-governed XVA infrastructures will be best positioned to meet evolving expectations and maintain credibility with regulators and market participants alike.
             </p>
           </div>
-        </SectionWrapper>
+        </div>
       )
     },
     3: {
       title: '6.4 Case Studies and Real-World Examples',
       component: (
-        <SectionWrapper>
+        <div className="space-y-6">
           <div className="summary-box">
             <p>
               Case studies translate abstract XVA theory into concrete operational lessons, so this summary previews the narratives explored later in the subsection. We sketch how crises, regulatory reforms, and technological transformation forced banks to recalibrate valuation controls, redeploy hedging toolkits, and rethink client communication. Each vignette distils catalysts, decision pathways, and measurable outcomes, helping readers compare governance structures and stress responses across institutions. The preview underscores why empirical evidence complements model-based reasoning, showing how leadership, infrastructure, and data maturity can either amplify or dampen valuation shocks. With that roadmap, the subsection dives deeply into diversified real-world experiences from geographic regions today.
@@ -226,13 +207,13 @@ export const module6Content = {
               Ultimately, real-world experiences validate theoretical constructs. They reveal the human, technological, and governance elements that determine whether valuation adjustments protect or erode enterprise value. By studying diverse cases—defaults, sovereign crises, regulatory reforms, technology overhauls, and client negotiations—practitioners gain nuanced understanding of the trade-offs inherent in managing valuation adjustments. This knowledge empowers them to craft resilient strategies, align resources efficiently, and maintain stakeholder confidence when the next wave of market disruption arrives.
             </p>
           </div>
-        </SectionWrapper>
+        </div>
       )
     },
     4: {
       title: '6.5 Future Trends and Challenges in XVA',
       component: (
-        <SectionWrapper>
+        <div className="space-y-6">
           <div className="summary-box">
             <p>
               Anticipating future trends in XVA demands scanning technology, regulation, market structure, and sustainability; this summary distils the forces we will analyse thoroughly. We flag automation and cloud-native risk engines, expanding clearing mandates, digital asset collateral, and ESG-linked financing adjustments as key catalysts reshaping workflows. The summary highlights how data science, explainable AI, and quantum-resistant security standards influence modelling governance while cross-border policy convergence raises coordination stakes. Readers gain an agenda for monitoring innovation pipelines, talent strategies, and contingency planning so that the deeper narrative can explore scenario design, investment prioritisation, and the resilience mindset needed for tomorrow’s global valuation adjustments.
@@ -275,7 +256,7 @@ export const module6Content = {
               Ultimately, the future of XVA will be defined by institutions that combine technological agility, regulatory foresight, and sustainable business models. Those that master automation, harness AI responsibly, integrate ESG considerations, and maintain resilient infrastructures will deliver valuation insights that support competitive pricing and prudent risk management. The journey demands sustained investment, cross-disciplinary teamwork, and a willingness to reimagine legacy processes. By embracing these trends proactively, XVA practitioners can transform their function from a compliance necessity into a strategic enabler for the evolving financial landscape.
             </p>
           </div>
-        </SectionWrapper>
+        </div>
       )
     }
   }
