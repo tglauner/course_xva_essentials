@@ -1,5 +1,6 @@
 import { Download } from 'lucide-react'
-import { MathJaxContext, MathJax } from 'better-react-mathjax'
+import { MathJaxContext } from 'better-react-mathjax'
+import { BlockMath, InlineMath } from '../math/MathComponents.jsx'
 
 const mathJaxConfig = {
   tex: {
@@ -13,14 +14,6 @@ const mathJaxConfig = {
     ]
   }
 }
-
-const InlineMath = ({ math }) => (
-  <MathJax dynamic inline>{`\\(${math}\\)`}</MathJax>
-)
-
-const BlockMath = ({ math }) => (
-  <MathJax dynamic>{`\\[${math}\\]`}</MathJax>
-)
 
 const SectionWrapper = ({ children }) => (
   <MathJaxContext config={mathJaxConfig} version={3}>
