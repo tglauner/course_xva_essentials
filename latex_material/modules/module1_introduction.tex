@@ -1,0 +1,24 @@
+\section{Module 1: Introduction to XVA}
+
+\subsection{Framing X-Value Adjustments}
+X-Value Adjustments (XVA) extend risk-neutral pricing by layering in economic costs that surface once counterparty default risk, funding frictions, and regulatory capital requirements are acknowledged. The framework reshapes how derivative portfolios are quoted, risk-managed, and reported because every adjustment is tied to the same underlying trades viewed through a different lens.
+
+\subsection{Core Components of the XVA Stack}
+The XVA acronym summarises a set of interlocking adjustments that alter a transaction's fair value:
+\begin{itemize}
+    \item \textbf{Credit Valuation Adjustment (CVA)} captures expected losses from counterparty default events.
+    \item \textbf{Debit Valuation Adjustment (DVA)} mirrors CVA from the institution's own credit perspective, recognising that the bank's default would release it from payments.
+    \item \textbf{Funding Valuation Adjustment (FVA)} reflects the gap between risk-free discounting and the institution's actual funding costs.
+    \item \textbf{Margin Valuation Adjustment (MVA)} prices the liquidity drag created by segregated initial margin posted to clearing houses or bilateral counterparties.
+    \item \textbf{Capital Valuation Adjustment (KVA)} internalises the shareholder return required on regulatory capital tied up by the derivative book.
+\end{itemize}
+Together they form the aggregate uplift applied on top of risk-neutral value:
+\begin{equation}
+    \mathrm{XVA} = \mathrm{CVA} + \mathrm{DVA} + \mathrm{FVA} + \mathrm{MVA} + \mathrm{KVA}.
+\end{equation}
+
+\subsection{Historical Evolution}
+Before the 2008 financial crisis, many institutions managed credit exposure through counterparty limits and collateral agreements without embedding those costs in pricing. High-profile defaults, most notably Lehman Brothers, exposed the inadequacy of that stance. CVA desks emerged to price expected counterparty losses explicitly, followed by rapid development of DVA, FVA, MVA, and KVA as funding markets segmented and capital rules tightened under Basel reforms.
+
+\subsection{Market Context and Strategic Drivers}
+Modern derivative markets are shaped by collateralisation practices, product heterogeneity, and regulatory pressure. Bespoke over-the-counter contracts accumulate uncollateralised exposure that feeds directly into CVA and FVA, while centrally cleared instruments trade with tighter margin cycles that shift emphasis toward MVA. Supervisors now require transparent XVA processes, and internal stakeholders rely on the numbers for capital planning, hedging design, and client pricing decisions. The introduction therefore establishes the vocabulary and motivations that underpin the deeper dive into each component starting with CVA.

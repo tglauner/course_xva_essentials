@@ -1,0 +1,28 @@
+\section{Module 2: Credit Valuation Adjustment (CVA)}
+
+\subsection{Purpose and Strategic Role}
+Credit Valuation Adjustment (CVA) quantifies the present value of expected losses arising if a counterparty defaults while the portfolio holds positive replacement cost. Incorporating CVA into pricing aligns trade economics with the institution's risk appetite, drives cross-functional dialogue between trading, treasury, risk, and finance teams, and satisfies accounting standards such as IFRS~13 that mandate fair-value measurements inclusive of counterparty credit risk.
+
+\subsection{Mathematical Foundations}
+The mechanics of CVA rest on expected exposure profiles, counterparty default probabilities, and recovery assumptions. In discrete time, practitioners aggregate discounted expected exposure weighted by marginal default probabilities and loss-given-default:
+\begin{equation}
+    \mathrm{CVA}_{\text{disc}} = \sum_{i} EE(t_i) \times \Delta PD(t_i) \times LGD \times DF(t_i).
+\end{equation}
+When exposure and default dynamics are modelled continuously, the adjustment is captured as an integral over future horizons:
+\begin{equation}
+    \mathrm{CVA} = (1 - R) \int_{0}^{T} EPE(t)\, \lambda(t)\, S(t)\, D(0, t)\, dt.
+\end{equation}
+Here $EPE(t)$ denotes expected positive exposure, $\lambda(t)$ the hazard rate, $S(t)$ the survival probability, $D(0,t)$ the discount factor, and $R$ the recovery rate. Both representations highlight sensitivity to modelling assumptions around exposure simulation, credit curves, and discounting conventions.
+
+\subsection{Infrastructure and Operating Model}
+Producing a reliable CVA number requires robust data pipelines and governance. Trade capture systems feed product details into exposure engines that simulate thousands of market scenarios to estimate $EE(t_i)$ and $EPE(t)$. Credit data sources supply hazard rates, survival probabilities, and recovery assumptions aligned with counterparty reference obligations. Middle-office controls reconcile positions across risk, finance, and regulatory reporting so that the population of trades driving CVA remains consistent. Technology teams maintain scalable compute grids, data lineage, and model versioning to ensure timely, reproducible results.
+
+\subsection{Hedging Instruments and Governance}
+CVA hedging strategies primarily target sensitivity to credit spread movements. Desks deploy single-name or index credit default swaps (CDS), contingent collateral agreements, and occasionally structured notes that transfer counterparty exposure. Hedge ratios calibrate CDS notional against CVA spread delta:
+\begin{equation}
+    \text{Hedge Ratio} = \frac{\Delta_{\text{CVA Spread}}}{\text{CDS PV01}}.
+\end{equation}
+Effective governance coordinates execution with treasury and ensures collateral or funding side-effects are considered. Performance dashboards attribute P\&L between market drivers and hedge actions, while policy documents codify permissible instruments, stress testing routines, and escalation paths for basis risk.
+
+\subsection{Regulatory Capital Treatment}
+Basel III introduced dedicated CVA capital charges that complement default capital requirements by capturing mark-to-market losses from credit spread volatility. Banks may adopt the Standardised Approach to CVA (SA-CVA), which applies supervisory risk weights, or seek approval for the Internal Models Approach (IMA-CVA) that relies on simulated 10-day value-at-risk metrics. Recent Fundamental Review of the Trading Book (FRTB-CVA) reforms tighten data quality expectations, emphasise eligible hedges, and demand transparent governance linking capital outcomes to the same exposure and credit inputs used in CVA calculation. Institutions therefore integrate CVA analytics with capital management workflows to steer pricing, hedging, and client strategies.
