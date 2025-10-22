@@ -38,7 +38,7 @@ A complete LaTeX Beamer presentation containing:
 #### Module 1: Introduction to XVA
 - What is XVA?
 - Historical Context and Evolution of XVA
-- Overview of Derivative Instruments and Markets
+- Overview of Derivatives and Markets
 - Limitations of Risk-Neutral Pricing
 
 #### Module 2: Credit Valuation Adjustment (CVA)

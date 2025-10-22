@@ -20,7 +20,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
    - The Genesis of CVA: Learning from Lehman
    - Case study integration with interactive elements
 
-3. **Overview of Derivative Instruments and Markets: The XVA Landscape**
+3. **Overview of Derivatives and Markets: The XVA Landscape**
    - Comprehensive derivative taxonomy
    - OTC vs. Exchange-traded comparison boxes
    - Interactive market structure analysis

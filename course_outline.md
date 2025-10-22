@@ -19,7 +19,7 @@ Upon successful completion of this course, students will be able to:
 
 ### Module 1: Introduction to XVA and Derivative Pricing Fundamentals
 
-*   **Topic 1.1:** Review of Derivative Instruments and Markets
+*   **Topic 1.1:** Review of Derivatives and Markets
     *   Forwards, Futures, Options, Swaps
     *   OTC vs. Exchange-Traded Derivatives
 *   **Topic 1.2:** Risk-Neutral Pricing and its Limitations

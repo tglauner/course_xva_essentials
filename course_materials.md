@@ -49,7 +49,7 @@ Post-crisis, central banks flooded markets with liquidity, but the cost of fundi
 
 Basel III and subsequent regulations dramatically increased capital requirements for banks, particularly for derivative exposures. KVA was introduced to account for the cost of holding this regulatory capital, which is effectively a drag on return on equity. It represents the opportunity cost of capital tied up to support derivative activities.
 
-## 1.3 Overview of Derivative Instruments and Markets: The XVA Landscape
+## 1.3 Overview of Derivatives and Markets: The XVA Landscape
 
 To fully appreciate XVA, a solid understanding of the underlying derivative instruments and the markets in which they trade is essential. XVA primarily impacts over-the-counter (OTC) derivatives, where bilateral counterparty risk is prevalent.
 

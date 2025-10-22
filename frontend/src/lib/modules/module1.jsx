@@ -541,7 +541,7 @@ export const module1Metadata = {
   subsections: [
     "What is XVA? The Foundational Concept",
     "Historical Context and Evolution: A Post-Crisis Paradigm Shift",
-    "Overview of Derivative Instruments and Markets",
+    "Overview of Derivatives and Markets",
     "Limitations of Risk-Neutral Pricing",
     "The Interplay of XVA Components"
   ],
@@ -561,7 +561,7 @@ export const module1Content = {
       component: <SectionTwo />
     },
     2: {
-      title: "1.3 Overview of Derivative Instruments and Markets: The XVA Landscape",
+      title: "1.3 Overview of Derivatives and Markets: The XVA Landscape",
       component: <SectionThree />
     },
     3: {
