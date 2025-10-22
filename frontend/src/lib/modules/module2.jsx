@@ -18,9 +18,9 @@ const SectionOne = () => (
       <div>
         <p className="text-blue-900 font-semibold">Core CVA Representation</p>
         <BlockMath
-          math="\\mathrm{CVA} = (1 - R) \\int_0^T \\mathbb{E}^Q\\left[D(0, t) (V_t)^+\\right]\\, dPD(t)"
+          math="\mathrm{CVA} = (1 - R) \int_0^T \mathbb{E}^Q\left[D(0, t) (V_t)^+\right]\, dPD(t)"
         />
-        <BlockMath math="\\mathrm{CVA} \\approx \\sum_i EE(t_i) \\times \\Delta PD(t_i) \\times LGD \\times DF(t_i)" />
+        <BlockMath math="\mathrm{CVA} \approx \sum_i EE(t_i) \times \Delta PD(t_i) \times LGD \times DF(t_i)" />
       </div>
     </div>
     <div className="discussion space-y-4">
@@ -114,8 +114,8 @@ const SectionTwo = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Discrete and Continuous CVA Formulas</p>
-        <BlockMath math="\\mathrm{CVA}_{\\text{disc}} = \\sum_i EE(t_i) \\times \\Delta PD(t_i) \\times LGD \\times DF(t_i)" />
-        <BlockMath math="\\mathrm{CVA}_{\\text{cont}} = (1 - R) \\int_0^T EPE(t) \\lambda(t) S(t) D(0, t)\\, dt" />
+        <BlockMath math="\mathrm{CVA}_{\text{disc}} = \sum_i EE(t_i) \times \Delta PD(t_i) \times LGD \times DF(t_i)" />
+        <BlockMath math="\mathrm{CVA}_{\text{cont}} = (1 - R) \int_0^T EPE(t) \lambda(t) S(t) D(0, t)\, dt" />
       </div>
     </div>
     <div className="discussion space-y-4">
@@ -124,7 +124,7 @@ const SectionTwo = () => (
         discounted expectation over future states of the world. In its most transparent form, CVA is the risk-neutral expectation
         of discounted exposure at default multiplied by loss severity, conditional on the counterparty defaulting before the
         transaction matures. To build the formula, we define <InlineMath math="V(t)" /> as the positive mark-to-market of the
-        netting set at time <InlineMath math="t" />, <InlineMath math="P(\\tau \\in [t, t + dt])" /> as the default probability
+        netting set at time <InlineMath math="t" />, <InlineMath math="P(\tau \in [t, t + dt])" /> as the default probability
         over the infinitesimal interval, and <InlineMath math="R" /> as the recovery rate. The present value of expected loss
         integrates the product of these elements across the life of the portfolio.
       </p>
@@ -132,16 +132,16 @@ const SectionTwo = () => (
         Practitioners often begin with a discrete-time approximation to align with daily exposure simulations and default
         probability term structures available from credit curves. In this setup, future time buckets <InlineMath math="t_i" /> are
         selected to capture key exposure dynamics, and the CVA is calculated as the sum of discounted expected exposure multiplied
-        by marginal default probabilities and loss-given-default. Formally, <InlineMath math="\\mathrm{CVA} = \\sum_i EE(t_i)
-        \\times \\Delta PD(t_i) \\times LGD \\times DF(t_i)" />, where <InlineMath math="EE(t_i)" /> represents the expected
+        by marginal default probabilities and loss-given-default. Formally, <InlineMath math="\mathrm{CVA} = \sum_i EE(t_i)
+        \times \Delta PD(t_i) \times LGD \times DF(t_i)" />, where <InlineMath math="EE(t_i)" /> represents the expected
         exposure conditional on survival up to bucket <InlineMath math="t_i" />. This framework makes it straightforward to
         incorporate collateral terms, break clauses, and netting arrangements by modifying the exposure paths in each bucket.
       </p>
       <p>
         Continuous-time formulations provide additional insight. By modelling default as a stochastic intensity process with
-        hazard rate <InlineMath math="\\lambda(t)" />, practitioners compute CVA as the integral of expected positive exposure
+        hazard rate <InlineMath math="\lambda(t)" />, practitioners compute CVA as the integral of expected positive exposure
         multiplied by hazard rate, survival probability, and discount factor. This perspective emphasizes the sensitivity of CVA
-        to the term structure of default intensity and highlights the importance of calibrating <InlineMath math="\\lambda(t)" />
+        to the term structure of default intensity and highlights the importance of calibrating <InlineMath math="\lambda(t)" />
         to market-implied credit spreads. When the hazard rate co-moves with market factors that drive exposure—so-called wrong-way
         risk—the integral must incorporate correlation effects to avoid understating expected losses.
       </p>
@@ -190,7 +190,7 @@ const SectionThree = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">CVA Operating Model Heuristics</p>
-        <BlockMath math="\\text{CVA Readiness} \\propto \\text{Data Quality} \\times \\text{Model Governance} \\times \\text{Systems Resilience}" />
+        <BlockMath math="\text{CVA Readiness} \propto \text{Data Quality} \times \text{Model Governance} \times \text{Systems Resilience}" />
       </div>
     </div>
     <div className="discussion space-y-4">
@@ -248,8 +248,8 @@ const SectionFour = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">CVA Hedge Analytics</p>
-        <BlockMath math="\\text{Hedge Ratio} = \\frac{\\Delta_{\\text{CVA Spread}}}{\\text{CDS PV01}}" />
-        <BlockMath math="\\text{Residual Basis} = \\text{Spread}_{\\text{portfolio}} - \\beta \\times \\text{Spread}_{\\text{hedge}}" />
+        <BlockMath math="\text{Hedge Ratio} = \frac{\Delta_{\text{CVA Spread}}}{\text{CDS PV01}}" />
+        <BlockMath math="\text{Residual Basis} = \text{Spread}_{\text{portfolio}} - \beta \times \text{Spread}_{\text{hedge}}" />
       </div>
     </div>
     <div className="discussion space-y-4">
@@ -262,7 +262,7 @@ const SectionFour = () => (
       <p>
         Hedge calibration begins with sensitivity analysis. Risk teams compute CVA deltas to credit spread movements by
         counterparty and maturity. These sensitivities inform hedge ratios, translating spread shocks into protection notional. For
-        example, the hedge ratio formula <InlineMath math="\\text{Hedge Ratio} = \\frac{\\Delta_{\\text{CVA Spread}}}{\\text{CDS PV01}}" />
+        example, the hedge ratio formula <InlineMath math="\text{Hedge Ratio} = \frac{\Delta_{\text{CVA Spread}}}{\text{CDS PV01}}" />
         quantifies how much CDS notional offsets a unit change in CVA. Calibration also accounts for correlation among
         counterparties, ensuring portfolio-level hedges capture diversification effects.
       </p>
@@ -337,8 +337,8 @@ const SectionFive = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">CVA Capital Formulas</p>
-        <BlockMath math="K_{\\text{SA-CVA}} = \\sqrt{\\sum_i K_i^2 + 2 \\sum_{i \\neq j} \\rho_{ij} K_i K_j}" />
-        <BlockMath math="K_{\\text{IMA-CVA}} = \\max(\\text{VaR}_{10d}, \\text{Stressed VaR}_{10d}) \\times \\text{Multiplier}" />
+        <BlockMath math="K_{\text{SA-CVA}} = \sqrt{\sum_i K_i^2 + 2 \sum_{i \neq j} \rho_{ij} K_i K_j}" />
+        <BlockMath math="K_{\text{IMA-CVA}} = \max(\text{VaR}_{10d}, \text{Stressed VaR}_{10d}) \times \text{Multiplier}" />
       </div>
     </div>
     <div className="discussion space-y-4">
