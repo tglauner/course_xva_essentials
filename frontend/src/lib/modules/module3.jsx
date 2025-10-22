@@ -18,7 +18,9 @@ const SectionOne = () => (
       <div>
         <p className="text-blue-900 font-semibold">Liability Fair Value Decomposition</p>
         <BlockMath math="V_{\\text{liability}} = V_{\\text{risk-free}} + \\mathrm{DVA}" />
-        <BlockMath math="\\mathrm{DVA} = \\mathbb{E}\\left[DF(t) \\cdot \\mathbf{1}_{\\{\\tau_{\\text{bank}} \\leq T\\}} \\cdot (L_t - C_t)^+\\right]" />
+        <BlockMath
+          math="\\mathrm{DVA} = \\mathbb{E}^Q\\left[D(0, \\tau_{\\text{bank}}) (1 - R_{\\text{bank}}) (-V_{\\tau_{\\text{bank}}})^+ \\mathbf{1}_{\\{\\tau_{\\text{bank}} \\le T\\}}\\right]"
+        />
       </div>
     </div>
     <div className="in-depth space-y-4">
@@ -102,8 +104,12 @@ const SectionTwo = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Core DVA Expressions</p>
-        <BlockMath math="\\mathrm{DVA} = \\int_0^T ENE(t) \\cdot PD'_{\\text{bank}}(t) \\cdot LGD_{\\text{bank}} \\cdot DF(t)\\, dt" />
-        <BlockMath math="\\mathrm{DVA} \\approx \\sum_{i=1}^n ENE_i \\cdot PD_{\\text{bank}, i} \\cdot LGD_{\\text{bank}} \\cdot DF_i" />
+        <BlockMath
+          math="\\mathrm{DVA} = (1 - R_{\\text{bank}}) \\int_0^T \\mathbb{E}^Q\\left[D(0, t) (V_t)^-\\right]\\, dPD_{\\text{bank}}(t)"
+        />
+        <BlockMath
+          math="\\mathrm{DVA} \\approx \\sum_{i=1}^n ENE_i \\cdot \\Delta PD_{\\text{bank}}(t_i) \\cdot LGD_{\\text{bank}} \\cdot DF(t_i)"
+        />
         <BlockMath math="ENE_i = \\mathbb{E}[\\max(-V(t_i), 0) \\mid \\mathcal{F}_0]" />
       </div>
     </div>

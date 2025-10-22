@@ -10,12 +10,12 @@ export const glossary = {
     'CVA': {
       term: 'Credit Valuation Adjustment',
       definition: 'The market value of the credit risk of a counterparty in a derivative transaction. It represents the expected loss due to the counterparty defaulting.',
-      formula: 'CVA = LGD × EPE'
+      formula: 'CVA = (1 - R) ∫_0^T E^Q[D(0, t) (V_t)^+] dPD(t)'
     },
     'DVA': {
       term: 'Debit Valuation Adjustment',
       definition: 'The expected gain to a financial institution due to its own potential default. It represents the benefit arising from the bank\'s own credit risk.',
-      formula: 'DVA = LGD_bank × ENE'
+      formula: 'DVA = (1 - R_bank) ∫_0^T E^Q[D(0, t) (V_t)^-] dPD_bank(t)'
     },
     'FVA': {
       term: 'Funding Valuation Adjustment',
