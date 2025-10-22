@@ -17,9 +17,9 @@ const SectionOne = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Liability Fair Value Decomposition</p>
-        <BlockMath math="V_{\\text{liability}} = V_{\\text{risk-free}} + \\mathrm{DVA}" />
+        <BlockMath math="V_{\text{liability}} = V_{\text{risk-free}} + \mathrm{DVA}" />
         <BlockMath
-          math="\\mathrm{DVA} = \\mathbb{E}^Q\\left[D(0, \\tau_{\\text{bank}}) (1 - R_{\\text{bank}}) (-V_{\\tau_{\\text{bank}}})^+ \\mathbf{1}_{\\{\\tau_{\\text{bank}} \\le T\\}}\\right]"
+          math="\mathrm{DVA} = \mathbb{E}^Q\left[D(0, \tau_{\text{bank}}) (1 - R_{\text{bank}}) (-V_{\tau_{\text{bank}}})^+ \mathbf{1}_{\{\tau_{\text{bank}} \le T\}}\right]"
         />
       </div>
     </div>
@@ -105,12 +105,12 @@ const SectionTwo = () => (
       <div>
         <p className="text-blue-900 font-semibold">Core DVA Expressions</p>
         <BlockMath
-          math="\\mathrm{DVA} = (1 - R_{\\text{bank}}) \\int_0^T \\mathbb{E}^Q\\left[D(0, t) (V_t)^-\\right]\\, dPD_{\\text{bank}}(t)"
+          math="\mathrm{DVA} = (1 - R_{\text{bank}}) \int_0^T \mathbb{E}^Q\left[D(0, t) (V_t)^-\right]\, dPD_{\text{bank}}(t)"
         />
         <BlockMath
-          math="\\mathrm{DVA} \\approx \\sum_{i=1}^n ENE_i \\cdot \\Delta PD_{\\text{bank}}(t_i) \\cdot LGD_{\\text{bank}} \\cdot DF(t_i)"
+          math="\mathrm{DVA} \approx \sum_{i=1}^n ENE_i \cdot \Delta PD_{\text{bank}}(t_i) \cdot LGD_{\text{bank}} \cdot DF(t_i)"
         />
-        <BlockMath math="ENE_i = \\mathbb{E}[\\max(-V(t_i), 0) \\mid \\mathcal{F}_0]" />
+        <BlockMath math="ENE_i = \mathbb{E}[\max(-V(t_i), 0) \mid \mathcal{F}_0]" />
       </div>
     </div>
     <div className="in-depth space-y-4">
@@ -122,8 +122,8 @@ const SectionTwo = () => (
         were to default before the contractual maturity, after accounting for collateral and close-out rules.
       </p>
       <p>
-        In a continuous-time formulation, the bank’s default time <InlineMath math="\\tau_{\\text{bank}}" /> is modelled as a stopping
-        time with intensity <InlineMath math="\\lambda_{\\text{bank}}(t)" />. The expectation <InlineMath math="\\mathbb{E}[1_{\\{\\tau_{\\text{bank}} \\in dt\\}}] = \\lambda_{\\text{bank}}(t) dt" />
+        In a continuous-time formulation, the bank’s default time <InlineMath math="\tau_{\text{bank}}" /> is modelled as a stopping
+        time with intensity <InlineMath math="\lambda_{\text{bank}}(t)" />. The expectation <InlineMath math="\mathbb{E}[1_{\{\tau_{\text{bank}} \in dt\}}] = \lambda_{\text{bank}}(t) dt" />
         converts to the marginal default probability density. The discounted expected gain from default is integrated across the
         maturity horizon, producing the integral expression for DVA. This representation highlights the levers available to risk
         managers: reducing negative exposure paths lowers the integrand, tightening funding spreads reduces the intensity, and
@@ -133,7 +133,7 @@ const SectionTwo = () => (
         Discrete-time implementations dominate practice because exposure profiles typically arise from Monte Carlo simulations or
         scenario grids aligned with regulatory capital models. Portfolio simulation engines generate pathwise values for each future
         date, incorporating netting agreements, collateral thresholds, and optional close-out timing. Expected negative exposure at
-        each time bucket is calculated as the average of <InlineMath math="\\max(-V(t_i), 0)" /> across scenarios. Conditional on these
+        each time bucket is calculated as the average of <InlineMath math="\max(-V(t_i), 0)" /> across scenarios. Conditional on these
         metrics, default probability weights derive from credit curves. Institutions often bootstrap hazard rates from traded senior
         unsecured bond spreads or credit default swap premiums using reduced-form models.
       </p>
@@ -193,9 +193,9 @@ const SectionThree = () => (
     <div className="formula-box space-y-4">
       <div>
         <p className="text-blue-900 font-semibold">Regulatory and Accounting Filters</p>
-        <BlockMath math="V_{\\text{IFRS 13}} = V_{\\text{market}}" />
-        <BlockMath math="\\text{CET1}_{\\text{prudential}} = \\text{Reported Equity} - \\mathrm{DVA}_{\\text{prudential filter}}" />
-        <BlockMath math="\\text{Hedge Effectiveness} = \\frac{\\Delta \\mathrm{DVA} - \\Delta \\text{Hedge}}{\\Delta \\mathrm{DVA}}" />
+        <BlockMath math="V_{\text{IFRS 13}} = V_{\text{market}}" />
+        <BlockMath math="\text{CET1}_{\text{prudential}} = \text{Reported Equity} - \mathrm{DVA}_{\text{prudential filter}}" />
+        <BlockMath math="\text{Hedge Effectiveness} = \frac{\Delta \mathrm{DVA} - \Delta \text{Hedge}}{\Delta \mathrm{DVA}}" />
       </div>
     </div>
     <div className="in-depth space-y-4">
