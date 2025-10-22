@@ -12,6 +12,9 @@ import './App.css'
 
 const mathJaxConfig = {
   tex: {
+    packages: {
+      '[+]': ['ams', 'textmacros']
+    },
     inlineMath: [
       ['$', '$'],
       ['\\(', '\\)']
@@ -20,7 +23,8 @@ const mathJaxConfig = {
       ['$$', '$$'],
       ['\\[', '\\]']
     ]
-  }
+  },
+  loader: { load: ['[tex]/ams', '[tex]/textmacros'] }
 }
 
 function ModulePage() {
