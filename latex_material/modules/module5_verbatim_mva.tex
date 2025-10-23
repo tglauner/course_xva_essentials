@@ -1,0 +1,32 @@
+\section{Module 5: Margin Valuation Adjustment (MVA)}
+
+\subsection{5.1 Definition and Rationale: The Cost of Initial Margin}
+Margin valuation adjustment (MVA) quantifies the economic burden of posting segregated initial margin for cleared and bilateral derivatives. Segregation prohibits rehypothecation, so the desk must fund cash or securities at the treasury's marginal spread while receiving only the custodial remuneration rate. The adjustment translates regulatory safeguards into balance-sheet costs that reshape pricing and client negotiation.
+
+\begin{equation*}
+    \text{MVA} = \int_0^T IM(t) \big(s_f(t) - r_{\mathrm{rem}}(t)\big) D(t) \, dt
+\end{equation*}
+
+\begin{equation*}
+    IM(t) = \text{Quantile}_{\alpha}\big(\Delta V_{[t, t+\delta]}\big)
+\end{equation*}
+
+Initial margin is defined as a high quantile of potential future exposure over a liquidation horizon, making the balance path dependent on volatility regimes, concentration risk, and portfolio composition. Funding spreads widen during stress just as margin calls surge, and operational infrastructures---custody accounts, dispute management, tri-party agreements---reinforce the need for a dedicated valuation adjustment. By charging MVA through transfer pricing, trading desks internalise the liquidity consumed by segregated collateral and pursue margin-efficient structures such as clearing, compression, and diversified hedging sets.
+
+\subsection{5.2 Mathematical Formulation: Projecting Future IM Costs}
+MVA is computed as the risk-neutral expectation of discounted funding spreads applied to the stochastic margin trajectory, often truncated by the earlier of counterparty or bank default.
+
+\begin{equation*}
+    \text{MVA} = \mathbb{E}^{\mathbb{Q}}\left[ \int_0^T D(t) IM(t) \big(s_f(t) - r_{\mathrm{rem}}(t)\big) \mathbf{1}_{\{t < \tau_c \wedge \tau_b\}} \, dt \right]
+\end{equation*}
+
+Discretised implementations evaluate \(IM(t_k)\) on simulated paths, multiply by funding spreads, and discount to today. Monte Carlo engines generate joint paths for market factors, exposure, and funding spreads; variance-reduction and regression techniques accelerate the computation. Wrong-way risk is captured by correlating margin requirements with funding spread dynamics so that spikes in volatility coincide with widening treasury spreads.
+
+\subsection{5.3 Initial Margin Models: Standardised vs. Internal}
+Clearing houses and bilateral agreements rely on either historical simulation/value-at-risk style models or sensitivity-based approaches such as ISDA SIMM. Standardised models offer transparency but may be conservative for diversified portfolios; internal models tailored to specific products can capture netting benefits but require regulatory approval and rigorous backtesting. Choice of model influences MVA through the scale and responsiveness of \(IM(t)\), motivating governance processes that compare methodologies, monitor breaches, and validate calibration data. Institutions often maintain hybrid frameworks in which SIMM sensitivities are adjusted by stress add-ons to reflect concentration risk or macroeconomic scenarios.
+
+\subsection{5.4 MVA Hedging and Management: A Complex Endeavour}
+Managing MVA involves negotiating collateral terms, optimising product mix, and arranging funding solutions. Treasury desks may secure committed facilities, repo financing, or structured note issuance to stabilise spreads, while trading desks pursue portfolio compression, novations, and margin optimisation algorithms that minimise incremental \(IM\). Risk teams monitor sensitivities of MVA to volatility, funding spreads, and collateral eligibility. Hedging strategies include futures or options that offset directional exposure driving margin, as well as balance-sheet programmes that align maturity of funding with expected margin profiles.
+
+\subsection{5.5 Regulatory Impact: Driving Behavioural Change}
+The BCBS--IOSCO margin regime phases in counterparties based on aggregate notional and enforces thresholds, eligible collateral sets, and concentration limits. Regulators expect banks to evidence robust governance over initial margin models, dispute resolution, and backtesting. These requirements push institutions toward central clearing, enhanced collateral analytics, and transparent client pricing that explicitly includes MVA. Reporting under Pillar~3 and jurisdiction-specific disclosures highlights the interaction between margin, capital, and liquidity, reinforcing MVA as a core component of the modern XVA stack.

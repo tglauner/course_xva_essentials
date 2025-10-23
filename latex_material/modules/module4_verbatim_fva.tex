@@ -1,0 +1,36 @@
+\section{Module 4: Funding Valuation Adjustment (FVA)}
+
+\subsection{4.1 Definition and Rationale: The Cost of Funding}
+Funding valuation adjustment (FVA) captures the present value of liquidity spreads absorbed when a dealer funds the hedging cash flows of uncollateralised or partially collateralised derivatives. Treasury funding curves deviate from risk-free discounting, so positive and negative exposures lead to asymmetric borrowing and investment costs. Institutional policies translate those spreads into transfer-pricing add-ons and are highly sensitive to collateral terms, liquidity horizons, and contingency planning for stress events.
+
+\begin{equation*}
+    \text{FVA}(t_0) = \int_{0}^{T} \mathbb{E}^{\mathbb{Q}}\!\left[s(t) E^{+}(t) - b(t) E^{-}(t)\right] D_d(t)\, dt
+\end{equation*}
+
+\begin{equation*}
+    s(t) = r_f(t) - r_d(t), \quad b(t) = r_d(t) - r_i(t)
+\end{equation*}
+
+Dealers replicate derivative cash flows by dynamically hedging with underlying instruments, which generates cash flows that must be financed by the treasury desk. Positive exposure demands borrowing, usually at unsecured funding spreads or through secured financing with haircuts, while negative exposure allows surplus cash to be invested at rates below the risk-free benchmark. Simulation engines forecast uncollateralised exposure profiles under the risk-neutral measure and integrate institution-specific funding spreads to determine the adjustment that should be subtracted from the theoretical client price. Robust data governance is essential because funding curves vary by currency, tenor, and legal entity, and stress scenarios are required to capture liquidity spirals that emerge when spreads widen abruptly. Collateral thresholds, minimum transfer amounts, and eligibility schedules determine how much exposure remains unsecured; adjusting those terms can materially shift the balance between CVA and FVA. Funding strategies are path dependent, forcing treasury teams to optimise the mix of overnight borrowing, term issuance, secured funding, and contingency liquidity buffers mandated by regulators.
+
+\subsection{4.2 Mathematical Formulation: Pricing the Funding Spread}
+The quantitative framework models derivative exposure \(V(t)\) and its positive and negative parts \(E^{+}(t)\) and \(E^{-}(t)\). Borrowing spreads \(s(t)\) are derived from the treasury curve relative to the discount curve \(r_d(t)\); any investing benefit \(b(t)\) reflects the ability to redeploy excess cash. Continuous-time expressions convert to discrete sums across simulated scenarios:
+
+\begin{equation*}
+    \text{FVA} = -\int_{0}^{T} s(t) \mathbb{E}^{\mathbb{Q}}[E^{+}(t)] D_d(t)\, dt + \int_{0}^{T} b(t) \mathbb{E}^{\mathbb{Q}}[E^{-}(t)] D_d(t)\, dt
+\end{equation*}
+
+\begin{equation*}
+    \text{FVA} \approx -\sum_{j=1}^{M} \Delta t_j D_{d,j} s_j \bar{E}^{+}_j + \sum_{j=1}^{M} \Delta t_j D_{d,j} b_j \bar{E}^{-}_j
+\end{equation*}
+
+Implementation requires aligning funding term structures with exposure grids, interpolating spreads consistently, and adjusting exposures for collateral thresholds. Optionality in collateral agreements, such as minimum transfer amounts or segregated collateral that cannot be rehypothecated, modifies the unsecured exposure entering the FVA integral. Advanced models link spreads to macroeconomic factors or credit indices, producing joint simulations where counterparty stress and bank funding stress coincide. Scenario analysis and sensitivity calculations quantify wrong-way risk between exposure dynamics and funding spreads.
+
+\subsection{4.3 Relationship with Collateral and OIS Discounting}
+Collateral practices determine whether exposures are discounted on an overnight indexed swap (OIS) basis or require funding adjustments. Perfect collateralisation at OIS rates suppresses FVA because hedging flows are financed at the collateral rate. Partial collateralisation leaves residual unsecured exposure that must be funded at spreads above OIS, creating FVA while still discounting cash flows at risk-free rates for consistency with CVA. Institutions calibrate transfer-pricing frameworks to avoid double counting between FVA and liquidity valuation adjustment (LVA) and to ensure the treatment of rehypothecated collateral aligns with treasury policies. Analytical dashboards compare alternative collateral agreements, highlighting how tighter thresholds or faster margin frequency lower both CVA and FVA, whereas looser terms shift costs toward funding charges even if credit exposure remains moderate.
+
+\subsection{4.4 The FVA Debate: Is it a Real Cost?}
+Industry debate has questioned whether FVA represents a true economic cost or merely an internal transfer. Proponents argue that funding spreads are real cash outflows observed in treasury operations and should therefore adjust deal prices. Critics warn that including FVA alongside discounting at OIS could double count funding effects if not carefully specified. Accounting standards generally recognise funding adjustments when they are observable in market prices of similar trades, while prudential supervisors focus on ensuring valuation frameworks remain conservative under stress. Clear governance, documentation of funding curve sources, and transparent communication to traders mitigate controversy by showing how FVA complements rather than contradicts risk-neutral valuation.
+
+\subsection{4.5 FVA Hedging and Management}
+Managing FVA involves coordinated actions across trading, treasury, and risk functions. Treasury desks issue debt, secure repo funding, or allocate internal liquidity premiums; traders negotiate collateral upgrades, compression trades, or product alternatives that reduce unsecured exposure; risk teams monitor sensitivities of FVA to funding spreads, collateral assumptions, and exposure paths. Hedging strategies may include term funding locks, balance-sheet optimisation, and client pricing adjustments that pass funding costs to end users. Reporting frameworks track deal-level profitability inclusive of FVA, ensuring that scarce balance-sheet capacity is directed toward trades that meet hurdle rates after accounting for liquidity costs.
