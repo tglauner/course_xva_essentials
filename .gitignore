@@ -16,7 +16,7 @@ frontend/dist/
 *.snm
 *.gz
 *.toc
-xva_course.pdf
+latex_material/*.pdf
 
 # Mac 
 .DS_Store
