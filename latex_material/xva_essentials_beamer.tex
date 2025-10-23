@@ -1,0 +1,212 @@
+\documentclass[aspectratio=169]{beamer}
+
+% Theme and packages
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{note page}[plain]
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{XVA Essentials: Integrated Adjustments}
+\subtitle{45-Minute Lecture Covering Modules 1--6}
+\author{Course Faculty}
+\date{\\ \small Updated \today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \note{Good morning everyone, my name is \insertshortauthor, and I am delighted to guide you through this 45-minute tour of the first six modules of XVA Essentials. The slides will give us concise prompts, while I will narrate the fuller story using these speaker notes. Let us begin by setting the stage for how the session will flow.}
+\end{frame}
+
+\section{Lecture Orientation}
+
+\begin{frame}{Pacing Strategy for 45 Minutes}
+    \begin{itemize}
+        \item 5 min: Context setting and roadmap across modules.
+        \item 8 min: Module 1 highlights on XVA motivation and evolution.
+        \item 12 min: Modules 2--3 covering CVA and DVA fundamentals.
+        \item 12 min: Modules 4--5 on funding and margin adjustments.
+        \item 8 min: Module 6 integration plus Q\&A or discussion bridge.
+    \end{itemize}
+    \note{Here is how I have structured the 45 minutes. We will start with a short scene-setting overview, then spend the largest block on CVA and DVA because they anchor all other adjustments. Funding and margin topics receive equal attention before we close by integrating the components and opening the floor for questions. Please keep this roadmap in mind as we progress.}
+\end{frame}
+
+\begin{frame}{Learning Outcomes}
+    \begin{itemize}
+        \item Recognise the economic drivers behind each core XVA component.
+        \item Interpret fundamental valuation formulas for CVA, DVA, FVA, and MVA.
+        \item Connect operating model requirements to reliable adjustment delivery.
+        \item Appreciate governance and regulatory expectations shaping XVA desks.
+        \item Synthesise adjustments into an enterprise-wide XVA perspective.
+    \end{itemize}
+    \note{By the end of this lecture you should be able to recognise the economic drivers for each valuation adjustment, interpret the core formulas, and link them to operating model requirements. I also want you to appreciate the governance and regulatory expectations that surround XVA desks so you can synthesize an enterprise-wide perspective.}
+\end{frame}
+
+\section{Module 1: Introduction}
+
+\begin{frame}{Why XVA Matters}
+    \begin{itemize}
+        \item Extends risk-neutral pricing to include credit, funding, margin, and capital costs.
+        \item Anchors cross-functional dialogue between trading, treasury, risk, and finance.
+        \item Shapes client pricing, hedge design, and internal performance metrics.
+        \item Aligns with accounting rules requiring credit-risk-inclusive fair value.
+    \end{itemize}
+    \note{XVA matters because it extends traditional risk-neutral pricing to include the real-world costs of credit, funding, margin, and capital. As I describe each point, picture the conversations among trading, treasury, risk, and finance teams that rely on these adjustments to set prices, design hedges, and report performance in line with accounting standards.}
+\end{frame}
+
+\begin{frame}{Evolution and Market Context}
+    \begin{itemize}
+        \item Pre-2008: limited pricing of counterparty risk despite collateral agreements.
+        \item Post-crisis: dedicated CVA desks and expansion into DVA, FVA, MVA, and KVA.
+        \item Regulatory reforms and collateral practices drive adoption of holistic XVA.
+        \item Bespoke OTC portfolios versus cleared trades shift emphasis across components.
+    \end{itemize}
+    \note{Before the financial crisis, counterparty risk was often an afterthought even when collateral agreements existed. After 2008 we saw the birth of dedicated XVA desks, the expansion into DVA, FVA, and MVA, and a wave of regulatory reform that hard-wired these ideas. As I highlight the market context, notice how the balance between bilateral OTC portfolios and centrally cleared trades shifts the emphasis across the various adjustments.}
+\end{frame}
+
+\section{Module 2: Credit Valuation Adjustment}
+
+\begin{frame}{CVA Fundamentals}
+    \begin{itemize}
+        \item Measures expected loss from counterparty default when exposure is positive.
+        \item Integrates exposure, default probability, recovery, and discounting inputs.
+        \item Supports pricing discipline, risk appetite alignment, and IFRS 13 compliance.
+        \item Requires collaboration across trading, risk, treasury, and finance teams.
+    \end{itemize}
+    \note{Credit valuation adjustment is our flagship component, measuring the expected loss from counterparty default whenever we have positive exposure. Keep in mind that CVA is essential for disciplined pricing, risk appetite alignment, and IFRS 13 compliance, which is why so many functions around the bank contribute to it.}
+\end{frame}
+
+\begin{frame}{CVA Quantification}
+    \begin{itemize}
+        \item Discrete-time approximation: $\mathrm{CVA}_{\text{disc}} = \sum_{i} EE(t_i)\, \Delta PD(t_i)\, LGD\, DF(t_i)$.
+        \item Continuous view links expected positive exposure, hazard rates, and survival.
+        \item Sensitivities hinge on exposure simulation quality and credit curve inputs.
+    \end{itemize}
+    \note{Let me walk through the discrete approximation term by term. Expected exposure at each time bucket combines with the incremental default probability, the loss given default, and the discount factor. When we move to the continuous view, we link expected positive exposure to hazard rates and survival probabilities. Remember that sensitivities hinge critically on the quality of the exposure simulations and the calibration of credit inputs.}
+\end{frame}
+
+\begin{frame}{CVA Operations and Governance}
+    \begin{itemize}
+        \item Exposure engines need accurate trade capture and market data pipelines.
+        \item Credit data sources supply hazard rates, survival curves, and recoveries.
+        \item Scalable compute grids and controls enable timely, reproducible numbers.
+        \item Hedging uses CDS instruments with ratios $\Delta_{\text{CVA Spread}}/\text{CDS PV01}$.
+    \end{itemize}
+    \note{Operational excellence is what keeps CVA numbers credible. We rely on accurate trade capture, robust market data, scalable compute grids, and carefully governed credit data sources. Close collaboration with treasury ensures hedges, often via CDS, are aligned, and governance keeps the process reproducible and well controlled.}
+\end{frame}
+
+\section{Module 3: Debit Valuation Adjustment}
+
+\begin{frame}{DVA Perspective}
+    \begin{itemize}
+        \item Mirrors CVA by recognising benefits when the institution might default.
+        \item Depends on expected negative exposure and own credit parameters.
+        \item Aligns valuations with bilateral credit risk and accounting standards.
+        \item Uses shared exposure engines to maintain consistency with CVA inputs.
+    \end{itemize}
+    \note{Debit valuation adjustment mirrors CVA, capturing the benefit we might realise if we were the party to default while owing money. It depends on expected negative exposure and our own credit parameters, and we use the same exposure engines to keep everything internally consistent.}
+\end{frame}
+
+\begin{frame}{DVA Challenges and Governance}
+    \begin{itemize}
+        \item Conceptual tension: booking gains from own credit deterioration.
+        \item Regulatory capital often excludes DVA despite accounting recognition.
+        \item Direct hedging is infeasible; focus falls on funding strategy and limits.
+        \item Stress testing assesses joint shocks to funding spreads and exposures.
+    \end{itemize}
+    \note{DVA remains controversial because it can show gains when our own credit quality deteriorates. Many regulators strip it out of capital, so we treat it carefully in governance. Instead of chasing speculative hedges, we manage funding strategy, limits, and stress testing to understand how funding spreads and exposures can move together.}
+\end{frame}
+
+\section{Module 4: Funding Valuation Adjustment}
+
+\begin{frame}{FVA Drivers}
+    \begin{itemize}
+        \item Prices liquidity cost of funding positive exposure and investing negative exposure.
+        \item Reflects gaps between unsecured funding curves and discounting bases.
+        \item Embeds treasury transfer pricing within trade economics.
+        \item Sensitive to collateral terms and optionality in funding rights.
+    \end{itemize}
+    \note{Funding valuation adjustment prices the liquidity cost of borrowing to fund positive exposures and the benefit of investing negative exposures. Think about the interaction between trading desks and treasury as they coordinate funding curves, collateral terms, and optionality embedded in the contracts.}
+\end{frame}
+
+\begin{frame}{FVA Mechanics}
+    \begin{itemize}
+        \item Continuous form: $\mathrm{FVA}(t_0) = \int_{t_0}^{T} \mathbb{E}^{\mathbb{Q}}[(s(t)E^{+}(t) - b(t)E^{-}(t))D_d(t)]\, dt$.
+        \item Discretisation aligns with collateral call buckets and scenario grids.
+        \item Wrong-way risk and collateral rehypothecation influence adjustments.
+    \end{itemize}
+    \note{In this expression we integrate the borrowing spread applied to positive exposure and the investing spread applied to negative exposure, all discounted back to today. Practitioners discretise this integral to align with collateral call schedules and scenario grids, while also accounting for wrong-way risk and the impact of rehypothecation rights.}
+\end{frame}
+
+\section{Module 5: Margin Valuation Adjustment}
+
+\begin{frame}{MVA Economics}
+    \begin{itemize}
+        \item Captures cost of funding segregated initial margin over trade life.
+        \item Distinct from variation margin, which typically nets out daily.
+        \item Influences pricing, client negotiation, and liquidity planning.
+        \item Sensitive to volatility, concentration limits, and eligible collateral.
+    \end{itemize}
+    \note{Margin valuation adjustment reflects the cost of funding segregated initial margin, which has become prominent under regulatory margin rules. It is distinct from variation margin that nets daily, and it feeds directly into pricing conversations, liquidity planning, and negotiations with clients about eligible collateral.}
+\end{frame}
+
+\begin{frame}{MVA Quantification}
+    \begin{itemize}
+        \item Approximation: $\mathrm{MVA} = \sum_{k} IM(t_k)(s_f(t_k) - r_{rem}(t_k))D(t_k)\, \Delta t$.
+        \item Scenario-based initial margin modelling mirrors CCP or SIMM methodologies.
+        \item Data governance tracks collateral eligibility, rehypothecation, and calls.
+    \end{itemize}
+    \note{Looking at the approximation, each time bucket combines the required initial margin with the difference between our funding spread and the remuneration rate we earn on the collateral. Accurate scenario-based modelling, aligned with CCP or SIMM methodologies, and strong data governance around collateral terms are vital to get this right.}
+\end{frame}
+
+\section{Module 6: Integrated XVA}
+
+\begin{frame}{Combining Adjustments}
+    \begin{itemize}
+        \item Portfolio view: $\mathrm{XVA}_{\text{total}} = \mathrm{CVA} - \mathrm{DVA} + \mathrm{FVA} + \mathrm{KVA} + \mathrm{MVA}$.
+        \item Avoid double counting via coordinated scenarios across risk factors.
+        \item Composite dashboards support senior management decision-making.
+        \item Stress testing aligns credit, funding, capital, and margin perspectives.
+    \end{itemize}
+    \note{When we aggregate the adjustments we add CVA, FVA, KVA, and MVA while subtracting DVA, so pay careful attention to the sign conventions. The only way to avoid double counting is to coordinate scenarios across risk factors, which then feed composite dashboards for management and stress testing exercises.}
+\end{frame}
+
+\begin{frame}{XVA Desks and Governance}
+    \begin{itemize}
+        \item Central desks provide pricing, hedging oversight, and data stewardship.
+        \item Operating models balance centralisation with desk-specific expertise.
+        \item Policies codify model governance, escalation, and hedge limits.
+        \item Technology investment underpins exposure aggregation and responsiveness.
+    \end{itemize}
+    \note{An effective XVA desk acts as a central hub for pricing, hedging oversight, and data stewardship. Operating models balance shared services with desk-specific expertise, underpinned by policies that codify governance, escalation paths, and hedge limits. Technology investment is the backbone that keeps exposure aggregation and response times robust.}
+\end{frame}
+
+\begin{frame}{Regulation and Emerging Trends}
+    \begin{itemize}
+        \item FRTB-CVA introduces SA-CVA capital: $\mathrm{SA\text{-}CVA} = \sqrt{\sum_i K_i^2 + 2\sum_{i<j} \rho_{ij}K_iK_j}$.
+        \item Emphasis on eligible hedges, data quality, and transparency in reporting.
+        \item Supervisors probing climate risk, collateral resilience, and automation.
+        \item Machine learning accelerates exposure modelling but raises governance needs.
+    \end{itemize}
+    \note{Regulatory momentum continues with frameworks like FRTB-CVA, where the standardised approach aggregates capital charges with correlation terms. Supervisors now expect clear evidence of eligible hedges, transparent data quality, and emerging risk coverage around climate resilience and automation. Even as we experiment with machine learning to accelerate exposure modelling, we must pair innovation with governance discipline.}
+\end{frame}
+
+\section{Closing}
+
+\begin{frame}{Key Takeaways}
+    \begin{itemize}
+        \item XVA extends derivative valuation to capture credit, funding, margin, and capital.
+        \item CVA and DVA rely on shared exposure engines with distinct credit lenses.
+        \item FVA and MVA surface liquidity costs tied to funding and initial margin.
+        \item Integrated XVA demands coordinated models, governance, and technology.
+        \item Regulatory momentum elevates transparency and cross-functional collaboration.
+    \end{itemize}
+    \note{Let me close by reinforcing how each valuation adjustment extends derivative pricing to capture different economic realities. CVA and DVA share exposure infrastructure but focus on opposite credit perspectives, FVA and MVA surface liquidity and margin costs, and integrated XVA relies on coordinated models and governance. Please revisit the detailed modules for deeper dives and bring forward any questions for our follow-up discussions.}
+\end{frame}
+
+\end{document}
