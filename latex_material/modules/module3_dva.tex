@@ -1,0 +1,17 @@
+\section{Module 3: Debit Valuation Adjustment (DVA)}
+
+\subsection{Understanding Own Credit Considerations}
+Debit Valuation Adjustment (DVA) represents the benefit a bank realises if it were to default while owing money on outstanding derivatives. Whereas CVA charges the expected loss due to counterparty default, DVA mirrors the exposure from the bank's perspective and acknowledges that a deterioration in the institution's own credit quality reduces the fair value of its liabilities. Recognising DVA therefore aligns derivative valuations with bilateral credit risk and supports accounting frameworks that require inclusion of an entity's own credit standing.
+
+\subsection{Analytical Representation}
+The simplest expression for DVA parallels the CVA integral but substitutes the bank's own credit parameters and expected negative exposure (ENE):
+\begin{equation}
+    \mathrm{DVA} = (1 - R_b) \int_{0}^{T} ENE(t)\, \lambda_b(t)\, S_b(t)\, D(0, t)\, dt,
+\end{equation}
+where $R_b$ is the bank's recovery rate, $\lambda_b(t)$ its hazard rate, and $S_b(t)$ the survival probability. In practice, ENE is generated from the same Monte Carlo exposure engine used for CVA, ensuring consistent treatment of netting sets, collateral terms, and market scenarios.
+
+\subsection{Implementation Challenges}
+Modelling DVA raises conceptual and governance questions. Many institutions limit recognition of the benefit because realising it requires a distress scenario in which other funding costs explode and operational continuity is doubtful. Moreover, accounting standards diverge: IFRS~13 recognises DVA in fair value, while regulatory capital rules often exclude it when computing loss-absorbing resources. Governance frameworks therefore track DVA as a reporting metric, stress test the sensitivity to funding spreads, and set hedging policies that avoid speculative positions on the bank's own credit.
+
+\subsection{Hedging and Risk Transfer}
+Directly hedging DVA is controversial because purchasing protection on one's own credit is not feasible. Instead, treasury teams manage the volatility indirectly by steering funding strategies, reducing uncollateralised liabilities, and allocating capital buffers that absorb mark-to-market swings. Scenario analysis often supplements hedging by illustrating how coordinated shocks to credit spreads, liquidity conditions, and collateral usage influence the combined CVA/DVA profile.
