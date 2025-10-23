@@ -1,0 +1,17 @@
+\section{Module 5: Margin Valuation Adjustment (MVA)}
+
+\subsection{Economic Motivation}
+Margin Valuation Adjustment (MVA) captures the cost of funding segregated initial margin posted to clearing houses or bilateral counterparties. Unlike variation margin, initial margin is typically locked in low-yield collateral accounts, creating a liquidity drag that persists for the life of the trade. MVA quantifies this opportunity cost so that pricing, client negotiation, and balance sheet planning reflect the incremental funding required by margin regulations.
+
+\subsection{Modelling Frameworks}
+Initial margin requirements are highly path dependent, depending on portfolio volatility, concentration limits, and eligibility schedules. A common approximation discretises the cost as
+\begin{equation}
+    \mathrm{MVA} = \sum_{k} IM(t_k)\, (s_f(t_k) - r_{rem}(t_k))\, D(t_k)\, \Delta t,
+\end{equation}
+where $IM(t_k)$ is the simulated initial margin at time $t_k$, $s_f$ the funding spread for posting margin, $r_{rem}$ the remuneration rate paid on the collateral account, and $D(t_k)$ the discount factor. More advanced models integrate stochastic initial margin dynamics driven by SIMM or bespoke VaR/Expected Shortfall frameworks and include optionality from eligible collateral substitution.
+
+\subsection{Infrastructure and Data Requirements}
+Producing reliable MVA numbers requires high-quality data on margin methodologies, eligible collateral schedules, and re-hypothecation rights. Exposure engines must replicate the same risk sensitivities used by clearing houses or bilateral agreements so that simulated $IM(t_k)$ aligns with observed calls. Operational processes track intraday margin utilisation, collateral settlement cycles, and potential breaches of concentration thresholds. Integration with treasury ensures funding plans consider the long-term liquidity encumbrance created by mandated margin posting.
+
+\subsection{Risk Management and Governance}
+Risk managers view MVA alongside liquidity coverage ratios and stress testing obligations. Hedging strategies may involve optimising collateral allocation across desks, negotiating portfolio margining arrangements, or entering committed funding facilities that stabilise margin costs during stress. Governance frameworks monitor MVA sensitivities to volatility shocks, ensure transparency in client pricing, and coordinate with regulatory reporting teams responsible for uncleared margin rules.

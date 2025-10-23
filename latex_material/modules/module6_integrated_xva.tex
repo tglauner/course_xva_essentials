@@ -1,0 +1,21 @@
+\section{Module 6: Advanced Topics and Integrated XVA}
+
+\subsection{Interdependency of Adjustments}
+An enterprise-wide XVA framework recognises that CVA, DVA, FVA, MVA, and capital valuation adjustment (KVA) stem from shared trade populations and market data. Aggregated metrics often collapse the components into a composite measure
+\begin{equation}
+    \mathrm{XVA}_{\text{total}} = \mathrm{CVA} - \mathrm{DVA} + \mathrm{FVA} + \mathrm{KVA} + \mathrm{MVA},
+\end{equation}
+which highlights the sign conventions relevant for economic decision-making. Scenario coordination across credit, funding, capital, and margin drivers avoids double counting and allows management to analyse the risk profile under coherent stress assumptions.
+
+\subsection{XVA Desks and Operating Models}
+Integrated XVA desks bridge front-office pricing with risk management, treasury, and finance. Key responsibilities include providing trade-level valuation adjustments, managing hedge strategies, overseeing model governance, and ensuring data lineage across systems. Organisational structures vary: some institutions centralise analytics and hedging within a single desk, while others distribute responsibilities but rely on shared infrastructure and governance committees.
+
+\subsection{Regulatory Landscape and Emerging Trends}
+Supervisors continue to refine requirements around CVA capital and risk management. The Fundamental Review of the Trading Book introduces the Standardised Approach to CVA (SA-CVA), where the capital charge aggregates weighted sensitivities across counterparties:
+\begin{equation}
+    \mathrm{SA\text{-}CVA} = \sqrt{\sum_{i} K_i^2 + 2 \sum_{i<j} \rho_{ij} K_i K_j},
+\end{equation}
+with $K_i$ representing bucket-level capital contributions and $\rho_{ij}$ the prescribed correlations. Beyond capital, regulators are expanding expectations around climate scenario analysis, resilience of collateral operations, and use of advanced technology such as machine learning to accelerate exposure modelling.
+
+\subsection{Case Studies and Implementation Lessons}
+Industry case studies underscore the importance of data governance and cross-functional collaboration. Remediation programmes often begin with reconciling trade populations across risk and finance, establishing golden sources for market data, and automating sensitivity aggregation. Successful initiatives demonstrate tangible benefits such as reduced hedge slippage, improved pricing turnaround times, and transparent capital allocation that aligns client pricing with the institution's strategic objectives.

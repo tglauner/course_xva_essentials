@@ -1,0 +1,17 @@
+\section{Module 4: Funding Valuation Adjustment (FVA)}
+
+\subsection{Liquidity Transfer Pricing}
+Funding Valuation Adjustment (FVA) internalises the spread between a bank's unsecured funding curve and the discounting basis embedded in derivative prices. Positive exposure requires the institution to raise cash to hedge or collateralise trades, while negative exposure provides excess liquidity. FVA ensures these asymmetric funding costs are priced consistently and that trade-level profitability reflects the liquidity transfer pricing policies agreed with treasury.
+
+\subsection{Quantitative Structure}
+In continuous time, FVA is computed as the discounted expectation of funding spreads applied to future exposure profiles:
+\begin{equation}
+    \mathrm{FVA}(t_0) = \int_{t_0}^{T} \mathbb{E}^{\mathbb{Q}}\left[\left(s(t) E^{+}(t) - b(t) E^{-}(t)\right) D_d(t)\right] dt,
+\end{equation}
+where $s(t)$ is the unsecured borrowing spread, $b(t)$ the investing spread for negative exposure, $E^{+}(t)$ and $E^{-}(t)$ the positive and negative exposure processes, and $D_d(t)$ the discount factor from the discounting curve. Discretely, institutions often approximate the integral with time buckets aligned to collateral calls or valuation dates while incorporating wrong-way risk adjustments.
+
+\subsection{Operational Considerations}
+Implementing FVA demands coordination across trading desks, treasury, and risk functions. Critical tasks include constructing coherent funding curves for each currency, mapping collateral agreements to the correct exposure simulations, and capturing optionality in contractual funding rights. Data lineage is particularly important: exposure cubes, collateral schedules, and funding parameters must be synchronised to avoid inconsistent FVA results across reporting processes.
+
+\subsection{Hedging and Governance}
+Unlike CVA, FVA cannot be hedged via liquid credit instruments. Governance therefore centres on policy design: deciding whether to charge symmetric spreads, setting thresholds for trade approvals when FVA dominates deal economics, and maintaining transparency between desk-level P\&L and central treasury funding costs. Scenario analyses that combine market shocks with liquidity stresses help senior management understand how FVA behaves under stressed conditions and supports integration with liquidity risk appetite statements.
