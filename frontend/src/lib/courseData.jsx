@@ -5,6 +5,7 @@ import { module4Metadata, module4Content } from './modules/module4.jsx'
 import { module5Metadata, module5Content } from './modules/module5.jsx'
 import { module6Metadata, module6Content } from './modules/module6.jsx'
 import { module7Metadata, module7Content } from './modules/module7.jsx'
+import { module8Metadata, module8Content } from './modules/module8.jsx'
 
 export const glossary = {
     'CVA': {
@@ -96,7 +97,8 @@ export const modules = [
   module4Metadata,
   module5Metadata,
   module6Metadata,
-  module7Metadata
+  module7Metadata,
+  module8Metadata
 ]
 
 export const moduleContent = {
@@ -106,5 +108,6 @@ export const moduleContent = {
   4: module4Content,
   5: module5Content,
   6: module6Content,
-  7: module7Content
+  7: module7Content,
+  8: module8Content
 }

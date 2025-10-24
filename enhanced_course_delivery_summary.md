@@ -82,7 +82,13 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 4. **MVA Hedging and Management: A Complex Endeavor** — collateral optimisation, term funding, and liquidity facilities
 5. **Regulatory Impact: Driving Behavioral Change** — BCBS–IOSCO governance, dispute processes, and stress expectations
 
-### **Module 6: Advanced Topics and Integration** (5 Sub-sections)
+### **Module 6: Capital Valuation Adjustment (KVA)** (4 Sub-sections)
+1. **Economic Rationale and Shareholder Expectations** — capital as a priced resource within derivative valuation
+2. **Regulatory Capital Stack** — Pillar 1 CVA/default charges, Pillar 2 add-ons, leverage and macro-prudential buffers
+3. **Quantitative Framework** — discrete KVA approximation $\text{KVA} = \sum \text{Capital}(t_k)(c - r(t_k))D(0,t_k)\Delta t$ with scenario alignment to RWA and FRTB-CVA metrics
+4. **Governance and Optimisation** — transfer pricing, trade compression, collateral strategy, and integration with other XVAs
+
+### **Module 7: Advanced Topics and Integration** (5 Sub-sections)
 1. **Interdependencies of XVA Components: The Holistic View** — $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$ and shared scenarios
 2. **XVA Desks and Organizational Structure** — integrated operating models across front office, risk, finance, and treasury
 3. **Regulatory Landscape and Future of XVA** — FRTB-CVA, stress capital buffers, and climate/technology guidance
@@ -116,7 +122,7 @@ This enhanced graduate-level course on X-Value Adjustments (XVA) in Financial Ma
 ## 📊 **Technical Specifications**
 
 ### **Content Statistics**
-- **6 Comprehensive Modules** with 30+ detailed sub-sections
+- **7 Comprehensive Modules** with 35+ detailed sub-sections
 - **50+ Interactive Terms** with definitions and formulas
 - **15+ Case Studies** and real-world examples
 - **25+ Mathematical Formulations** with proper styling

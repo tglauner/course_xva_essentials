@@ -2,8 +2,7 @@
 
 ## XVA Essentials Course
 
-A repository of course materials and a React/Vite website for the XVA Essentials curriculum. Module 7 now highlights the
-"Roadmap: Interactive Jupyter XVA Sandbox," outlining the forthcoming embedded notebook experience.
+A repository of course materials and a React/Vite website for the XVA Essentials curriculum. Module 6 now introduces a dedicated Capital Valuation Adjustment unit, and Module 8 continues the "Roadmap: Interactive Jupyter XVA Sandbox" preview of the forthcoming embedded notebook experience.
 
 ## Features
 

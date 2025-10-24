@@ -2,14 +2,14 @@
 
 ## Course Overview
 
-This graduate-level course provides a comprehensive exploration of XVA (X-Value Adjustments) in financial markets, focusing on Credit Valuation Adjustment (CVA), Debit Valuation Adjustment (DVA), Funding Valuation Adjustment (FVA), and Margin Valuation Adjustment (MVA). The course will delve into the theoretical foundations, mathematical formulations, practical applications, and regulatory implications of these crucial adjustments in derivative pricing and risk management. Students will gain a deep understanding of how XVA impacts financial institutions, derivative trading, and capital allocation.
+This graduate-level course provides a comprehensive exploration of XVA (X-Value Adjustments) in financial markets, focusing on Credit Valuation Adjustment (CVA), Debit Valuation Adjustment (DVA), Funding Valuation Adjustment (FVA), Margin Valuation Adjustment (MVA), and Capital Valuation Adjustment (KVA). The course will delve into the theoretical foundations, mathematical formulations, practical applications, and regulatory implications of these crucial adjustments in derivative pricing and risk management. Students will gain a deep understanding of how XVA impacts financial institutions, derivative trading, and capital allocation.
 
 ## Learning Objectives
 
 Upon successful completion of this course, students will be able to:
 
 *   Understand the fundamental concepts and rationale behind XVA.
-*   Differentiate between CVA, DVA, FVA, and MVA, and their respective roles in derivative valuation.
+*   Differentiate between CVA, DVA, FVA, MVA, and KVA, and their respective roles in derivative valuation.
 *   Comprehend the mathematical models and methodologies used for calculating each XVA component.
 *   Analyze the practical challenges and complexities involved in XVA implementation and management.
 *   Evaluate the impact of regulatory frameworks (e.g., Basel III) on XVA and capital requirements.
@@ -85,17 +85,32 @@ Upon successful completion of this course, students will be able to:
 *   **Topic 5.4:** Hedging, Funding Strategy, and Regulatory Impact
     *   Collateral optimisation, committed liquidity facilities, and supervisory expectations for stress testing
 
-### Module 6: Advanced Topics and Integrated XVA
+### Module 6: Capital Valuation Adjustment (KVA)
 
-*   **Topic 6.1:** Interdependencies of XVA Components
+*   **Topic 6.1:** Economic Rationale for KVA
+    *   Shareholder return-on-equity expectations and capital opportunity cost
+    *   Differences between loss-based adjustments (CVA, FVA, MVA) and capital charges
+*   **Topic 6.2:** Regulatory Capital Stack
+    *   Pillar 1 counterparty credit risk, CVA risk, and market risk components
+    *   Pillar 2 add-ons, macro-prudential buffers, and leverage constraints
+*   **Topic 6.3:** KVA Quantification
+    *   Discrete approximation $\text{KVA} = \sum \mathrm{Capital}(t_k)(c - r(t_k))D(0, t_k) \Delta t$
+    *   Scenario alignment with RWA projections and FRTB-CVA metrics
+*   **Topic 6.4:** Optimisation and Governance
+    *   Trade compression, collateral negotiation, and capital steering committees
+    *   Integration with transfer pricing, stress testing, and profitability dashboards
+
+### Module 7: Advanced Topics and Integrated XVA
+
+*   **Topic 7.1:** Interdependencies of XVA Components
     *   Aggregate metric $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$
     *   Scenario coordination across credit, funding, capital, and margin analytics
-*   **Topic 6.2:** XVA Desks and Organisational Structure
+*   **Topic 7.2:** XVA Desks and Organisational Structure
     *   Operating models spanning front office, risk, finance, and treasury with shared data infrastructure
-*   **Topic 6.3:** Regulatory Landscape and Future of XVA
+*   **Topic 7.3:** Regulatory Landscape and Future of XVA
     *   FRTB-CVA standardised capital (e.g., $\text{SA-CVA} = \sqrt{\sum_i K_i^2 + 2 \sum_{i<j} \rho_{ij} K_i K_j}$)
     *   Emerging expectations around stress capital buffers, climate scenarios, and advanced technology adoption
-*   **Topic 6.4:** Case Studies and Real-World Examples
+*   **Topic 7.4:** Case Studies and Real-World Examples
     *   Measuring hedge effectiveness and capital impact ratios in post-remediation reviews
 
 ## Assessment

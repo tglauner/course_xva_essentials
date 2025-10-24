@@ -379,9 +379,42 @@ Hedging MVA focuses on stabilising the IM trajectory. Portfolio compression, cle
 
 Global margin rules phased in under BCBS–IOSCO have reshaped product design and client negotiation. Concentration limits, eligible collateral schedules, and dispute management expectations require operational investment that is folded into MVA. Supervisors scrutinise joint stress scenarios where surging volatility and funding spreads coincide, demanding transparent governance, independent validation, and consistent accounting treatment of margin funding costs.
 
-# Module 6: Advanced Topics and Integrated XVA
+# Module 6: Capital Valuation Adjustment (KVA)
 
-## 6.1 Interdependencies of XVA Components: The Holistic View
+## 6.1 Definition and Rationale: Pricing the Cost of Capital
+
+Capital Valuation Adjustment (KVA) translates regulatory capital requirements into an explicit cost within trade pricing. While CVA, DVA, FVA, and MVA focus on expected credit losses, funding frictions, or collateral segregation, KVA reflects the return-on-equity that shareholders demand on capital locked against counterparty exposure. Without KVA, trades that appear profitable on a margin basis can erode risk-adjusted returns because equity is trapped to satisfy leverage, risk-weighted asset, and stress-buffer constraints.
+
+## 6.2 Regulatory Capital Stack: Pillars and Buffers
+
+Regulatory capital stems from multiple layers:
+
+* **Pillar 1:** minimum requirements for counterparty credit risk, default risk, and CVA risk. The Standardised Approach aggregates weighted sensitivities, while the Internal Models Approach uses 10-day VaR and stressed VaR measures with multipliers reflecting model quality.
+* **Pillar 2:** add-ons for model limitations, governance weaknesses, or concentration risk identified by supervisors.
+* **Macro-prudential buffers:** countercyclical, systemic, and stress capital buffers that expand during periods of rapid credit growth or heightened systemic risk.
+* **Leverage constraints:** non-risk-weighted measures that cap total exposure and can bind even when risk-weighted ratios appear comfortable.
+
+These layers roll up into capital balances that treasury must fund at the institution's hurdle rate.
+
+## 6.3 Quantitative Formulation: Discounting Capital Charges
+
+KVA projects regulatory capital requirements through time and discounts the excess return demanded by stakeholders. A discrete approximation mirrors other valuation adjustments by substituting capital balances for expected exposure:
+
+$$\text{KVA} = \sum_{k=1}^{n} \text{Capital}(t_k)\, \big(c - r(t_k)\big)\, D(0, t_k)\, \Delta t,$$
+
+where $c$ denotes the cost of capital, $r(t_k)$ is the discount rate consistent with valuation, and $D(0, t_k)$ the risk-free discount factor. Scenario design aligns with the same exposure cubes, credit spread shocks, and stressed parameters that drive CVA and FRTB-CVA capital so that sensitivities remain coherent across the stack.
+
+## 6.4 Governance and Optimisation: Steering Scarce Capital
+
+Because capital cannot be hedged directly in markets, banks manage KVA through structural levers. Trade compression and novations reduce exposure-at-default. Collateral negotiations and clearing choices lower risk weights. Product design steers business toward portfolios with superior capital efficiency. Funds-transfer-pricing frameworks charge desks for capital consumption so pricing decisions internalise the KVA drag. Governance committees reconcile projected capital usage with finance, risk, and treasury, escalating when buffers fall toward internal limits.
+
+## 6.5 Interaction with Other XVA Components
+
+KVA is tightly coupled with the broader XVA stack. Tighter collateral terms may reduce CVA yet raise initial margin, increasing MVA and pushing leverage ratios higher. Funding strategies that shorten liability tenors can lower FVA while increasing exposure to leverage constraints. Integrated dashboards and scenario analysis trace how credit shocks, spread moves, and collateral changes alter all adjustments simultaneously, ensuring that management evaluates deals on a genuinely enterprise-wide, capital-aware basis.
+
+# Module 7: Advanced Topics and Integrated XVA
+
+## 7.1 Interdependencies of XVA Components: The Holistic View
 
 All valuation adjustments examine the same portfolio through different risk lenses, so optimising one component inevitably perturbs others. A consolidated view tracks
 
@@ -397,11 +430,11 @@ $$\text{FVA} = \int_0^T EPE(t) [f(t) - r(t)] D(0,t)\, dt.$$
 
 Collateral policies, funding strategies, and capital metrics therefore need shared scenarios and data lineage so that hedges, client terms, and pricing adjustments remain economically consistent.
 
-## 6.2 XVA Desks and Organizational Structure
+## 7.2 XVA Desks and Organizational Structure
 
 Integrated XVA desks centralise pricing, hedging, and governance. Front-office teams receive a composite adjustment that already embeds funding and capital costs, risk management validates methodologies and monitors sensitivities, and finance ensures alignment with accounting standards. Cross-functional forums, transfer pricing committees, and golden-source data platforms enable rapid recalibration when credit spreads, liquidity conditions, or regulatory expectations shift.
 
-## 6.3 Regulatory Landscape and Future of XVA
+## 7.3 Regulatory Landscape and Future of XVA
 
 Supervisors demand transparent, stress-resilient methodologies. The Fundamental Review of the Trading Book (FRTB-CVA) introduces covariance-based capital calculations such as
 
@@ -413,7 +446,7 @@ $$\text{Stress Capital Buffer} = \frac{\max(\text{Projected Loss} - \text{Allowa
 
 Model governance frameworks document data sources, proxy hierarchies, validation frequency, and remediation plans so that methodological changes receive timely supervisory non-objection.
 
-## 6.4 Case Studies and Real-World Examples
+## 7.4 Case Studies and Real-World Examples
 
 Empirical reviews evaluate how institutions responded to funding shocks, collateral disputes, or regulatory remediation. Performance metrics track
 
@@ -425,6 +458,6 @@ $$\text{Capital Impact Ratio} = \frac{\text{Post-Remediation CVA Capital}}{\text
 
 helping teams quantify whether hedges, process improvements, or data investments delivered the intended economic relief.
 
-## 6.5 Future Trends and Challenges in XVA
+## 7.5 Future Trends and Challenges in XVA
 
 Emerging themes include climate-related scenario analysis, real-time data aggregation, artificial intelligence for exposure approximation, and distributed ledger infrastructure for collateral management. Regulators increasingly expect explainable models, robust cyber controls, and clear senior-management accountability, so XVA teams pair quantitative innovation with disciplined governance and transparent stakeholder communication.
