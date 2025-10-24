@@ -238,7 +238,7 @@ const PaywallGate = ({ onAccessGranted }) => {
                       <span className="font-medium text-blue-800">What's Included:</span>
                     </div>
                     <ul className="text-sm text-blue-700 space-y-1">
-                      <li>• Complete access to all 6 modules</li>
+                      <li>• Complete access to all 7 analytical modules plus the roadmap preview</li>
                       <li>• Interactive glossary and term definitions</li>
                       <li>• Case studies and real-world examples</li>
                       <li>• Mathematical formulations and analysis</li>

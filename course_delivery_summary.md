@@ -13,10 +13,10 @@ The course has been deployed as a fully interactive website featuring:
 - **Responsive Design:** Works seamlessly on desktop and mobile devices, including improved touch interaction for tablets like iPad.
 - **Interactive Modules:** Click-to-expand content sections for each module
 - **Professional Styling:** Modern UI with Tailwind CSS and shadcn/ui components
-- **Comprehensive Content:** All 6 modules with detailed explanations and mathematical formulations
+- **Comprehensive Content:** All 7 modules with detailed explanations and mathematical formulations
 
 #### Website Features:
-- Course overview with statistics (6 modules, 20+ topics, Advanced level)
+- Course overview with statistics (7 modules, 24+ topics, Advanced level)
 - Module-based navigation with icons and descriptions
 - Expandable content sections with detailed explanations
 - Mathematical formulas in highlighted boxes
@@ -63,7 +63,13 @@ A complete LaTeX Beamer presentation containing:
 - Integral expression $\text{MVA} = \mathbb{E}^{\mathbb{Q}}[\int_0^T D(t) IM(t) (s_f(t) - r_{rem}(t)) \mathbf{1}_{\{t<\tau_c \wedge \tau_b\}} dt]$ and discrete approximations
 - Comparison of ISDA SIMM and internal models, plus hedging via collateral optimisation and committed liquidity facilities
 
-#### Module 6: Advanced Topics and Integrated XVA
+#### Module 6: Capital Valuation Adjustment (KVA)
+- Definition of KVA as the cost of holding regulatory capital against derivative exposure
+- Capital stack spanning Pillar 1 CVA/default risk, Pillar 2 add-ons, and macro-prudential buffers
+- Quantitative formula $\text{KVA} = \sum \text{Capital}(t_k)(c - r(t_k))D(0,t_k)\Delta t$ with scenario alignment to RWA and FRTB-CVA
+- Governance practices for capital steering, transfer pricing, and interaction with other XVA components
+
+#### Module 7: Advanced Topics and Integrated XVA
 - Holistic metric $\text{XVA}_{\text{total}} = \text{CVA} - \text{DVA} + \text{FVA} + \text{KVA} + \text{MVA}$ and shared scenario governance
 - Organisational design of XVA desks across front office, risk, finance, and treasury
 - Regulatory emphasis on FRTB-CVA, stress capital buffers, and climate/technology trends
@@ -141,7 +147,7 @@ The permanent website deployment at https://www.course-xva-essentials.tglauner.c
 **Created by:** Manus AI  
 **Date:** July 2025  
 **Course Level:** Graduate  
-**Total Modules:** 6  
+**Total Modules:** 7  
 **Topics Covered:** 20+  
 **Formats:** Interactive Website + LaTeX Beamer Presentation
 

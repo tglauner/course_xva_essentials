@@ -12,7 +12,7 @@
 \usepackage{hyperref}
 
 \title{XVA Essentials: Integrated Adjustments}
-\subtitle{45-Minute Lecture Covering Modules 1--6}
+\subtitle{45-Minute Lecture Covering Modules 1--7}
 \author{Course Faculty}
 \date{\\ \small Updated \today}
 
@@ -28,23 +28,24 @@
 \begin{frame}{Pacing Strategy for 45 Minutes}
     \begin{itemize}
         \item 5 min: Context setting and roadmap across modules.
-        \item 8 min: Module 1 highlights on XVA motivation and evolution.
-        \item 12 min: Modules 2--3 covering CVA and DVA fundamentals.
-        \item 12 min: Modules 4--5 on funding and margin adjustments.
-        \item 8 min: Module 6 integration plus Q\&A or discussion bridge.
+        \item 7 min: Module 1 highlights on XVA motivation and evolution.
+        \item 10 min: Modules 2--3 covering CVA and DVA fundamentals.
+        \item 8 min: Modules 4--5 on funding and margin adjustments.
+        \item 7 min: Module 6 on capital valuation dynamics.
+        \item 8 min: Module 7 integration plus Q\&A or discussion bridge.
     \end{itemize}
-    \note{Here is how I have structured the 45 minutes. We will start with a short scene-setting overview, then spend the largest block on CVA and DVA because they anchor all other adjustments. Funding and margin topics receive equal attention before we close by integrating the components and opening the floor for questions. Please keep this roadmap in mind as we progress.}
+    \note{Here is how I have structured the 45 minutes. We begin with a short scene-setting overview, then reinforce the foundation with Module 1 before dedicating time to the core credit adjustments in Modules 2 and 3. Modules 4 and 5 keep funding and margin in focus, Module 6 highlights capital valuation themes, and finally Module 7 integrates the stack and opens the floor for questions. Keep this roadmap in mind as we progress.}
 \end{frame}
 
 \begin{frame}{Learning Outcomes}
     \begin{itemize}
         \item Recognise the economic drivers behind each core XVA component.
-        \item Interpret fundamental valuation formulas for CVA, DVA, FVA, and MVA.
+        \item Interpret fundamental valuation formulas for CVA, DVA, FVA, MVA, and KVA.
         \item Connect operating model requirements to reliable adjustment delivery.
         \item Appreciate governance and regulatory expectations shaping XVA desks.
-        \item Synthesise adjustments into an enterprise-wide XVA perspective.
+        \item Evaluate capital, funding, and credit interactions within an enterprise-wide XVA perspective.
     \end{itemize}
-    \note{By the end of this lecture you should be able to recognise the economic drivers for each valuation adjustment, interpret the core formulas, and link them to operating model requirements. I also want you to appreciate the governance and regulatory expectations that surround XVA desks so you can synthesize an enterprise-wide perspective.}
+    \note{By the end of this lecture you should be able to recognise the economic drivers for each valuation adjustment, interpret the core formulas including the capital component, and link them to operating model requirements. I also want you to appreciate the governance and regulatory expectations that surround XVA desks so you can evaluate how credit, funding, margin, and capital perspectives combine into an enterprise-wide view.}
 \end{frame}
 
 \section{Module 1: Introduction}
@@ -164,7 +165,29 @@
     \note{Looking at the approximation, each time bucket combines the required initial margin with the difference between our funding spread and the remuneration rate we earn on the collateral. Accurate scenario-based modelling, aligned with CCP or SIMM methodologies, and strong data governance around collateral terms are vital to get this right.}
 \end{frame}
 
-\section{Module 6: Integrated XVA}
+\section{Module 6: Capital Valuation Adjustment}
+
+\begin{frame}{KVA Drivers and Capital Stack}
+    \begin{itemize}
+        \item Capitalises Pillar 1 counterparty credit and CVA charges plus Pillar 2 buffers.
+        \item Converts risk-weighted assets and leverage constraints into priced resources.
+        \item Sensitive to portfolio concentration, collateral terms, and stress scenarios.
+        \item Aligns trading behaviour with shareholder return-on-equity targets.
+    \end{itemize}
+    \note{Capital valuation adjustment recognises that every derivative consumes regulatory capital across Pillar 1, Pillar 2, and macro-prudential buffers. We translate risk-weighted assets, leverage ratio exposures, and stress capital demands into priced resources so that trades clear the institution's return-on-equity target. Pay attention to how portfolio concentration, collateral, and stress assumptions influence the capital stack.}
+\end{frame}
+
+\begin{frame}{KVA Quantification and Governance}
+    \begin{itemize}
+        \item Discrete approximation: $\mathrm{KVA} = \sum_k \mathrm{Capital}(t_k)(c - r(t_k))D(0,t_k)\,\Delta t$.
+        \item Capital paths draw on projected RWA, leverage exposures, and FRTB-CVA metrics.
+        \item Mitigation relies on trade compression, collateral optimisation, and booking strategy.
+        \item Governance links pricing adjustments to regulatory filings and management reporting.
+    \end{itemize}
+    \note{Here we highlight the practical computation: we project capital balances, apply the hurdle rate minus the risk-free rate, and discount back. Scenario design must align with the capital frameworks used for RWA and FRTB-CVA so that pricing matches regulatory filings. Since there is no direct hedge for KVA, desks manage it through trade selection, collateral terms, and balance-sheet strategy, all under strong governance.}
+\end{frame}
+
+\section{Module 7: Integrated XVA}
 
 \begin{frame}{Combining Adjustments}
     \begin{itemize}

@@ -1,0 +1,74 @@
+\section{Module 6: Capital Valuation Adjustment (KVA)}
+
+\subsection{6.1 Conceptual Foundations of KVA}
+Capital Valuation Adjustment (KVA) captures the opportunity cost of holding
+regulatory capital against derivative exposures. Whereas CVA, DVA, FVA, and
+MVA focus on expected losses, funding frictions, or margin segmentation, KVA
+links valuation to the return-on-equity targets that shareholders require on
+regulatory capital. Basel III and the Fundamental Review of the Trading Book
+(FRTB) specify capital buffers for counterparty credit risk, default risk, and
+market risk. KVA internalises these costs by discounting the stream of capital
+charges using the institution's hurdle rate. Without KVA, trade pricing can
+appear profitable while eroding risk-adjusted returns because capital is locked
+in to absorb potential losses.
+
+\subsection{6.2 Regulatory Capital Stack and Measurement}
+Regulatory capital requirements arise from multiple layers: minimum Pillar~1
+charges for counterparty credit risk and CVA risk, Pillar~2 add-ons for model
+and governance deficiencies, and macro-prudential buffers such as the
+countercyclical capital buffer. Banks aggregate risk-weighted assets (RWA) from
+standardised or internal models and translate them into capital using target
+ratios. For an internal models approach (IMA) desk, CVA capital might be
+computed as
+\begin{equation}
+K^{\text{CVA}}_{\text{IMA}} = \sqrt{\mathrm{VaR}^2_{10\text{d}} + \mathrm{SVaR}^2_{10\text{d}}}
+\times \mathrm{MC},
+\end{equation}
+where $\mathrm{VaR}$ and $\mathrm{SVaR}$ are ten-day measures calibrated to
+current and stressed periods, and $\mathrm{MC}$ denotes a multiplier reflecting
+model quality. Default risk capital, exposure-at-default calculations, and
+leverage ratio constraints also feed into the capital stack that KVA must fund.
+
+\subsection{6.3 KVA Quantification and Discounting}
+KVA is commonly approximated by projecting required capital balances and
+charging them at the bank's cost of capital net of any return recognised in the
+valuation. A discrete-time formulation is
+\begin{equation}
+\mathrm{KVA} = \sum_{k=1}^{n} \mathrm{Capital}(t_k)\,\bigl( c - r(t_k) \bigr)\,D(0,t_k)\,\Delta t,
+\end{equation}
+where $c$ is the hurdle rate, $r(t_k)$ is the risk-free rate consistent with the
+valuation framework, and $D(0,t_k)$ is the discount factor. Capital balances may
+be obtained from projected risk-weighted assets, stressed exposure profiles, or
+credit spread scenarios. Because capital metrics are typically reported
+quarterly, practitioners interpolate between reporting dates while preserving the
+impact of step-changes triggered by portfolio rebalancing or model approvals.
+
+\subsection{6.4 Governance, Hedging, and Strategic Responses}
+Unlike CVA or FVA, KVA cannot be hedged directly in financial markets; instead,
+institutions optimise capital usage through portfolio steering, collateral
+negotiations, and product design. Frequent measures include
+\begin{itemize}
+  \item prioritising centrally cleared trades or secured financing that attract
+  lower risk weights;
+  \item compressing redundant trades to reduce exposure-at-default and
+  counterparty concentration add-ons;
+  \item issuing capital-efficient structures, such as structured notes matched
+  to client demand, that recycle capital-intensive risks;
+  \item embedding capital charges into funds-transfer-pricing so desks internalise
+  the cost when quoting trades.
+\end{itemize}
+Governance frameworks assign ownership for capital projections, align treasury
+and risk appetite statements, and document escalation procedures when capital
+buffers erode. Supervisors expect transparent reconciliation between pricing
+adjustments, regulatory filings, and management reporting.
+
+\subsection{6.5 Interaction with Other XVA Components}
+KVA interacts with the broader XVA stack through shared exposure scenarios and
+policy choices. Tightening collateral terms reduces expected exposure and CVA,
+but it may increase initial margin and therefore MVA; the resulting change in
+risk-weighted assets flows into KVA. Funding strategies that shorten liability
+maturities can lower FVA but raise leverage ratio constraints, adding to KVA.
+Stress testing needs to propagate shocks to credit spreads, exposures, and
+capital simultaneously so that management decisions consider aggregate economic
+value. Integrating KVA into dashboards and profitability metrics ensures that
+trading desks balance headline revenues with risk-adjusted returns.
