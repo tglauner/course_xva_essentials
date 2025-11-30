@@ -35,6 +35,27 @@ issues (for example, deep links that fail to render the SPA shell), inspect the 
    pnpm test        # no tests defined yet
    ```
 
+## Exporting the LaTeX Course to a Word Document
+
+You can create a Word (`.docx`) file from the LaTeX source that already includes the title page, table of contents, and Section 1 content.
+
+1. **Install Pandoc on macOS**
+   ```bash
+   brew install pandoc
+   ```
+   If Homebrew is not yet installed, follow the instructions at https://brew.sh first.
+
+2. **Run the conversion from the repository root**
+   ```bash
+   cd latex_material
+   pandoc xva_verbatim_web.tex -s -o XVA_Essentials.docx --toc
+   ```
+   * `-s` ensures the document is standalone so the title page and preamble are respected.
+   * `--toc` builds a Word table of contents from the LaTeX section structure.
+
+3. **Open and adjust (optional)**
+   Open `XVA_Essentials.docx` in Word to confirm formatting. Pandoc maps LaTeX section headings to Word styles, so the first section pulled from `modules/module1_verbatim_introduction.tex` should appear in both the body and the TOC.
+
 ## Production Deployment (DigitalOcean + Apache)
 
 1. **Build the site locally on MAC**
