@@ -9,7 +9,7 @@ const SectionOne = () => (
         theoretical prices with real-world trading constraints. This summary introduces the motivation for bundling credit,
         funding, margin, and capital effects into a single analytical family. It frames XVA as an overlay that transforms a
         frictionless valuation baseline into an economically sound price reflecting institutional balance sheet pressures. The
-        paragraph also highlights the way each component responds to different drivers—from counterparty solvency to
+        lectures also highlights the way each component responds to different drivers—from counterparty solvency to
         liquidity—while emphasizing that all adjustments share the goal of improving transparency, profitability measurement, and
         risk-sensitive decision-making for trading desks and risk managers today.
       </p>
@@ -269,7 +269,7 @@ const SectionThree = () => (
         significant unsecured exposure outstanding for days, increasing adjustments. Netting agreements allow counterparties to
         offset positive and negative positions across products, lowering net exposure. Central counterparties (CCPs) standardize
         margining and default management, transferring counterparty risk from individual dealers to the clearinghouse and reducing
-        bilateral XVA, although members still bear the cost of initial margin and default fund contributions captured in MVA and
+        bilateral XVA, although members still bear the cost of initial margin and CCP default fund contributions captured in MVA and
         KVA calculations.
       </p>
       <p>
