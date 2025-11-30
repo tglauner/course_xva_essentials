@@ -13,7 +13,7 @@ export const module7Metadata = {
     'Future Trends and Challenges in XVA'
   ],
   icon: Download,
-  keyTerms: ['KVA', 'Basel III', 'Wrong-Way Risk', 'ISDA SIMM']
+  keyTerms: ['CVA', 'DVA', 'FVA', 'MVA', 'KVA', 'Basel III', 'Wrong-Way Risk', 'ISDA SIMM', 'Hurdle Rate', 'CCP']
 }
 
 export const module7Content = {
