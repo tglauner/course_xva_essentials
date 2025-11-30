@@ -12,7 +12,7 @@ export const module6Metadata = {
     'Governance, Optimisation, and Interactions'
   ],
   icon: ShieldCheck,
-  keyTerms: ['KVA', 'Cost of Capital', 'Risk-Weighted Assets', 'SA-CVA']
+  keyTerms: ['KVA', 'Cost of Capital', 'Hurdle Rate', 'Risk-Weighted Assets', 'SA-CVA', 'CCP']
 }
 
 export const module6Content = {

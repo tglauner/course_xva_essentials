@@ -10,27 +10,27 @@ import { module8Metadata, module8Content } from './modules/module8.jsx'
 export const glossary = {
     'CVA': {
       term: 'Credit Valuation Adjustment',
-      definition: 'The market value of the credit risk of a counterparty in a derivative transaction. It represents the expected loss due to the counterparty defaulting.',
+      definition: 'The expected loss on positive exposures when a counterparty defaults, combining exposure profiles, default probabilities, and loss-given-default.',
       formula: 'CVA = (1 - R) ∫_0^T E^Q[D(0, t) (V_t)^+] dPD(t)'
     },
     'DVA': {
       term: 'Debit Valuation Adjustment',
-      definition: 'The expected gain to a financial institution due to its own potential default. It represents the benefit arising from the bank\'s own credit risk.',
+      definition: 'The valuation uplift that reflects the bank\'s own default risk and the potential benefit on liabilities if the bank fails.',
       formula: 'DVA = (1 - R_bank) ∫_0^T E^Q[D(0, t) (V_t)^-] dPD_bank(t)'
     },
     'FVA': {
       term: 'Funding Valuation Adjustment',
-      definition: 'The cost or benefit associated with funding the uncollateralized portion of a derivative transaction.',
+      definition: 'The cost of funding hedge cashflows at spreads above the risk-free or OIS curve, especially for uncollateralized exposures.',
       formula: 'FVA = FVA_long + FVA_short'
     },
     'MVA': {
       term: 'Margin Valuation Adjustment',
-      definition: 'The cost of funding the initial margin (IM) required for centrally cleared or bilateral derivative transactions.',
+      definition: 'The funding drag created by segregated initial margin that cannot be rehypothecated for cleared or bilateral derivatives.',
       formula: 'MVA = Σ (EIM × Funding_Spread × dt × DF)'
     },
     'KVA': {
       term: 'Capital Valuation Adjustment',
-      definition: 'The cost of holding regulatory capital against derivative exposures.',
+      definition: 'The cost of holding regulatory capital over the life of the trade, typically priced at the institution\'s hurdle rate.',
       formula: 'KVA = Capital_Required × Cost_of_Capital'
     },
     'LGD': {
@@ -87,6 +87,16 @@ export const glossary = {
       term: 'Credit Default Swap',
       definition: 'A financial derivative that allows an investor to swap or offset their credit risk with that of another investor.',
       formula: 'Premium = PD × LGD × Notional'
+    },
+    'Hurdle Rate': {
+      term: 'Hurdle Rate',
+      definition: 'The minimum return on equity that a bank targets when deploying capital, used to price KVA and evaluate risk-adjusted profitability.',
+      formula: 'Required Capital Cost = Capital_Required × Hurdle_Rate'
+    },
+    'CCP': {
+      term: 'Central Counterparty (CCP)',
+      definition: 'A clearing house that interposes itself between buyers and sellers, novating trades, collecting margin, and mutualising default losses via a funded default waterfall.',
+      formula: 'Resources = IM + VM + Default Fund + CCP Equity'
     }
   }
 
